@@ -15,10 +15,10 @@ class Product extends Model
     }
 
     public function brands(){
-        return $this->hasMany(Brand::class);
+        return $this->belongsToMany(Brand::class);
     }
 
     public function providers(){
-        return $this->belongsTo(Provider::class);
+        return $this->belongsToMany(Provider::class);
     }
 }
