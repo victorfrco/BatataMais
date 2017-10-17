@@ -22,10 +22,14 @@ class FkTables extends Migration
             $table->foreign('logo_id')->references('id')->on('images');
         });
 
-//        Schema::table('product_provider', function($table){
-//            $table->foreign('product_id')->references('id')->on('products');
-//            $table->foreign('provider_id')->references('id')->on('providers');
-//        });
+        Schema::table('itens', function($table){
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('order_id')->references('id')->on('orders');
+        });
+
+        Schema::table('orders', function($table){
+            $table->foreign('client_id')->references('id')->on('clients');
+        });
     }
 
     /**

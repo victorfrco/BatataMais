@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price_cost', 8,2);
             $table->decimal('price_resale', 8,2);
             $table->decimal('price_discount', 8,2);
+            $table->integer('qtd_total');
             $table->timestamps();
 
             $table->unsignedInteger('category_id');
