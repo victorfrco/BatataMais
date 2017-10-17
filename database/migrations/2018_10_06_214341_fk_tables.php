@@ -15,16 +15,17 @@ class FkTables extends Migration
     {
         Schema::table('products', function($table){
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('brand_id')->references('id')->on('brands');
         });
 
         Schema::table('brands', function($table){
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('logo_id')->references('id')->on('images');
         });
 
-        Schema::table('product_provider', function($table){
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('provider_id')->references('id')->on('providers');
-        });
+//        Schema::table('product_provider', function($table){
+//            $table->foreign('product_id')->references('id')->on('products');
+//            $table->foreign('provider_id')->references('id')->on('providers');
+//        });
     }
 
     /**

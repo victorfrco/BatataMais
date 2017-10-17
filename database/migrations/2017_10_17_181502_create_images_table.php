@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductProviderTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +13,10 @@ class CreateProductProviderTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_provider', function (Blueprint $table) {
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('provider_id');
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('description');
+            $table->
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateProductProviderTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_provider');
+        Schema::dropIfExists('images');
     }
 }

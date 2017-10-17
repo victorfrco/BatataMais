@@ -18,7 +18,8 @@ class CreateBrandsTable extends Migration
             $table->string('description');
             $table->timestamps();
 
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('logo_id');
+
         });
     }
 
