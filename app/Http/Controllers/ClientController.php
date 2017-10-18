@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Forms\ClientsForm;
 use App\Models\Client;
+use function dd;
 use Illuminate\Http\Request;
+use function isNull;
+use Kris\LaravelFormBuilder\Form;
 
 class ClientController extends Controller
 {
@@ -49,8 +52,9 @@ class ClientController extends Controller
                 ->withErrors($form->getErrors())
                 ->withInput();
         }
-
         $data = $form->getFieldValues();
+        $data['associated'] = $data['associated'] == null ? 0 : 1;
+
         Client::create($data);
 
         return redirect()->route('admin.clients.index');
