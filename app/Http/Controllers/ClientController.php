@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forms\ClientForm;
 use App\Models\Client;
-use function dd;
 use Illuminate\Http\Request;
-use function isNull;
 use Kris\LaravelFormBuilder\Form;
 
 class ClientController extends Controller
@@ -86,19 +84,33 @@ class ClientController extends Controller
             'model' => $client
         ]);
 
-        return view('admin.$clients.edit', compact('form'));
+        return view('admin.clients.edit', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Client $client)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(ClientForm::class,
+            ['data' => ['id' => $client->id]
+            ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $client->update($data);
+
+        return redirect()->route('admin.clients.index');
     }
 
     /**

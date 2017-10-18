@@ -91,13 +91,27 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Brand $brand)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(BrandForm::class,
+            ['data' => ['id' => $brand->id]
+            ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $brand->update($data);
+
+        return redirect()->route('admin.brands.index');
     }
 
     /**

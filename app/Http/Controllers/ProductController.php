@@ -91,13 +91,27 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Product $product)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(ProductForm::class,
+            ['data' => ['id' => $product->id]
+            ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $product->update($data);
+
+        return redirect()->route('admin.products.index');
     }
 
     /**

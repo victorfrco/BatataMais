@@ -94,13 +94,27 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Category $category)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(CategoryForm::class,
+            ['data' => ['id' => $category->id]
+        ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $category->update($data);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**
