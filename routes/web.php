@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::prefix('admin')->group(function(){
+    Auth::routes();
+
+    Route::group([
+        'as'=>'admin.',
+        'middleware'=>'auth'
+    ], function(){
+        Route::resource('categories','CategoryController');
+        Route::resource('brands','BrandController');
+        Route::resource('products','ProductController');
+        Route::resource('clients','ClientController');
+    });
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
