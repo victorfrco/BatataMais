@@ -79,7 +79,13 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        $form = \FormBuilder::create(BrandForm::class,[
+            'url' => route('admin.brands.update', ['brand' => $brand->id]),
+            'method' => 'PUT',
+            'model' => $brand
+        ]);
+
+        return view('admin.brands.edit', compact('form'));
     }
 
     /**

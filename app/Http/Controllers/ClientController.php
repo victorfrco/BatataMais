@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\ClientsForm;
+use App\Forms\ClientForm;
 use App\Models\Client;
 use function dd;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $form = \FormBuilder::create(ClientsForm::class, [
+        $form = \FormBuilder::create(ClientForm::class, [
             'url' => route('admin.clients.store'),
             'method' => 'POST'
         ]);
@@ -46,7 +46,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         /**@var Form $form*/
-        $form = \FormBuilder::create(ClientsForm::class);
+        $form = \FormBuilder::create(ClientForm::class);
         if(!$form->isValid()){
             return redirect()
                 ->back()
@@ -80,7 +80,13 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $form = \FormBuilder::create(ClientForm::class,[
+            'url' => route('admin.clients.update', ['client' => $client->id]),
+            'method' => 'PUT',
+            'model' => $client
+        ]);
+
+        return view('admin.$clients.edit', compact('form'));
     }
 
     /**

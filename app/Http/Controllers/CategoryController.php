@@ -82,7 +82,13 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $form = \FormBuilder::create(CategoryForm::class,[
+            'url' => route('admin.categories.update', ['category' => $category->id]),
+            'method' => 'PUT',
+            'model' => $category
+        ]);
+
+        return view('admin.categories.edit', compact('form'));
     }
 
     /**

@@ -79,7 +79,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $form = \FormBuilder::create(ProductForm::class,[
+            'url' => route('admin.products.update', ['product' => $product->id]),
+            'method' => 'PUT',
+            'model' => $product
+        ]);
+
+        return view('admin.products.edit', compact('form'));
     }
 
     /**

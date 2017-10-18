@@ -4,7 +4,7 @@ namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
 
-class ClientsForm extends Form
+class ClientForm extends Form
 {
     public function buildForm()
     {
