@@ -108,6 +108,7 @@ class ClientController extends Controller
         }
 
         $data = $form->getFieldValues();
+        $data['associated'] = $data['associated'] == null ? 0 : 1;
         $client->update($data);
 
         return redirect()->route('admin.clients.index');
