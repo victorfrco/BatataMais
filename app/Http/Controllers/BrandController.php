@@ -44,7 +44,19 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(BrandForm::class);
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        Brand::create($data);
+
+        return redirect()->route('admin.brands.index');
     }
 
     /**

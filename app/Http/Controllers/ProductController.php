@@ -44,7 +44,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(ProductForm::class);
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        Product::create($data);
+
+        return redirect()->route('admin.products.index');
     }
 
     /**

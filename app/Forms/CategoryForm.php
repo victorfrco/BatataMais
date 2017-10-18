@@ -9,7 +9,10 @@ class CategoryForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text')
-            ->add('description', 'text');
+            ->add('name', 'text', [
+                'label' => 'Nome',
+                'rules' => 'required|max:255|unique:categories'
+            ])
+            ->add('description', 'text', ['label' => 'Descrição']);
     }
 }
