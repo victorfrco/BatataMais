@@ -23,6 +23,8 @@ Route::prefix('admin')->group(function(){
         'middleware'=>'auth'
     ], function(){
         Route::resource('categories','CategoryController');
+        Route::resource('brands','BrandController');
+        Route::resource('products','ProductController');
     });
 });
 
