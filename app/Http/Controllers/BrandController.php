@@ -6,6 +6,7 @@ use App\Forms\BrandForm;
 use App\Models\Brand;
 use function compact;
 use Illuminate\Http\Request;
+use function redirect;
 use function route;
 use function view;
 
@@ -68,7 +69,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('admin.brands.show', compact('brand'));
     }
 
     /**
@@ -122,6 +123,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return redirect()->route('admin.brands.index');
     }
 }

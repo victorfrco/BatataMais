@@ -67,7 +67,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('admin.clients.show', compact('client'));
     }
 
     /**
@@ -122,6 +122,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('admin.clients.index');
     }
 }
