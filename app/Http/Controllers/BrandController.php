@@ -6,6 +6,7 @@ use App\Forms\BrandForm;
 use App\Models\Brand;
 use function compact;
 use Illuminate\Http\Request;
+use function redirect;
 use function route;
 use function view;
 
@@ -68,7 +69,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('admin.brands.show', compact('brand'));
     }
 
     /**
@@ -79,19 +80,39 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        $form = \FormBuilder::create(BrandForm::class,[
+            'url' => route('admin.brands.update', ['brand' => $brand->id]),
+            'method' => 'PUT',
+            'model' => $brand
+        ]);
+
+        return view('admin.brands.edit', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Brand $brand)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(BrandForm::class,
+            ['data' => ['id' => $brand->id]
+            ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $brand->update($data);
+
+        return redirect()->route('admin.brands.index');
     }
 
     /**
@@ -102,6 +123,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return redirect()->route('admin.brands.index');
     }
 }

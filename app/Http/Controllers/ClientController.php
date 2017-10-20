@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\ClientsForm;
+use App\Forms\ClientForm;
 use App\Models\Client;
-use function dd;
 use Illuminate\Http\Request;
-use function isNull;
 use Kris\LaravelFormBuilder\Form;
 
 class ClientController extends Controller
@@ -29,7 +27,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $form = \FormBuilder::create(ClientsForm::class, [
+        $form = \FormBuilder::create(ClientForm::class, [
             'url' => route('admin.clients.store'),
             'method' => 'POST'
         ]);
@@ -46,7 +44,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         /**@var Form $form*/
-        $form = \FormBuilder::create(ClientsForm::class);
+        $form = \FormBuilder::create(ClientForm::class);
         if(!$form->isValid()){
             return redirect()
                 ->back()
@@ -69,7 +67,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('admin.clients.show', compact('client'));
     }
 
     /**
@@ -80,19 +78,40 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $form = \FormBuilder::create(ClientForm::class,[
+            'url' => route('admin.clients.update', ['client' => $client->id]),
+            'method' => 'PUT',
+            'model' => $client
+        ]);
+
+        return view('admin.clients.edit', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Client $client)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(ClientForm::class,
+            ['data' => ['id' => $client->id]
+            ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $data['associated'] = $data['associated'] == null ? 0 : 1;
+        $client->update($data);
+
+        return redirect()->route('admin.clients.index');
     }
 
     /**
@@ -103,6 +122,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('admin.clients.index');
     }
 }

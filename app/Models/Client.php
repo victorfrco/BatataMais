@@ -25,11 +25,7 @@ class Client extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        ['name', 'nickname', 'phone1', 'phone2'
-        , 'email', 'cpf', 'associated', 'associated_id', 'obs'
-        , 'adr_street', 'adr_number', 'adr_neighborhood', 'adr_cep', 'adr_compl'];
-
-        return ['Id', 'Nome', 'Apelido', 'Telefone', 'Email', 'Associado'];
+        return ['Id', 'Nome', 'Apelido', 'Telefone', 'Email', 'CPF', 'Associado'];
     }
 
     /**
@@ -56,6 +52,9 @@ class Client extends Model implements TableInterface
                 break;
             case 'Email':
                 return $this->email;
+                break;
+            case 'CPF':
+                return $this->cpf;
                 break;
             case 'Associado':
                 $associado = $this->associated == 0 ? 'NÃO' : 'SIM - '.$this->associated_id;

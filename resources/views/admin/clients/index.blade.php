@@ -6,7 +6,13 @@
             <h2>Listagem de Clientes</h2>
         </div>
         <div class="row">
-            {!! Table::withContents($clients->items()) !!}
+            {!! Table::withContents($clients->items())
+             ->callback('Ações', function($campo, $model){
+                $linkEdit = route('admin.clients.edit', ['client' => $model->id]);
+                $linkShow = route('admin.clients.show', ['client' => $model->id]);
+                return Button::link('Editar')->asLinkTo($linkEdit).' | '.Button::link('Ver')->asLinkTo($linkShow);
+             })
+             !!}
         </div>
 
         {!!$clients->links();!!}
