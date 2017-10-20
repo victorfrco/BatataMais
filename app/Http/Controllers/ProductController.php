@@ -108,6 +108,7 @@ class ProductController extends Controller
                 ->withInput();
         }
 
+
         $data = $form->getFieldValues();
         $product->update($data);
 
