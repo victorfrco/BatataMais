@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Batata+'),
+    'name' => env('APP_NAME', 'Batata'),
 
     /*
     |--------------------------------------------------------------------------
@@ -233,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Table' => Bootstrapper\Facades\Table::class,
         'Button' => Bootstrapper\Facades\Button::class,
+        'Icon' => Bootstrapper\Facades\Icon::class
 
     ],
 

@@ -9,10 +9,10 @@
                 $linkEdit = route('admin.clients.edit', ['client' => $client->id]);
                 $linkDelete = route('admin.clients.destroy', ['client' => $client->id]);
             @endphp
-            {!! Button::primary('Editar')->asLinkTo($linkEdit) !!}
-            {!! Button::danger('Excluir')->asLinkTo($linkDelete)->addAttributes([
-                'onClick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
-            ]) !!}
+        {!! Button::primary('Editar  '.Icon::pencil())->asLinkTo($linkEdit) !!}
+        {!! Button::danger('Excluir  '.Icon::remove())->asLinkTo($linkDelete)->addAttributes([
+            'onClick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
+        ]) !!}
             @php
                 $formDelete = FormBuilder::plain([
                     'id' => 'form-delete',

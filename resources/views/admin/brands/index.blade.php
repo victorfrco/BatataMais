@@ -10,7 +10,7 @@
             ->callback('Ações', function($campo, $model){
                 $linkEdit = route('admin.brands.edit', ['brand' => $model->id]);
                 $linkShow = route('admin.brands.show', ['brand' => $model->id]);
-                return Button::link('Editar')->asLinkTo($linkEdit).' | '.Button::link('Ver')->asLinkTo($linkShow);
+                 return Button::link('Editar &nbsp'.Icon::pencil())->asLinkTo($linkEdit).' | '.Button::link('Ver &nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow);
              }) !!}
         </div>
         {!! $brands->links() !!}

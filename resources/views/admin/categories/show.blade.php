@@ -9,11 +9,13 @@
                 $linkEdit = route('admin.categories.edit', ['category' => $category->id]);
                 $linkDelete = route('admin.categories.destroy', ['category' => $category->id]);
             @endphp
-            {!! Button::primary('Editar')->asLinkTo($linkEdit) !!}
-            {!! Button::danger('Excluir')->asLinkTo($linkDelete)->addAttributes([
+            {!! Button::primary('Editar  '.Icon::pencil())->asLinkTo($linkEdit) !!}
+            {!! Button::danger('Excluir  '.Icon::remove())->asLinkTo($linkDelete)->addAttributes([
                 'onClick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
             ]) !!}
+            <br><br>
             @php
+
                 $formDelete = FormBuilder::plain([
                     'id' => 'form-delete',
                     'url' => $linkDelete,
