@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56f1d85f-0a0c-401a-b2cb-a6f09b367dbc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_ide_helper.php" afterPath="$PROJECT_DIR$/_ide_helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BrandController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BrandController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Brand.php" afterPath="$PROJECT_DIR$/app/Models/Brand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Category.php" afterPath="$PROJECT_DIR$/app/Models/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Client.php" afterPath="$PROJECT_DIR$/app/Models/Client.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Product.php" afterPath="$PROJECT_DIR$/app/Models/Product.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-    </list>
+    <list default="true" id="56f1d85f-0a0c-401a-b2cb-a6f09b367dbc" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +14,337 @@
     <executablePath>composer</executablePath>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="_ide_helper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_ide_helper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+              <folding>
+                <marker date="1508898857146" expanded="true" signature="389016:389230" ph=" Create and return an un-saved model instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="389296:389409" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="389435:389677" ph=" Register a new global scope. ..." />
+                <marker date="1508898857146" expanded="true" signature="389752:389884" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="389910:390114" ph=" Remove a registered global scope. ..." />
+                <marker date="1508898857146" expanded="true" signature="390179:390301" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="390327:390513" ph=" Remove all or passed registered global scopes. ..." />
+                <marker date="1508898857146" expanded="true" signature="390587:390711" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="390737:390899" ph=" Get an array of global scopes that were removed from the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="390953:391064" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="391090:391272" ph=" Add a where clause on the primary key to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="391324:391433" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="391459:391760" ph=" Add a basic where clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="391864:392003" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="392029:392331" ph=" Add an &quot;or where&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="392419:392550" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="392576:392793" ph=" Create a collection of models from plain arrays. ..." />
+                <marker date="1508898857146" expanded="true" signature="392847:392958" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="392984:393239" ph=" Create a collection of models from a raw query. ..." />
+                <marker date="1508898857146" expanded="true" signature="393316:393440" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="393466:393758" ph=" Find a model by its primary key. ..." />
+                <marker date="1508898857146" expanded="true" signature="393826:393941" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="393967:394214" ph=" Find multiple models by their primary keys. ..." />
+                <marker date="1508898857146" expanded="true" signature="394287:394407" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="394433:394802" ph=" Find a model by its primary key or throw an exception. ..." />
+                <marker date="1508898857146" expanded="true" signature="394876:394997" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="395023:395284" ph=" Find a model by its primary key or return fresh model instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="395357:395477" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="395503:395771" ph=" Get the first record matching the attributes or instantiate it. ..." />
+                <marker date="1508898857146" expanded="true" signature="395852:395980" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="396006:396269" ph=" Get the first record matching the attributes or create it. ..." />
+                <marker date="1508898857146" expanded="true" signature="396353:396484" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="396510:396790" ph=" Create or update a record matching the attributes, and fill it with values. ..." />
+                <marker date="1508898857146" expanded="true" signature="396875:397007" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="397033:397347" ph=" Execute the query and get the first result or throw an exception. ..." />
+                <marker date="1508898857146" expanded="true" signature="397417:397534" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="397560:397856" ph=" Execute the query and get the first result or call a callback. ..." />
+                <marker date="1508898857146" expanded="true" signature="397940:398064" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="398090:398287" ph=" Get a single column's value from the first result of a query. ..." />
+                <marker date="1508898857146" expanded="true" signature="398340:398450" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="398476:398698" ph=" Execute the query as a &quot;select&quot; statement. ..." />
+                <marker date="1508898857146" expanded="true" signature="398760:398869" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="398895:399109" ph=" Get the hydrated models without eager loading. ..." />
+                <marker date="1508898857146" expanded="true" signature="399177:399292" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="399318:399497" ph=" Eager load the relationships for the models. ..." />
+                <marker date="1508898857146" expanded="true" signature="399563:399686" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="399712:399852" ph=" Get a generator for the given query. ..." />
+                <marker date="1508898857146" expanded="true" signature="399899:400003" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="400029:400333" ph=" Chunk the results of a query by comparing numeric IDs. ..." />
+                <marker date="1508898857146" expanded="true" signature="400431:400572" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="400598:400845" ph=" Get an array with the values of a given column. ..." />
+                <marker date="1508898857146" expanded="true" signature="400911:401027" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="401053:401422" ph=" Paginate the given query. ..." />
+                <marker date="1508898857146" expanded="true" signature="401540:401682" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="401708:402041" ph=" Paginate the given query into a simple paginator. ..." />
+                <marker date="1508898857146" expanded="true" signature="402165:402313" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="402339:402555" ph=" Save a new model and return the instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="402623:402738" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="402764:403003" ph=" Save a new model and return the instance. Allow mass-assignment. ..." />
+                <marker date="1508898857146" expanded="true" signature="403066:403186" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="403212:403406" ph=" Register a replacement for the default delete function. ..." />
+                <marker date="1508898857146" expanded="true" signature="403464:403572" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="403598:403767" ph=" Call the given local model scopes. ..." />
+                <marker date="1508898857146" expanded="true" signature="403821:403932" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="403958:404160" ph=" Apply the scopes to the Eloquent builder instance and return it. ..." />
+                <marker date="1508898857146" expanded="true" signature="404212:404321" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="404347:404541" ph=" Prevent the specified relations from being eager loaded. ..." />
+                <marker date="1508898857146" expanded="true" signature="404599:404714" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="404740:404958" ph=" Create a new instance of the model being queried. ..." />
+                <marker date="1508898857146" expanded="true" signature="405036:405161" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="405187:405357" ph=" Get the underlying query builder instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="405406:405512" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="405538:405743" ph=" Set the underlying query builder instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="405798:405910" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="405936:406098" ph=" Get a base query builder instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="406145:406249" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="406275:406417" ph=" Get the relationships being eagerly loaded. ..." />
+                <marker date="1508898857146" expanded="true" signature="406471:406582" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="406608:406789" ph=" Set the relationships being eagerly loaded. ..." />
+                <marker date="1508898857146" expanded="true" signature="406853:406974" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="407000:407166" ph=" Get the model instance being queried. ..." />
+                <marker date="1508898857146" expanded="true" signature="407215:407321" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="407347:407560" ph=" Set a model instance for the model being queried. ..." />
+                <marker date="1508898857146" expanded="true" signature="407615:407727" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="407753:407918" ph=" Get the given macro by name. ..." />
+                <marker date="1508898857146" expanded="true" signature="407972:408083" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="408109:408312" ph=" Chunk the results of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="408375:408495" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="408521:408742" ph=" Execute a callback over each item while chunking. ..." />
+                <marker date="1508898857146" expanded="true" signature="408811:408930" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="408956:409177" ph=" Execute the query and get the first result. ..." />
+                <marker date="1508898857146" expanded="true" signature="409241:409352" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="409378:409657" ph=" Apply the callback's query changes if the given &quot;value&quot; is true. ..." />
+                <marker date="1508898857146" expanded="true" signature="409736:409865" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="409891:410095" ph=" Pass the query to a given callback. ..." />
+                <marker date="1508898857146" expanded="true" signature="410148:410258" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="410284:410564" ph=" Apply the callback's query changes if the given &quot;value&quot; is false. ..." />
+                <marker date="1508898857146" expanded="true" signature="410645:410776" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="410802:411192" ph=" Add a relationship count / exists condition to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="411311:411461" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="411487:411806" ph=" Add a relationship count / exists condition to the query with an &quot;or&quot;. ..." />
+                <marker date="1508898857146" expanded="true" signature="411891:412022" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="412048:412366" ph=" Add a relationship count / exists condition to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="412462:412600" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="412626:412873" ph=" Add a relationship count / exists condition to the query with an &quot;or&quot;. ..." />
+                <marker date="1508898857146" expanded="true" signature="412935:413054" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="413080:413451" ph=" Add a relationship count / exists condition to the query with where clauses. ..." />
+                <marker date="1508898857146" expanded="true" signature="413557:413702" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="413728:414106" ph=" Add a relationship count / exists condition to the query with where clauses and an &quot;or&quot;. ..." />
+                <marker date="1508898857146" expanded="true" signature="414214:414361" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="414387:414686" ph=" Add a relationship count / exists condition to the query with where clauses. ..." />
+                <marker date="1508898857146" expanded="true" signature="414769:414902" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="414928:415234" ph=" Add a relationship count / exists condition to the query with where clauses and an &quot;or&quot;. ..." />
+                <marker date="1508898857146" expanded="true" signature="415319:415454" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="415480:415663" ph=" Add subselect queries to count the relations. ..." />
+                <marker date="1508898857146" expanded="true" signature="415723:415840" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="415866:416138" ph=" Merge the where constraints from another query to the current query. ..." />
+                <marker date="1508898857146" expanded="true" signature="416204:416327" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="416353:416526" ph=" Set the columns to be selected. ..." />
+                <marker date="1508898857146" expanded="true" signature="416591:416700" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="416726:416987" ph=" Add a new &quot;raw&quot; select expression to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="417069:417195" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="417221:417558" ph=" Add a subselect expression to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="417619:417734" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="417760:417938" ph=" Add a new select column to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="417995:418106" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="418132:418279" ph=" Force the query to only return distinct results. ..." />
+                <marker date="1508898857146" expanded="true" signature="418328:418431" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="418457:418635" ph=" Set the table which the query is targeting. ..." />
+                <marker date="1508898857146" expanded="true" signature="418686:418791" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="418817:419164" ph=" Add a join clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="419290:419438" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="419464:419821" ph=" Add a &quot;join where&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="419922:420067" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="420093:420405" ph=" Add a left join to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="420502:420639" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="420665:420987" ph=" Add a &quot;join where&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="421075:421217" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="421243:421556" ph=" Add a right join to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="421654:421792" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="421818:422146" ph=" Add a &quot;right join where&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="422235:422378" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="422404:422726" ph=" Add a &quot;cross join&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="422831:422969" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="422995:423212" ph=" Merge an array of where clauses and bindings. ..." />
+                <marker date="1508898857146" expanded="true" signature="423282:423399" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="423425:423787" ph=" Add a &quot;where&quot; clause comparing two columns to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="423897:424039" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="424065:424388" ph=" Add an &quot;or where&quot; clause comparing two columns to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="424482:424616" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="424642:424887" ph=" Add a raw where clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="424979:425107" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="425133:425379" ph=" Add a raw or where clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="425455:425575" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="425601:425880" ph=" Add a &quot;where in&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="425976:426110" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="426136:426385" ph=" Add an &quot;or where in&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="426451:426571" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="426597:426884" ph=" Add a &quot;where not in&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="426969:427100" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="427126:427379" ph=" Add an &quot;or where not in&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="427448:427571" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="427597:427842" ph=" Add a &quot;where null&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="427931:428058" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="428084:428299" ph=" Add an &quot;or where null&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="428358:428471" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="428497:428750" ph=" Add a &quot;where not null&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="428828:428952" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="428978:429263" ph=" Add a where between statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="429364:429503" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="429529:429784" ph=" Add an or where between statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="429855:429980" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="430006:430299" ph=" Add a where not between statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="430389:430525" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="430551:430810" ph=" Add an or where not between statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="430884:431012" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="431038:431257" ph=" Add an &quot;or where not null&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="431319:431435" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="431461:431787" ph=" Add a &quot;where date&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="431888:432028" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="432054:432347" ph=" Add an &quot;or where date&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="432425:432557" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="432583:432907" ph=" Add a &quot;where time&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="433001:433141" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="433167:433457" ph=" Add an &quot;or where time&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="433535:433667" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="433693:434018" ph=" Add a &quot;where day&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="434118:434257" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="434283:434610" ph=" Add a &quot;where month&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="434712:434853" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="434879:435205" ph=" Add a &quot;where year&quot; statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="435306:435446" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="435472:435728" ph=" Add a nested where statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="435807:435932" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="435958:436141" ph=" Create a new query instance for nested where condition. ..." />
+                <marker date="1508898857146" expanded="true" signature="436196:436305" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="436331:436604" ph=" Add another query builder as a nested where to the query builder. ..." />
+                <marker date="1508898857146" expanded="true" signature="436688:436818" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="436844:437088" ph=" Add an exists clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="437181:437312" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="437338:437583" ph=" Add an or exists clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="437660:437783" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="437809:438066" ph=" Add a where not exists clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="438148:438276" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="438302:438521" ph=" Add a where not exists clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="438587:438707" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="438733:439000" ph=" Add an exists clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="439098:439234" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="439260:439482" ph=" Handles dynamic &quot;where&quot; clauses to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="439555:439682" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="439708:439880" ph=" Add a &quot;group by&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="439942:440051" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="440077:440361" ph=" Add a &quot;having&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="440466:440603" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="440629:440914" ph=" Add a &quot;or having&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="441003:441132" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="441158:441404" ph=" Add a raw having clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="441497:441626" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="441652:441899" ph=" Add a raw or having clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="441976:442097" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="442123:442337" ph=" Add an &quot;order by&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="442412:442533" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="442559:442743" ph=" Add a descending &quot;order by&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="442802:442915" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="442941:443167" ph=" Add an &quot;order by&quot; clause for a timestamp to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="443236:443344" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="443370:443596" ph=" Add an &quot;order by&quot; clause for a timestamp to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="443665:443773" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="443799:443973" ph=" Put the query's results in random order. ..." />
+                <marker date="1508898857146" expanded="true" signature="444037:444150" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="444176:444388" ph=" Add a raw &quot;order by&quot; clause to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="444464:444584" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="444610:444823" ph=" Alias to set the &quot;offset&quot; value of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="444874:444979" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="445005:445173" ph=" Set the &quot;offset&quot; value of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="445226:445333" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="445359:445571" ph=" Alias to set the &quot;limit&quot; value of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="445622:445727" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="445753:445920" ph=" Set the &quot;limit&quot; value of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="445972:446078" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="446104:446348" ph=" Set the limit and offset for a given page. ..." />
+                <marker date="1508898857146" expanded="true" signature="446416:446533" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="446559:446867" ph=" Constrain the query to the next &quot;page&quot; of results after a given ID. ..." />
+                <marker date="1508898857146" expanded="true" signature="446964:447099" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="447125:447400" ph=" Add a union statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="447466:447578" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="447604:447851" ph=" Add a union all statement to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="447906:448015" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="448041:448217" ph=" Lock the selected rows in the table. ..." />
+                <marker date="1508898857146" expanded="true" signature="448275:448380" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="448406:448583" ph=" Lock the selected rows in the table for updating. ..." />
+                <marker date="1508898857146" expanded="true" signature="448637:448745" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="448771:448941" ph=" Share lock the selected rows in the table. ..." />
+                <marker date="1508898857146" expanded="true" signature="448992:449097" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="449123:449263" ph=" Get the SQL representation of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="449309:449409" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="449435:449622" ph=" Get the count of the total records for the paginator. ..." />
+                <marker date="1508898857146" expanded="true" signature="449702:449826" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="449852:450073" ph=" Concatenate values of a given column as a string. ..." />
+                <marker date="1508898857146" expanded="true" signature="450140:450256" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="450282:450430" ph=" Determine if any rows exist for the current query. ..." />
+                <marker date="1508898857146" expanded="true" signature="450477:450578" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="450604:450780" ph=" Retrieve the &quot;count&quot; result of the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="450840:450948" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="450974:451155" ph=" Retrieve the minimum value of a given column. ..." />
+                <marker date="1508898857146" expanded="true" signature="451206:451311" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="451337:451518" ph=" Retrieve the maximum value of a given column. ..." />
+                <marker date="1508898857146" expanded="true" signature="451569:451674" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="451700:451885" ph=" Retrieve the sum of the values of a given column. ..." />
+                <marker date="1508898857146" expanded="true" signature="451936:452041" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="452067:452256" ph=" Retrieve the average of the values of a given column. ..." />
+                <marker date="1508898857146" expanded="true" signature="452307:452412" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="452438:452601" ph=" Alias for the &quot;avg&quot; method. ..." />
+                <marker date="1508898857146" expanded="true" signature="452656:452765" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="452791:453012" ph=" Execute an aggregate function on the database. ..." />
+                <marker date="1508898857146" expanded="true" signature="453091:453214" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="453240:453472" ph=" Execute a numeric aggregate function on the database. ..." />
+                <marker date="1508898857146" expanded="true" signature="453558:453688" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="453714:453886" ph=" Insert a new record into the database. ..." />
+                <marker date="1508898857146" expanded="true" signature="453940:454048" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="454074:454303" ph=" Insert a new record and get the value of the primary key. ..." />
+                <marker date="1508898857146" expanded="true" signature="454380:454504" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="454530:454779" ph=" Insert or update a record matching the attributes, and fill it with values. ..." />
+                <marker date="1508898857146" expanded="true" signature="454864:454993" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="455019:455155" ph=" Run a truncate statement on the table. ..." />
+                <marker date="1508898857146" expanded="true" signature="455204:455300" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="455326:455525" ph=" Create a raw database expression. ..." />
+                <marker date="1508898857146" expanded="true" signature="455575:455679" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="455705:455862" ph=" Get the current query value bindings in a flattened array. ..." />
+                <marker date="1508898857146" expanded="true" signature="455914:456020" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="456046:456175" ph=" Get the raw array of bindings. ..." />
+                <marker date="1508898857146" expanded="true" signature="456230:456339" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="456365:456624" ph=" Set the bindings on the query builder. ..." />
+                <marker date="1508898857146" expanded="true" signature="456702:456824" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="456850:457095" ph=" Add a binding to the query. ..." />
+                <marker date="1508898857146" expanded="true" signature="457169:457287" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="457313:457521" ph=" Merge an array of bindings into our bindings. ..." />
+                <marker date="1508898857146" expanded="true" signature="457581:457695" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="457721:457904" ph=" Get the database query processor instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="457957:458064" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="458090:458258" ph=" Get the query grammar instance. ..." />
+                <marker date="1508898857146" expanded="true" signature="458309:458414" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="458440:458567" ph=" Use the write pdo for query. ..." />
+                <marker date="1508898857146" expanded="true" signature="458619:458725" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="458751:458932" ph=" Clone the query without the given properties. ..." />
+                <marker date="1508898857146" expanded="true" signature="458992:459106" ph="{...}" />
+                <marker date="1508898857146" expanded="true" signature="459132:459311" ph=" Clone the query without the given bindings. ..." />
+                <marker date="1508898857146" expanded="true" signature="459379:459501" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".env.example" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.env.example">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -212,82 +527,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Models" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="brands" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="categories" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="clients" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ProjetoBatata" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjetoBatata" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="products" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="BatataMais" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BatataMais" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -430,16 +671,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72807000" />
+    <option name="totallyTimeSpent" value="72824000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1592" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29282576" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29282576" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23454833" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.4975" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37434554" sideWeight="0.494375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -447,12 +689,23 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37434554" sideWeight="0.494375" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29282576" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.4975" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -502,7 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -517,7 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -525,7 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -533,7 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -541,7 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -549,15 +796,323 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_ide_helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding>
+            <marker date="1508898857146" expanded="true" signature="389016:389230" ph=" Create and return an un-saved model instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="389296:389409" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="389435:389677" ph=" Register a new global scope. ..." />
+            <marker date="1508898857146" expanded="true" signature="389752:389884" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="389910:390114" ph=" Remove a registered global scope. ..." />
+            <marker date="1508898857146" expanded="true" signature="390179:390301" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="390327:390513" ph=" Remove all or passed registered global scopes. ..." />
+            <marker date="1508898857146" expanded="true" signature="390587:390711" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="390737:390899" ph=" Get an array of global scopes that were removed from the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="390953:391064" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="391090:391272" ph=" Add a where clause on the primary key to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="391324:391433" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="391459:391760" ph=" Add a basic where clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="391864:392003" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="392029:392331" ph=" Add an &quot;or where&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="392419:392550" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="392576:392793" ph=" Create a collection of models from plain arrays. ..." />
+            <marker date="1508898857146" expanded="true" signature="392847:392958" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="392984:393239" ph=" Create a collection of models from a raw query. ..." />
+            <marker date="1508898857146" expanded="true" signature="393316:393440" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="393466:393758" ph=" Find a model by its primary key. ..." />
+            <marker date="1508898857146" expanded="true" signature="393826:393941" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="393967:394214" ph=" Find multiple models by their primary keys. ..." />
+            <marker date="1508898857146" expanded="true" signature="394287:394407" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="394433:394802" ph=" Find a model by its primary key or throw an exception. ..." />
+            <marker date="1508898857146" expanded="true" signature="394876:394997" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="395023:395284" ph=" Find a model by its primary key or return fresh model instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="395357:395477" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="395503:395771" ph=" Get the first record matching the attributes or instantiate it. ..." />
+            <marker date="1508898857146" expanded="true" signature="395852:395980" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="396006:396269" ph=" Get the first record matching the attributes or create it. ..." />
+            <marker date="1508898857146" expanded="true" signature="396353:396484" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="396510:396790" ph=" Create or update a record matching the attributes, and fill it with values. ..." />
+            <marker date="1508898857146" expanded="true" signature="396875:397007" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="397033:397347" ph=" Execute the query and get the first result or throw an exception. ..." />
+            <marker date="1508898857146" expanded="true" signature="397417:397534" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="397560:397856" ph=" Execute the query and get the first result or call a callback. ..." />
+            <marker date="1508898857146" expanded="true" signature="397940:398064" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="398090:398287" ph=" Get a single column's value from the first result of a query. ..." />
+            <marker date="1508898857146" expanded="true" signature="398340:398450" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="398476:398698" ph=" Execute the query as a &quot;select&quot; statement. ..." />
+            <marker date="1508898857146" expanded="true" signature="398760:398869" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="398895:399109" ph=" Get the hydrated models without eager loading. ..." />
+            <marker date="1508898857146" expanded="true" signature="399177:399292" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="399318:399497" ph=" Eager load the relationships for the models. ..." />
+            <marker date="1508898857146" expanded="true" signature="399563:399686" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="399712:399852" ph=" Get a generator for the given query. ..." />
+            <marker date="1508898857146" expanded="true" signature="399899:400003" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="400029:400333" ph=" Chunk the results of a query by comparing numeric IDs. ..." />
+            <marker date="1508898857146" expanded="true" signature="400431:400572" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="400598:400845" ph=" Get an array with the values of a given column. ..." />
+            <marker date="1508898857146" expanded="true" signature="400911:401027" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="401053:401422" ph=" Paginate the given query. ..." />
+            <marker date="1508898857146" expanded="true" signature="401540:401682" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="401708:402041" ph=" Paginate the given query into a simple paginator. ..." />
+            <marker date="1508898857146" expanded="true" signature="402165:402313" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="402339:402555" ph=" Save a new model and return the instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="402623:402738" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="402764:403003" ph=" Save a new model and return the instance. Allow mass-assignment. ..." />
+            <marker date="1508898857146" expanded="true" signature="403066:403186" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="403212:403406" ph=" Register a replacement for the default delete function. ..." />
+            <marker date="1508898857146" expanded="true" signature="403464:403572" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="403598:403767" ph=" Call the given local model scopes. ..." />
+            <marker date="1508898857146" expanded="true" signature="403821:403932" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="403958:404160" ph=" Apply the scopes to the Eloquent builder instance and return it. ..." />
+            <marker date="1508898857146" expanded="true" signature="404212:404321" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="404347:404541" ph=" Prevent the specified relations from being eager loaded. ..." />
+            <marker date="1508898857146" expanded="true" signature="404599:404714" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="404740:404958" ph=" Create a new instance of the model being queried. ..." />
+            <marker date="1508898857146" expanded="true" signature="405036:405161" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="405187:405357" ph=" Get the underlying query builder instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="405406:405512" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="405538:405743" ph=" Set the underlying query builder instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="405798:405910" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="405936:406098" ph=" Get a base query builder instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="406145:406249" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="406275:406417" ph=" Get the relationships being eagerly loaded. ..." />
+            <marker date="1508898857146" expanded="true" signature="406471:406582" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="406608:406789" ph=" Set the relationships being eagerly loaded. ..." />
+            <marker date="1508898857146" expanded="true" signature="406853:406974" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="407000:407166" ph=" Get the model instance being queried. ..." />
+            <marker date="1508898857146" expanded="true" signature="407215:407321" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="407347:407560" ph=" Set a model instance for the model being queried. ..." />
+            <marker date="1508898857146" expanded="true" signature="407615:407727" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="407753:407918" ph=" Get the given macro by name. ..." />
+            <marker date="1508898857146" expanded="true" signature="407972:408083" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="408109:408312" ph=" Chunk the results of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="408375:408495" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="408521:408742" ph=" Execute a callback over each item while chunking. ..." />
+            <marker date="1508898857146" expanded="true" signature="408811:408930" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="408956:409177" ph=" Execute the query and get the first result. ..." />
+            <marker date="1508898857146" expanded="true" signature="409241:409352" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="409378:409657" ph=" Apply the callback's query changes if the given &quot;value&quot; is true. ..." />
+            <marker date="1508898857146" expanded="true" signature="409736:409865" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="409891:410095" ph=" Pass the query to a given callback. ..." />
+            <marker date="1508898857146" expanded="true" signature="410148:410258" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="410284:410564" ph=" Apply the callback's query changes if the given &quot;value&quot; is false. ..." />
+            <marker date="1508898857146" expanded="true" signature="410645:410776" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="410802:411192" ph=" Add a relationship count / exists condition to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="411311:411461" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="411487:411806" ph=" Add a relationship count / exists condition to the query with an &quot;or&quot;. ..." />
+            <marker date="1508898857146" expanded="true" signature="411891:412022" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="412048:412366" ph=" Add a relationship count / exists condition to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="412462:412600" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="412626:412873" ph=" Add a relationship count / exists condition to the query with an &quot;or&quot;. ..." />
+            <marker date="1508898857146" expanded="true" signature="412935:413054" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="413080:413451" ph=" Add a relationship count / exists condition to the query with where clauses. ..." />
+            <marker date="1508898857146" expanded="true" signature="413557:413702" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="413728:414106" ph=" Add a relationship count / exists condition to the query with where clauses and an &quot;or&quot;. ..." />
+            <marker date="1508898857146" expanded="true" signature="414214:414361" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="414387:414686" ph=" Add a relationship count / exists condition to the query with where clauses. ..." />
+            <marker date="1508898857146" expanded="true" signature="414769:414902" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="414928:415234" ph=" Add a relationship count / exists condition to the query with where clauses and an &quot;or&quot;. ..." />
+            <marker date="1508898857146" expanded="true" signature="415319:415454" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="415480:415663" ph=" Add subselect queries to count the relations. ..." />
+            <marker date="1508898857146" expanded="true" signature="415723:415840" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="415866:416138" ph=" Merge the where constraints from another query to the current query. ..." />
+            <marker date="1508898857146" expanded="true" signature="416204:416327" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="416353:416526" ph=" Set the columns to be selected. ..." />
+            <marker date="1508898857146" expanded="true" signature="416591:416700" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="416726:416987" ph=" Add a new &quot;raw&quot; select expression to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="417069:417195" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="417221:417558" ph=" Add a subselect expression to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="417619:417734" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="417760:417938" ph=" Add a new select column to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="417995:418106" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="418132:418279" ph=" Force the query to only return distinct results. ..." />
+            <marker date="1508898857146" expanded="true" signature="418328:418431" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="418457:418635" ph=" Set the table which the query is targeting. ..." />
+            <marker date="1508898857146" expanded="true" signature="418686:418791" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="418817:419164" ph=" Add a join clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="419290:419438" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="419464:419821" ph=" Add a &quot;join where&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="419922:420067" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="420093:420405" ph=" Add a left join to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="420502:420639" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="420665:420987" ph=" Add a &quot;join where&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="421075:421217" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="421243:421556" ph=" Add a right join to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="421654:421792" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="421818:422146" ph=" Add a &quot;right join where&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="422235:422378" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="422404:422726" ph=" Add a &quot;cross join&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="422831:422969" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="422995:423212" ph=" Merge an array of where clauses and bindings. ..." />
+            <marker date="1508898857146" expanded="true" signature="423282:423399" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="423425:423787" ph=" Add a &quot;where&quot; clause comparing two columns to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="423897:424039" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="424065:424388" ph=" Add an &quot;or where&quot; clause comparing two columns to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="424482:424616" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="424642:424887" ph=" Add a raw where clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="424979:425107" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="425133:425379" ph=" Add a raw or where clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="425455:425575" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="425601:425880" ph=" Add a &quot;where in&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="425976:426110" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="426136:426385" ph=" Add an &quot;or where in&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="426451:426571" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="426597:426884" ph=" Add a &quot;where not in&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="426969:427100" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="427126:427379" ph=" Add an &quot;or where not in&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="427448:427571" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="427597:427842" ph=" Add a &quot;where null&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="427931:428058" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="428084:428299" ph=" Add an &quot;or where null&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="428358:428471" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="428497:428750" ph=" Add a &quot;where not null&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="428828:428952" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="428978:429263" ph=" Add a where between statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="429364:429503" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="429529:429784" ph=" Add an or where between statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="429855:429980" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="430006:430299" ph=" Add a where not between statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="430389:430525" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="430551:430810" ph=" Add an or where not between statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="430884:431012" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="431038:431257" ph=" Add an &quot;or where not null&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="431319:431435" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="431461:431787" ph=" Add a &quot;where date&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="431888:432028" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="432054:432347" ph=" Add an &quot;or where date&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="432425:432557" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="432583:432907" ph=" Add a &quot;where time&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="433001:433141" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="433167:433457" ph=" Add an &quot;or where time&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="433535:433667" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="433693:434018" ph=" Add a &quot;where day&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="434118:434257" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="434283:434610" ph=" Add a &quot;where month&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="434712:434853" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="434879:435205" ph=" Add a &quot;where year&quot; statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="435306:435446" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="435472:435728" ph=" Add a nested where statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="435807:435932" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="435958:436141" ph=" Create a new query instance for nested where condition. ..." />
+            <marker date="1508898857146" expanded="true" signature="436196:436305" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="436331:436604" ph=" Add another query builder as a nested where to the query builder. ..." />
+            <marker date="1508898857146" expanded="true" signature="436688:436818" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="436844:437088" ph=" Add an exists clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="437181:437312" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="437338:437583" ph=" Add an or exists clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="437660:437783" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="437809:438066" ph=" Add a where not exists clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="438148:438276" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="438302:438521" ph=" Add a where not exists clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="438587:438707" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="438733:439000" ph=" Add an exists clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="439098:439234" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="439260:439482" ph=" Handles dynamic &quot;where&quot; clauses to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="439555:439682" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="439708:439880" ph=" Add a &quot;group by&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="439942:440051" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="440077:440361" ph=" Add a &quot;having&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="440466:440603" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="440629:440914" ph=" Add a &quot;or having&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="441003:441132" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="441158:441404" ph=" Add a raw having clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="441497:441626" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="441652:441899" ph=" Add a raw or having clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="441976:442097" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="442123:442337" ph=" Add an &quot;order by&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="442412:442533" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="442559:442743" ph=" Add a descending &quot;order by&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="442802:442915" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="442941:443167" ph=" Add an &quot;order by&quot; clause for a timestamp to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="443236:443344" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="443370:443596" ph=" Add an &quot;order by&quot; clause for a timestamp to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="443665:443773" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="443799:443973" ph=" Put the query's results in random order. ..." />
+            <marker date="1508898857146" expanded="true" signature="444037:444150" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="444176:444388" ph=" Add a raw &quot;order by&quot; clause to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="444464:444584" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="444610:444823" ph=" Alias to set the &quot;offset&quot; value of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="444874:444979" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="445005:445173" ph=" Set the &quot;offset&quot; value of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="445226:445333" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="445359:445571" ph=" Alias to set the &quot;limit&quot; value of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="445622:445727" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="445753:445920" ph=" Set the &quot;limit&quot; value of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="445972:446078" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="446104:446348" ph=" Set the limit and offset for a given page. ..." />
+            <marker date="1508898857146" expanded="true" signature="446416:446533" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="446559:446867" ph=" Constrain the query to the next &quot;page&quot; of results after a given ID. ..." />
+            <marker date="1508898857146" expanded="true" signature="446964:447099" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="447125:447400" ph=" Add a union statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="447466:447578" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="447604:447851" ph=" Add a union all statement to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="447906:448015" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="448041:448217" ph=" Lock the selected rows in the table. ..." />
+            <marker date="1508898857146" expanded="true" signature="448275:448380" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="448406:448583" ph=" Lock the selected rows in the table for updating. ..." />
+            <marker date="1508898857146" expanded="true" signature="448637:448745" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="448771:448941" ph=" Share lock the selected rows in the table. ..." />
+            <marker date="1508898857146" expanded="true" signature="448992:449097" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="449123:449263" ph=" Get the SQL representation of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="449309:449409" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="449435:449622" ph=" Get the count of the total records for the paginator. ..." />
+            <marker date="1508898857146" expanded="true" signature="449702:449826" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="449852:450073" ph=" Concatenate values of a given column as a string. ..." />
+            <marker date="1508898857146" expanded="true" signature="450140:450256" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="450282:450430" ph=" Determine if any rows exist for the current query. ..." />
+            <marker date="1508898857146" expanded="true" signature="450477:450578" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="450604:450780" ph=" Retrieve the &quot;count&quot; result of the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="450840:450948" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="450974:451155" ph=" Retrieve the minimum value of a given column. ..." />
+            <marker date="1508898857146" expanded="true" signature="451206:451311" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="451337:451518" ph=" Retrieve the maximum value of a given column. ..." />
+            <marker date="1508898857146" expanded="true" signature="451569:451674" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="451700:451885" ph=" Retrieve the sum of the values of a given column. ..." />
+            <marker date="1508898857146" expanded="true" signature="451936:452041" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="452067:452256" ph=" Retrieve the average of the values of a given column. ..." />
+            <marker date="1508898857146" expanded="true" signature="452307:452412" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="452438:452601" ph=" Alias for the &quot;avg&quot; method. ..." />
+            <marker date="1508898857146" expanded="true" signature="452656:452765" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="452791:453012" ph=" Execute an aggregate function on the database. ..." />
+            <marker date="1508898857146" expanded="true" signature="453091:453214" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="453240:453472" ph=" Execute a numeric aggregate function on the database. ..." />
+            <marker date="1508898857146" expanded="true" signature="453558:453688" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="453714:453886" ph=" Insert a new record into the database. ..." />
+            <marker date="1508898857146" expanded="true" signature="453940:454048" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="454074:454303" ph=" Insert a new record and get the value of the primary key. ..." />
+            <marker date="1508898857146" expanded="true" signature="454380:454504" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="454530:454779" ph=" Insert or update a record matching the attributes, and fill it with values. ..." />
+            <marker date="1508898857146" expanded="true" signature="454864:454993" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="455019:455155" ph=" Run a truncate statement on the table. ..." />
+            <marker date="1508898857146" expanded="true" signature="455204:455300" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="455326:455525" ph=" Create a raw database expression. ..." />
+            <marker date="1508898857146" expanded="true" signature="455575:455679" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="455705:455862" ph=" Get the current query value bindings in a flattened array. ..." />
+            <marker date="1508898857146" expanded="true" signature="455914:456020" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="456046:456175" ph=" Get the raw array of bindings. ..." />
+            <marker date="1508898857146" expanded="true" signature="456230:456339" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="456365:456624" ph=" Set the bindings on the query builder. ..." />
+            <marker date="1508898857146" expanded="true" signature="456702:456824" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="456850:457095" ph=" Add a binding to the query. ..." />
+            <marker date="1508898857146" expanded="true" signature="457169:457287" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="457313:457521" ph=" Merge an array of bindings into our bindings. ..." />
+            <marker date="1508898857146" expanded="true" signature="457581:457695" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="457721:457904" ph=" Get the database query processor instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="457957:458064" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="458090:458258" ph=" Get the query grammar instance. ..." />
+            <marker date="1508898857146" expanded="true" signature="458309:458414" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="458440:458567" ph=" Use the write pdo for query. ..." />
+            <marker date="1508898857146" expanded="true" signature="458619:458725" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="458751:458932" ph=" Clone the query without the given properties. ..." />
+            <marker date="1508898857146" expanded="true" signature="458992:459106" ph="{...}" />
+            <marker date="1508898857146" expanded="true" signature="459132:459311" ph=" Clone the query without the given bindings. ..." />
+            <marker date="1508898857146" expanded="true" signature="459379:459501" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -565,7 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -573,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -586,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -594,7 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -602,7 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -610,7 +1160,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -618,7 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
           <caret line="25" column="45" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -626,23 +1174,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="98" column="35" lean-forward="true" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.env" />
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
           <caret line="31" column="40" lean-forward="false" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -650,7 +1189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -658,7 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="81" column="27" lean-forward="false" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -666,23 +1203,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/teste.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/teste.blade.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,7 +1218,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,12 +1225,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding>
-            <marker date="1508334855960" expanded="true" signature="146:310" ph="..." />
-            <marker date="1508334855960" expanded="true" signature="152:296" ph="..." />
-            <marker date="1508334855960" expanded="true" signature="163:295" ph="..." />
-            <marker date="1508334855960" expanded="true" signature="184:294" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -711,12 +1232,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding>
-            <marker date="1508334885028" expanded="true" signature="148:312" ph="..." />
-            <marker date="1508334885028" expanded="true" signature="154:298" ph="..." />
-            <marker date="1508334885028" expanded="true" signature="165:297" ph="..." />
-            <marker date="1508334885028" expanded="true" signature="186:296" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -724,12 +1239,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <marker date="1508334895963" expanded="true" signature="148:312" ph="..." />
-            <marker date="1508334895963" expanded="true" signature="154:298" ph="..." />
-            <marker date="1508334895963" expanded="true" signature="165:297" ph="..." />
-            <marker date="1508334895963" expanded="true" signature="186:296" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -737,7 +1246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,7 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,7 +1260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -761,12 +1267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="11" />
-          <folding>
-            <marker date="1508332560856" expanded="true" signature="150:314" ph="..." />
-            <marker date="1508332560856" expanded="true" signature="156:300" ph="..." />
-            <marker date="1508332560856" expanded="true" signature="167:299" ph="..." />
-            <marker date="1508332560856" expanded="true" signature="188:298" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -774,7 +1274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
           <caret line="234" column="47" lean-forward="false" selection-start-line="234" selection-start-column="47" selection-end-line="234" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -782,7 +1281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,7 +1288,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,9 +1295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding>
-            <marker date="1508344395100" expanded="true" signature="199:242" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -808,7 +1302,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -816,9 +1309,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="61" />
-          <folding>
-            <element signature="e#40#64#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,9 +1316,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="24" column="69" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="24" selection-end-column="69" />
-          <folding>
-            <element signature="e#40#67#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -836,9 +1323,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
-          <folding>
-            <element signature="e#40#66#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,7 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -854,7 +1337,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,9 +1344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="43" />
-          <folding>
-            <element signature="e#30#73#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,9 +1351,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-          <folding>
-            <element signature="e#30#73#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -882,9 +1358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="53" column="29" lean-forward="true" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
-          <folding>
-            <element signature="e#30#73#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -892,7 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,9 +1372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-          <folding>
-            <element signature="e#30#73#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
