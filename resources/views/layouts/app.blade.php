@@ -8,68 +8,55 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Batata+') }}</title>
+    <title>{{ config('app.name', 'Batata') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
+        @php
+            $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('admin.dashboard'))->inverse();
+             if(Auth::check()){
+                 $arrayLinks = [
+                     ['link' => route('admin.brands.index'), 'title' => 'Marcas'],
+                     ['link' => route('admin.categories.index'), 'title' => 'Categorias'],
+                     ['link' => route('admin.products.index'), 'title' => 'Produtos'],
+                     ['link' => route('admin.clients.index'), 'title' => 'Clientes']
+                 ];
+                 $arrayLinksRight =
+                 [
+                    [
+                        Auth::user()->name,
+                        [
+                            [
+                                'link' => route('logout'),
+                                'title' => 'Logout &ensp;'.Icon::create('log-out'),
+                                'linkAttributes' => [
+                                    'onclick' => "event.preventDefault();getElementById(\"form-logout\").submit();"
+                                ]
+                            ]
+                        ]
+                    ]
+                 ];
+                 $navbar->withContent(Navigation::links($arrayLinks))
+                        ->withContent(Navigation::links($arrayLinksRight)->right());
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                 $formLogout = FormBuilder::plain([
+                    'id' => 'form-logout',
+                    'url' => route('logout'),
+                    'method' => 'POST',
+                    'style' => 'display:none'
+                ]);
+             }
+        @endphp
+        {!! $navbar !!}
+        {!! form($formLogout) !!}
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Batata ') }}{!! '&ensp;'.Icon::plus() !!}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {!! Icon::user().'&emsp;'!!}{{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                        {{--<!-- Authentication Links -->--}}
+                        {{--@if (Auth::guest())--}}
+                            {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
+                            {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
 
         @yield('content')
     </div>
