@@ -71,7 +71,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -82,19 +82,39 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $form = \FormBuilder::create(CategoryForm::class,[
+            'url' => route('admin.categories.update', ['category' => $category->id]),
+            'method' => 'PUT',
+            'model' => $category
+        ]);
+
+        return view('admin.categories.edit', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Category $category)
     {
-        //
+        /**@var Form $form*/
+        $form = \FormBuilder::create(CategoryForm::class,
+            ['data' => ['id' => $category->id]
+        ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $category->update($data);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -105,6 +125,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }
