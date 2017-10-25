@@ -11,6 +11,8 @@
 |
 */
 
+use function foo\func;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,6 +24,9 @@ Route::prefix('admin')->group(function(){
         'as'=>'admin.',
         'middleware'=>'auth'
     ], function(){
+        Route::name('dashboard')->get('/dashboard', function(){
+           return "estou no dash;";
+        });
         Route::resource('categories','CategoryController');
         Route::resource('brands','BrandController');
         Route::resource('products','ProductController');
