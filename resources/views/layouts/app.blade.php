@@ -22,7 +22,8 @@
                  ['link' => route('admin.brands.index'), 'title' => 'Marcas'],
                  ['link' => route('admin.categories.index'), 'title' => 'Categorias'],
                  ['link' => route('admin.products.index'), 'title' => 'Produtos'],
-                 ['link' => route('admin.clients.index'), 'title' => 'Clientes']
+                 ['link' => route('admin.clients.index'), 'title' => 'Clientes'],
+                 ['link' => route('admin.sells.index'), 'title' => 'VENDER']
              ];
              $arrayLinksRight = [
              [

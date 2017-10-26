@@ -12689,6 +12689,293 @@ namespace Bootstrapper\Facades {
         }
          
     }
+
+    class Image {
+        
+        /**
+         * Renders the image
+         *
+         * @return string 
+         * @throws ImageException If the image source is not set
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Image::render();
+        }
+        
+        /**
+         * Sets the source of the image
+         *
+         * @param string $source The source of the image
+         * @return $this 
+         * @static 
+         */ 
+        public static function withSource($source)
+        {
+            return \Bootstrapper\Image::withSource($source);
+        }
+        
+        /**
+         * Sets the alt text of the image
+         *
+         * @param string $alt The alt text of the image
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAlt($alt)
+        {
+            return \Bootstrapper\Image::withAlt($alt);
+        }
+        
+        /**
+         * Sets the image to be responsive
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function responsive()
+        {
+            return \Bootstrapper\Image::responsive();
+        }
+        
+        /**
+         * Creates a rounded image
+         *
+         * @param null|string $src The source of the image. Pass null to use the
+         *                         previous value of the source
+         * @param null|string $alt The alt text of the image. Pass null to use
+         *                         the previous value
+         * @return $this 
+         * @static 
+         */ 
+        public static function rounded($src = null, $alt = null)
+        {
+            return \Bootstrapper\Image::rounded($src, $alt);
+        }
+        
+        /**
+         * Creates a circle image
+         *
+         * @param null|string $src The source of the image. Pass null to use the
+         *                         previous value of the source
+         * @param null|string $alt The alt text of the image. Pass null to use
+         *                         the previous value
+         * @return $this 
+         * @static 
+         */ 
+        public static function circle($src = null, $alt = null)
+        {
+            return \Bootstrapper\Image::circle($src, $alt);
+        }
+        
+        /**
+         * Creates a thumbnail image
+         *
+         * @param null|string $src The source of the image. Pass null to use the
+         *                         previous value of the source
+         * @param null|string $alt The alt text of the image. Pass null to use
+         *                         the previous value
+         * @return $this 
+         * @static 
+         */ 
+        public static function thumbnail($src = null, $alt = null)
+        {
+            return \Bootstrapper\Image::thumbnail($src, $alt);
+        }
+        
+        /**
+         * BC version of Image::addClass()
+         *
+         * @param string|array $class
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($class)
+        {
+            return \Bootstrapper\Image::addClass($class);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Image::withAttributes($attributes);
+        }
+         
+    }
+
+    class MediaObject {
+        
+        /**
+         * Renders the media object
+         *
+         * @return string 
+         * @throws MediaObjectException if there is no contents
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\MediaObject::render();
+        }
+        
+        /**
+         * Sets the contents of the media object
+         *
+         * @param array $contents The contents of the media object
+         * @return $this 
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+            return \Bootstrapper\MediaObject::withContents($contents);
+        }
+        
+        /**
+         * Force the media object to become a list
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function asList()
+        {
+            return \Bootstrapper\MediaObject::asList();
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\MediaObject::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\MediaObject::addClass($classes);
+        }
+         
+    }
+
+    class Modal {
+        
+        /**
+         * Renders the modal
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Modal::render();
+        }
+        
+        /**
+         * Sets the title of the modal
+         *
+         * @param string $title
+         * @return $this 
+         * @static 
+         */ 
+        public static function withTitle($title)
+        {
+            return \Bootstrapper\Modal::withTitle($title);
+        }
+        
+        /**
+         * Sets the body of the modal
+         *
+         * @param string $body The new body of the modal
+         * @return $this 
+         * @static 
+         */ 
+        public static function withBody($body)
+        {
+            return \Bootstrapper\Modal::withBody($body);
+        }
+        
+        /**
+         * Set the footer of the modal
+         *
+         * @param string $footer The footer
+         * @return $this 
+         * @static 
+         */ 
+        public static function withFooter($footer)
+        {
+            return \Bootstrapper\Modal::withFooter($footer);
+        }
+        
+        /**
+         * Sets the name of the modal
+         *
+         * @param string $name The name of the modal
+         * @return $this 
+         * @static 
+         */ 
+        public static function named($name)
+        {
+            return \Bootstrapper\Modal::named($name);
+        }
+        
+        /**
+         * Sets the button
+         *
+         * @param \Button $button The button to open the modal with
+         * @return $this 
+         * @static 
+         */ 
+        public static function withButton($button = null)
+        {
+            return \Bootstrapper\Modal::withButton($button);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Modal::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Modal::addClass($classes);
+        }
+         
+    }
  
 }
 
@@ -15804,6 +16091,12 @@ namespace  {
     class Navigation extends \Bootstrapper\Facades\Navigation {}
 
     class Tabbable extends \Bootstrapper\Facades\Tabbable {}
+
+    class Image extends \Bootstrapper\Facades\Image {}
+
+    class MediaObject extends \Bootstrapper\Facades\MediaObject {}
+
+    class Modal extends \Bootstrapper\Facades\Modal {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 
