@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Sell;
+use function compact;
 use Illuminate\Http\Request;
 
 class SellController extends Controller
@@ -14,8 +16,8 @@ class SellController extends Controller
      */
     public function index()
     {
-
-        return view('admin.sells.index');
+        $categories = Category::all();
+        return view('admin.sells.index', compact('categories'));
     }
 
     /**
