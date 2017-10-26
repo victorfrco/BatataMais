@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function(){
         Route::resource('brands','BrandController');
         Route::resource('products','ProductController');
         Route::resource('clients','ClientController');
+        Route::resource('sells', 'SellController');
     });
 });
 

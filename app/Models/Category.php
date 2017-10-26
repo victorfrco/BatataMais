@@ -47,3 +47,4 @@ class Category extends Model implements TableInterface
         }
     }
 }
+

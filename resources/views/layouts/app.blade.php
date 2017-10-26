@@ -14,54 +14,50 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @php
-            $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('admin.dashboard'))->inverse();
-             if(Auth::check()){
-                 $arrayLinks = [
-                     ['link' => route('admin.brands.index'), 'title' => 'Marcas'],
-                     ['link' => route('admin.categories.index'), 'title' => 'Categorias'],
-                     ['link' => route('admin.products.index'), 'title' => 'Produtos'],
-                     ['link' => route('admin.clients.index'), 'title' => 'Clientes']
-                 ];
-                 $arrayLinksRight =
-                 [
+<div id="app">
+    @php
+        $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('admin.dashboard'))->inverse();
+         if(Auth::check()){
+             $arrayLinks = [
+                 ['link' => route('admin.brands.index'), 'title' => 'Marcas'],
+                 ['link' => route('admin.categories.index'), 'title' => 'Categorias'],
+                 ['link' => route('admin.products.index'), 'title' => 'Produtos'],
+                 ['link' => route('admin.clients.index'), 'title' => 'Clientes']
+             ];
+             $arrayLinksRight = [
+             [
+                Icon::user().' '.Auth::user()->name,
+                [
                     [
-                        Auth::user()->name,
-                        [
-                            [
-                                'link' => route('logout'),
-                                'title' => 'Logout &ensp;'.Icon::create('log-out'),
-                                'linkAttributes' => [
-                                    'onclick' => "event.preventDefault();getElementById(\"form-logout\").submit();"
-                                ]
+                            'link' => route('logout'),
+                            'title' => 'Logout &ensp;'.Icon::create('log-out'),
+                            'linkAttributes' => [
+                                'onclick' => "event.preventDefault();getElementById(\"form-logout\").submit();"
                             ]
                         ]
                     ]
-                 ];
-                 $navbar->withContent(Navigation::links($arrayLinks))
-                        ->withContent(Navigation::links($arrayLinksRight)->right());
+                ]
+             ];
+             $navbar->withContent(Navigation::links($arrayLinks))
+                    ->withContent(Navigation::links($arrayLinksRight)->right());
 
-                 $formLogout = FormBuilder::plain([
-                    'id' => 'form-logout',
-                    'url' => route('logout'),
-                    'method' => 'POST',
-                    'style' => 'display:none'
-                ]);
-             }
-        @endphp
-        {!! $navbar !!}
+             $formLogout = FormBuilder::plain([
+                'id' => 'form-logout',
+                'url' => route('logout'),
+                'method' => 'POST',
+                'style' => 'display:none'
+            ]);
+         }
+    @endphp
+    {!! $navbar !!}
+    @auth
         {!! form($formLogout) !!}
+    @endauth
+    @yield('content')
+</div>
 
-                        {{--<!-- Authentication Links -->--}}
-                        {{--@if (Auth::guest())--}}
-                            {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
-                            {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
-
-        @yield('content')
-    </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('scripts')
 </body>
 </html>
