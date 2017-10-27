@@ -16,6 +16,7 @@
                     .Button::link('Adicionar &nbsp;'.Icon::create('plus'))->asLinkTo($linkIncrement);
              })
              !!}
+            <!-- @TO DO realizar criação de página para acrescentar produto no estoque-->
         </div>
         {!! $products->links() !!}
         {!! Button::primary('Novo Produto')->asLinkTo(route('admin.products.create')) !!}
