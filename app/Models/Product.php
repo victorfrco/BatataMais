@@ -10,7 +10,7 @@ use function returnArgument;
 class Product extends Model implements TableInterface
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'qtd_total'];
+    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'qtd', 'category_id', 'brand_id'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -44,12 +44,13 @@ class Product extends Model implements TableInterface
      */
     public function getValueForHeader($header)
     {
+        $brand = Brand::find($this->brand_id);
         switch ($header){
             case 'Id':
                 return $this->id;
                 break;
             case 'Nome':
-                return $this->name;
+                return $brand->name.' '.$this->name;
                 break;
             case 'Descrição':
                 return $this->description;
@@ -64,7 +65,7 @@ class Product extends Model implements TableInterface
                 return $this->price_discount;
                 break;
             case 'Estoque':
-                return $this->qtd_total;
+                return $this->qtd;
                 break;
         }
     }

@@ -5,12 +5,15 @@
         <div class="row">
             <h2>Listagem de Produtos</h2>
         </div>
-        <div class="row">
+        <div class="row" style="max-height: 400px; overflow: auto">
             {!! Table::withContents($products->items())
              ->callback('Ações', function($campo, $model){
                 $linkEdit = route('admin.products.edit', ['product' => $model->id]);
-                $linkShow = route('admin.products.show', ['products' => $model->id]);
-                 return Button::link('Editar &nbsp'.Icon::pencil())->asLinkTo($linkEdit).' | '.Button::link('Ver &nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow);
+                $linkShow = route('admin.products.show', ['product' => $model->id]);
+                $linkIncrement = route('admin.products.show', ['product' => $model->id]);
+                 return Button::link('Editar &nbsp'.Icon::pencil())->asLinkTo($linkEdit).' | '
+                    .Button::link('Ver &nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow).' | '
+                    .Button::link('Adicionar &nbsp;'.Icon::create('plus'))->asLinkTo($linkIncrement);
              })
              !!}
         </div>
