@@ -87,7 +87,7 @@ class CategoryController extends Controller
             'method' => 'PUT',
             'model' => $category
         ]);
-        session()->flash('message', 'Categoria alterada com sucesso!');
+
         return view('admin.categories.edit', compact('form'));
     }
 
