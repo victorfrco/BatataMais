@@ -57,6 +57,7 @@ class ProductController extends Controller
         $data = $form->getFieldValues();
         Product::create($data);
 
+        $request->session()->flash('message', 'Produto cadastrado com sucesso!');
         return redirect()->route('admin.products.index');
     }
 
@@ -112,6 +113,7 @@ class ProductController extends Controller
         $data = $form->getFieldValues();
         $product->update($data);
 
+        session()->flash('message', 'Produto alterado com sucesso!');
         return redirect()->route('admin.products.index');
     }
 
@@ -124,6 +126,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        session()->flash('message', 'Produto excluído com sucesso!');
         return redirect()->route('admin.products.index');
     }
 }

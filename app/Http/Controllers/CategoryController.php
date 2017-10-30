@@ -59,7 +59,7 @@ class CategoryController extends Controller
 
         $data = $form->getFieldValues();
         Category::create($data);
-
+        $request->session()->flash('message', 'Categoria cadastrada com sucesso!');
         return redirect()->route('admin.categories.index');
     }
 
@@ -87,7 +87,7 @@ class CategoryController extends Controller
             'method' => 'PUT',
             'model' => $category
         ]);
-
+        session()->flash('message', 'Categoria alterada com sucesso!');
         return view('admin.categories.edit', compact('form'));
     }
 
@@ -114,6 +114,7 @@ class CategoryController extends Controller
         $data = $form->getFieldValues();
         $category->update($data);
 
+        session()->flash('message', 'Categoria cadastrada com sucesso!');
         return redirect()->route('admin.categories.index');
     }
 
@@ -126,6 +127,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        session()->flash('message', 'Categoria excluída com sucesso!');
         return redirect()->route('admin.categories.index');
     }
 }
