@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model implements TableInterface
 {
     protected $table = 'brands';
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'logo_id'];
 
     public function products()
     {
