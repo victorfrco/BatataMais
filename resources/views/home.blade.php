@@ -9,8 +9,8 @@
             <div class="col-sm-8" style="background-color:lightblue; height: 400px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
-                        $produtos = App\Models\Product::all()->where('category_id', '=', $category->id);
-                        $table = Table::withContents($produtos)->hover();
+                        $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
+                        $table = Table::withContents($brands)->hover();
 
                         $names[] = [
                                 'title' => $category->name,

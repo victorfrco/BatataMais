@@ -16,10 +16,13 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->double('total');
-            $table->boolean('status');
+            $table->smallInteger('status');
+            $table->boolean('associated');
             $table->timestamps();
 
             $table->unsignedInteger('client_id');
+            $table->unsignedInteger('user_id');
+
         });
     }
 

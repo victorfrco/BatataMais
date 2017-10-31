@@ -4,17 +4,11 @@ namespace App\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use function returnArgument;
 
 class Product extends Model implements TableInterface
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'qtd', 'category_id', 'brand_id'];
-
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
+    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'qtd', 'brand_id'];
 
     public function brands(){
         return $this->belongsTo(Brand::class);
@@ -22,7 +16,7 @@ class Product extends Model implements TableInterface
 
     public function itens()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Item::class);
     }
 
     /**
@@ -50,7 +44,7 @@ class Product extends Model implements TableInterface
                 return $this->id;
                 break;
             case 'Nome':
-                return $brand->name.' '.$this->name;
+                return $this->name;
                 break;
             case 'Descrição':
                 return $this->description;

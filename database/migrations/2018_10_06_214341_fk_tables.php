@@ -14,12 +14,11 @@ class FkTables extends Migration
     public function up()
     {
         Schema::table('products', function($table){
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('brand_id')->references('id')->on('brands');
         });
 
         Schema::table('brands', function($table){
-            $table->foreign('logo_id')->references('id')->on('images');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
 
         Schema::table('itens', function($table){
@@ -29,6 +28,7 @@ class FkTables extends Migration
 
         Schema::table('orders', function($table){
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

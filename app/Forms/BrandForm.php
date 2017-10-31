@@ -15,6 +15,15 @@ class BrandForm extends Form
             ])
             ->add('description', 'text', [
                 'label' => 'Descrição'
-            ])->add('logo_id', 'text');
+            ])->add('category_id','entity', [
+                'label' => 'Categoria',
+                'class' => 'App\Models\Category',
+                'property' => 'name',
+                'property_key' => 'id',
+                'query_builder' => function (Category $category) {
+                    // If query builder option is not provided, all data is fetched
+                    return $category;
+                }
+            ]);
     }
 }
