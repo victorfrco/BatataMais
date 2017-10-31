@@ -10,14 +10,20 @@ class ClientForm extends Form
     {
         $id = $this->getData('id');
         $this
-            ->add('name', 'text')
+            ->add('name', 'text',[
+                'label' => 'Nome'
+            ])
+            ->add('nickname', 'text', [
+                'label' => 'Apelido',
+                'rules' => 'required'
+            ])
             ->add('phone1', 'text', [
+                'label' => 'Telefone',
                 'rules' => 'max:11'
             ])
-            ->add('associated', 'checkbox')
             ->add('cpf', 'text', [
+                'label' => 'CPF',
                 'rules' => "max:11|unique:clients,cpf,{$id}"
-            ])
-            ;
+            ]);
     }
 }

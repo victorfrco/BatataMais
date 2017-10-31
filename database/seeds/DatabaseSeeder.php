@@ -24,52 +24,65 @@ class DatabaseSeeder extends Seeder
 
         DB::table('categories')->insert([
             'name' =>'Bebidas Alcoólicas',
-            'description' => 'Produtos como Cervejas, Refrigerantes, Energéticos e Água'
+            'description' => 'Produtos como Cervejas, Whisky\'s, Vodkas'
         ]);
+
+        DB::table('categories')->insert([
+            'name' =>'Bebidas Não-alcoólicas',
+            'description' => 'Produtos como Refrigerantes, Energéticos e Água'
+        ]);
+
 
         DB::table('categories')->insert([
             'name' =>'Diversos',
             'description' => 'Produtos diversos vendidos avulsos, como Trident, Balas, Fichas de Sinuca, etc...'
         ]);
 
-        DB::table('images')->insert([
-            'description' => 'Brahma Logo'
-        ]);
-
-        DB::table('images')->insert([
-            'description' => 'Heineken Logo'
-        ]);
-
-        DB::table('images')->insert([
-            'description' => 'Coca Logo'
-        ]);
-
         DB::table('brands')->insert([
             'name' =>'Brahma',
             'description' => 'A melhor cerveja!',
-            'logo_id' => 1
+            'status' => 1,
+            'category_id' => 2
         ]);
 
         DB::table('brands')->insert([
             'name' =>'Heineken',
             'description' => 'Open your world!',
-            'logo_id' => 2
+            'status' => 1,
+            'category_id' => 2
         ]);
 
         DB::table('brands')->insert([
             'name' =>'Coca-Cola',
             'description' => 'Abra a felicidade!',
-            'logo_id' => 3
+            'status' => 1,
+            'category_id' => 3
+        ]);
+
+        DB::table('brands')->insert([
+            'name' =>'Marca Inativa',
+            'description' => 'Teste de exibição',
+            'status' => 0,
+            'category_id' => 4
         ]);
 
         DB::table('products')->insert([
-            'name' =>'Lata',
+            'name' =>'Heineken Long Neck',
             'description' => 'contém 355ml',
-            'price_cost' => 1.8,
-            'price_resale' => 3.5,
-            'price_discount' => 3.50,
-            'qtd' => '125',
-            'category_id' => 2,
+            'price_cost' => 3.3,
+            'price_resale' => 4,
+            'price_discount' => 3.75,
+            'qtd' => '200',
+            'brand_id' => 2
+        ]);
+
+        DB::table('products')->insert([
+            'name' =>'Fanta Lata',
+            'description' => 'contém 355ml',
+            'price_cost' => 1.80,
+            'price_resale' => 3,
+            'price_discount' => 3,
+            'qtd' => '150',
             'brand_id' => 3
         ]);
 
@@ -77,11 +90,8 @@ class DatabaseSeeder extends Seeder
             'name' =>'Victor Oliveira',
             'nickname' => 'Chico',
             'phone1' => '067991321331',
-            'phone2' => '',
             'email' => 'victorfrco3@hotmail.com',
             'cpf' => '44168257819',
-            'associated' => 1,
-            'associated_id' => '014857',
             'obs' => 'Cliente VIP',
             'adr_street' => 'Rua Veridiana',
             'adr_number' => '20',
@@ -94,11 +104,8 @@ class DatabaseSeeder extends Seeder
             'name' =>'Robert Willian',
             'nickname' => 'Robert',
             'phone1' => '067999999999',
-            'phone2' => '067111111111',
             'email' => 'robertwds.88@gmail.com',
             'cpf' => '12345678910',
-            'associated' => 1,
-            'associated_id' => '014859',
             'obs' => 'Cliente VIP',
             'adr_street' => 'Rua Joaima',
             'adr_number' => '547',
