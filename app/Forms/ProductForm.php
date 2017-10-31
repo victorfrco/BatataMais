@@ -11,12 +11,13 @@ class ProductForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text')
-            ->add('description', 'text')
-            ->add('price_cost', 'text')
-            ->add('price_resale', 'text')
-            ->add('price_discount', 'text')
+            ->add('name', 'text', ['label' => 'Nome'])
+            ->add('description', 'text', ['label' => 'Descrição'])
+            ->add('price_cost', 'text', ['label' => 'Preço de Compra'])
+            ->add('price_resale', 'text', ['label' => 'Preço de Venda'])
+            ->add('price_discount', 'text', ['label' => 'Preço Associado'])
             ->add('brand_id','entity', [
+                'label' => 'Marca',
                 'class' => 'App\Models\Brand',
                 'property' => 'name',
                 'property_key' => 'id',

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2017-10-26.
+ * Generated for Laravel 5.4.36 on 2017-10-31.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12976,6 +12976,131 @@ namespace Bootstrapper\Facades {
         }
          
     }
+
+    class Alert {
+        
+        /**
+         * Sets the type of the alert. The alert prefix is not assumed.
+         *
+         * @param $type string
+         * @return $this 
+         * @static 
+         */ 
+        public static function setType($type)
+        {
+            return \Bootstrapper\Alert::setType($type);
+        }
+        
+        /**
+         * Renders the alert
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Alert::render();
+        }
+        
+        /**
+         * Creates an info alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function info($contents = '')
+        {
+            return \Bootstrapper\Alert::info($contents);
+        }
+        
+        /**
+         * Creates a success alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function success($contents = '')
+        {
+            return \Bootstrapper\Alert::success($contents);
+        }
+        
+        /**
+         * Creates a warning alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function warning($contents = '')
+        {
+            return \Bootstrapper\Alert::warning($contents);
+        }
+        
+        /**
+         * Creates a danger alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function danger($contents = '')
+        {
+            return \Bootstrapper\Alert::danger($contents);
+        }
+        
+        /**
+         * Sets the contents of the alert box
+         *
+         * @param $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+            return \Bootstrapper\Alert::withContents($contents);
+        }
+        
+        /**
+         * Adds a close button with the given text
+         *
+         * @param string $closer
+         * @return $this 
+         * @static 
+         */ 
+        public static function close($closer = '&times;')
+        {
+            return \Bootstrapper\Alert::close($closer);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Alert::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Alert::addClass($classes);
+        }
+         
+    }
  
 }
 
@@ -16097,6 +16222,8 @@ namespace  {
     class MediaObject extends \Bootstrapper\Facades\MediaObject {}
 
     class Modal extends \Bootstrapper\Facades\Modal {}
+
+    class Alert extends \Bootstrapper\Facades\Alert {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 
