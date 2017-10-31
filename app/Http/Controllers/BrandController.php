@@ -58,6 +58,7 @@ class BrandController extends Controller
         $data = $form->getFieldValues();
         Brand::create($data);
 
+        $request->session()->flash('message', 'Marca cadastrada com sucesso!');
         return redirect()->route('admin.brands.index');
     }
 
@@ -112,6 +113,7 @@ class BrandController extends Controller
         $data = $form->getFieldValues();
         $brand->update($data);
 
+        session()->flash('message', 'Marca alterada com sucesso!');
         return redirect()->route('admin.brands.index');
     }
 
@@ -124,6 +126,7 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         $brand->delete();
+        session()->flash('message', 'Marca excluída com sucesso!');
         return redirect()->route('admin.brands.index');
     }
 }

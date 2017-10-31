@@ -15,10 +15,12 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->smallInteger('status');
             $table->timestamps();
 
-            $table->unsignedInteger('logo_id');
+            $table->unsignedInteger('category_id');
 
         });
     }

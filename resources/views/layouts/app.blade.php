@@ -16,7 +16,7 @@
 <body>
 <div id="app">
     @php
-        $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('admin.dashboard'))->inverse();
+        $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('home'))->inverse();
          if(Auth::check()){
              $arrayLinks = [
                  ['link' => route('admin.brands.index'), 'title' => 'Marcas'],
@@ -54,6 +54,13 @@
     @auth
         {!! form($formLogout) !!}
     @endauth
+
+    @if(Session::has('message'))
+        <div class="container">
+            {!! Alert::success(Session::get('message'))->close() !!}
+        </div>
+    @endif
+
     @yield('content')
 </div>
 

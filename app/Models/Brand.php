@@ -8,16 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model implements TableInterface
 {
     protected $table = 'brands';
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'logo_path', 'status', 'category_id'];
 
     public function products()
     {
         return $this->belongsToMany(Product::class);
-    }
-
-    public function providers()
-    {
-        return $this.$this->belongsToMany(Provider::class);
     }
 
     /**
