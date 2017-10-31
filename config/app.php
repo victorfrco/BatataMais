@@ -239,7 +239,8 @@ return [
         'Tabbable' => Bootstrapper\Facades\Tabbable::class,
         'Image' => Bootstrapper\Facades\Image::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
-        'Modal' => Bootstrapper\Facades\Modal::class
+        'Modal' => Bootstrapper\Facades\Modal::class,
+        'Alert' => Bootstrapper\Facades\Alert::class
     ],
 
 ];

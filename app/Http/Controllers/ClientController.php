@@ -56,6 +56,7 @@ class ClientController extends Controller
 
         Client::create($data);
 
+        $request->session()->flash('message', 'Cliente criado com sucesso!');
         return redirect()->route('admin.clients.index');
     }
 
@@ -111,6 +112,7 @@ class ClientController extends Controller
         $data['associated'] = $data['associated'] == null ? 0 : 1;
         $client->update($data);
 
+        session()->flash('message', 'Cliente alterado com sucesso!');
         return redirect()->route('admin.clients.index');
     }
 
@@ -123,6 +125,8 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
+
+        session()->flash('message', 'Cliente excluído com sucesso!');
         return redirect()->route('admin.clients.index');
     }
 }
