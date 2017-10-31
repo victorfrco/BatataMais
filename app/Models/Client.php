@@ -26,7 +26,7 @@ class Client extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['Id', 'Nome', 'Apelido', 'Telefone', 'Email', 'CPF', 'Associado'];
+        return ['Id', 'Nome', 'Apelido', 'Telefone', 'Email', 'CPF'];
     }
 
     /**

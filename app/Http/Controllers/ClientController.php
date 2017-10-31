@@ -52,7 +52,6 @@ class ClientController extends Controller
                 ->withInput();
         }
         $data = $form->getFieldValues();
-        $data['associated'] = $data['associated'] == null ? 0 : 1;
 
         Client::create($data);
 

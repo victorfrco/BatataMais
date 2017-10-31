@@ -24,14 +24,12 @@ Route::prefix('admin')->group(function(){
         'as'=>'admin.',
         'middleware'=>'auth'
     ], function(){
-        Route::name('dashboard')->get('/dashboard', function(){
-           return "estou no dash;";
-        });
         Route::resource('categories','CategoryController');
         Route::resource('brands','BrandController');
         Route::resource('products','ProductController');
         Route::resource('clients','ClientController');
         Route::resource('sells', 'SellController');
+        Route::resource('providers', 'ProviderController');
     });
 });
 
