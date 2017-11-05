@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price_resale', 8,2);
             $table->decimal('price_discount', 8,2);
             $table->integer('qtd')->nullable();
+            $table->string('barcode')->nullable();
             $table->timestamps();
 
             $table->unsignedInteger('brand_id');
