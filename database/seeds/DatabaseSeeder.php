@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Brahma',
             'description' => 'A melhor cerveja!',
+            'logo_path' => 'http://www.hugoborges.com.br/wp-content/uploads/2016/11/BRAHMA_1.png',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -48,6 +49,23 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Heineken',
             'description' => 'Open your world!',
+            'logo_path' => 'https://www.knijff.com/markmatters/wp-content/uploads/2017/09/heineken-logo.png',
+            'status' => 1,
+            'category_id' => 2
+        ]);
+
+        DB::table('brands')->insert([
+            'name' =>'Stella Artois',
+            'description' => 'Be Legacy!',
+            'logo_path' => 'https://seeklogo.com/images/S/stella-artois-logo-04BFEE2241-seeklogo.com.png',
+            'status' => 1,
+            'category_id' => 2
+        ]);
+
+        DB::table('brands')->insert([
+            'name' =>'Antarctica Original',
+            'description' => 'É difícil achar, mas vale a pena!',
+            'logo_path' => 'http://viracoposlanchonete.com.br/images/LOGO-BEBIDAS/ORIGINAL.png',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -55,6 +73,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Coca-Cola',
             'description' => 'Abra a felicidade!',
+            'logo_path' => 'https://seeklogo.com/images/C/Coca-Cola-logo-00A6B20F2F-seeklogo.com.png',
             'status' => 1,
             'category_id' => 3
         ]);
@@ -62,6 +81,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Marca Inativa',
             'description' => 'Teste de exibição',
+            'logo_path' => 'http://4.bp.blogspot.com/-hGzRYUhG_eA/U6P9fKxgCSI/AAAAAAAAAFA/qF8UR5QHOq4/s1600/BMW_1954.png',
             'status' => 0,
             'category_id' => 4
         ]);

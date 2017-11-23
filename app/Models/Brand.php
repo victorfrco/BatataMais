@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Bootstrapper\Facades\Image;
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +10,21 @@ class Brand extends Model implements TableInterface
 {
     protected $table = 'brands';
     protected $fillable = ['name', 'description', 'logo_path', 'status', 'category_id'];
+
+    public static function criaLista($id)
+    {
+
+      $divCab =  '<div class="col-sm-3" style="height: 170px; font-size: 12px; font-weight:bold; text-align: center;">';
+      $brand = Brand::find($id);
+
+      $divCont = $brand->name.Image::rounded($brand->logo_path, 'rounded')
+                                    ->responsive()
+                                    ->withAttributes(['style' => 'max-height:140px; padding-left:7px']);
+
+      $divEnd = ' </div>';
+      $divpronta = $divCab.$divCont.$divEnd;
+      return $divpronta;
+    }
 
     public function products()
     {
