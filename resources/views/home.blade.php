@@ -41,6 +41,26 @@
         </div>
 
     </div>
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="modal-title"> Marca Heineken</h4>
+                </div>
+                <div class="modal-body task" id="task" >
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                    <input type="hidden" id="task_id" name="task_id" value="0">
+                </div>
+            </div>
+        </div>
+    </div>
+    <meta name="_token" content="{!! csrf_token() !!}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/ajax-crud.js')}}"></script>
 
 @endsection
 @section('scripts')

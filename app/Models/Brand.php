@@ -14,12 +14,12 @@ class Brand extends Model implements TableInterface
     public static function criaLista($id)
     {
 
-      $divCab =  '<div class="col-sm-3" style="height: 170px; font-size: 12px; font-weight:bold; text-align: center;">';
+      $divCab =  '<div value="'.$id.'" data-id="'.$id.'" data-target="#productModal" data-toggle="modal" class="col-sm-2 chico" style="width: 150px; height: 150px; font-size: 12px; font-weight:bold; text-align: center;">';
       $brand = Brand::find($id);
 
       $divCont = $brand->name.Image::rounded($brand->logo_path, 'rounded')
                                     ->responsive()
-                                    ->withAttributes(['style' => 'max-height:140px; padding-left:7px']);
+                                    ->withAttributes(['style' => 'height:110px; padding-left:7px']);
 
       $divEnd = ' </div>';
       $divpronta = $divCab.$divCont.$divEnd;
