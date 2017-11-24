@@ -15,11 +15,11 @@
 Route::get('/tasks/{task_id?}',function($task_id){
     $products = App\Models\Product::all()->where('brand_id', '=', $task_id);
     $brand = App\Models\Brand::find($task_id);
-    $divHeader = '<table>
+    $divHeader = '<form method="GET" id="form-add-order"></form></form><table class="table table-bordered">
                     <tr>
                         <th>Nome</th>
-                        <th>Estoque</th>
-                        <th>Ações</th>
+                        <th style="text-align: center">Estoque</th>
+                        <th style="text-align: center">Quantidade</th>
                     </tr>';
     $divs = [];
     $divFooter = '</table>';
@@ -27,9 +27,14 @@ Route::get('/tasks/{task_id?}',function($task_id){
         $divCont = '<tr>
                         <td>'.$product->name.'
                         </td>
-                        <td>'.$product->qtd.'
+                        <td style="text-align: center">'.$product->qtd.'
                         </td>
-                        <td> + | -
+                        <td style="text-align: center" form="form-add-order">'. \Bootstrapper\Facades\Button::appendIcon(Icon::plus())->withAttributes(
+                                        ['class' => 'btn btn-xs', 'onclick' => "myFunction1($product->id)"]) .' &nbsp;&nbsp;  
+                                <input style="width: 30px" type="number" id="quantidade'.$product->id.'" min="0" max="'.$product->qtd.'"> &nbsp;&nbsp;'.
+                            \Bootstrapper\Facades\Button::appendIcon(Icon::minus())->withAttributes(
+                                ['class' => 'btn btn-xs', 'onclick' => "myFunction2($product->id)"]).'
+                                
                         </td>
                         </tr>';
         array_push($divs, $divCont);
@@ -42,6 +47,7 @@ Route::get('/tasks/{task_id?}',function($task_id){
         'name' => $brand->name,
         'id' => $task_id
     ];
+
     return Response::json($resposta);
 });
 

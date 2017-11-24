@@ -3,7 +3,7 @@ $(document).ready(function(){
     var url = "/tasks";
 
     //listar produtos
-    $('.chico').click(function(){
+    $('.order-modal').click(function(){
         var task_id = $(this).data('id');
         console.log(task_id);
 
@@ -12,32 +12,9 @@ $(document).ready(function(){
             console.log(data);
 
             $( '#task' ).html(data.table);
-            $('#modal-title').val(data.name);
-            /* $('#task').val(data.name);
-             $('#description').val(data.description);
-             $('#btn-save').val("update");
- */
+            $( '#titulo' ).text(data.name);
             $('#myModal').modal('show');
         })
-    });
-
-    //delete task and remove it from list
-    $('.delete-task').click(function(){
-        var task_id = $(this).val();
-
-        $.ajax({
-
-            type: "DELETE",
-            url: url + '/' + task_id,
-            success: function (data) {
-                console.log(data);
-
-                $("#task" + task_id).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
     });
 
     //create new task / update existing task
@@ -50,9 +27,13 @@ $(document).ready(function(){
 
         e.preventDefault();
 
+
+
         var formData = {
-            task: $('#task').val(),
-            description: $('#description').val(),
+            /*task: $('#task').val(),
+            description: $('#description').val(),*/
+            item: $('#description'+'#value').val(),
+
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]

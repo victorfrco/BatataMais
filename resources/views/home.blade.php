@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $order = new App\Models\Order();
+            if(isset($_POST["order"])){
+                $order = $_POST["order"];
+            }
+
+    dd($_POST);
+    @endphp
     <div class="container">
         <div class="row">
             <h2>PÁGINA TESTE</h2>
@@ -34,8 +42,10 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
+
+              {{$order->client_id = "Victor Oliveira"}}
             <div class="col-sm-4" style="background-color:firebrick; height: 400px">
-                <div style="background-color:#99cb84;"> TESTE</div>
+                <div align="center" style="background-color:#99cb84;"> Produtos de {{$order->client_id}}</div>
                 <div style="background-color:#c9e2b3; margin-top: 97%">TOTAL</div>
             </div>
         </div>
@@ -46,12 +56,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="modal-title"> Marca Heineken</h4>
+                    <h4 class="modal-title titulo" id="titulo"></h4>
                 </div>
                 <div class="modal-body task" id="task" >
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="btn-save" value="add" form="form-add-order">Save changes</button>
                     <input type="hidden" id="task_id" name="task_id" value="0">
                 </div>
             </div>
@@ -65,9 +75,16 @@
 @endsection
 @section('scripts')
     <script>
+        function myFunction1($id) {
+            document.getElementById("quantidade"+$id).stepUp(1);
+        }
+        function myFunction2($id) {
+            document.getElementById("quantidade"+$id).stepDown(1);
+        }
         $('#tabsCategorias > ul> li:last').click(function (e) {
             e.preventDefault();
             window.location = $('#tabsCategorias').attr('data-url');
         });
+
     </script>
 @endsection
