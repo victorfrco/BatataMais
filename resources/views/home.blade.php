@@ -6,8 +6,8 @@
             if(isset($_POST["order"])){
                 $order = $_POST["order"];
             }
+$order->client_id = "Victor Oliveira";
 
-    dd($_POST);
     @endphp
     <div class="container">
         <div class="row">
@@ -42,8 +42,6 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-
-              {{$order->client_id = "Victor Oliveira"}}
             <div class="col-sm-4" style="background-color:firebrick; height: 400px">
                 <div align="center" style="background-color:#99cb84;"> Produtos de {{$order->client_id}}</div>
                 <div style="background-color:#c9e2b3; margin-top: 97%">TOTAL</div>
@@ -68,8 +66,6 @@
         </div>
     </div>
     <meta name="_token" content="{!! csrf_token() !!}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajax-crud.js')}}"></script>
 
 @endsection

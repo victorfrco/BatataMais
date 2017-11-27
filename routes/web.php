@@ -15,35 +15,10 @@
 Route::get('/tasks/{task_id?}',function($task_id){
     $products = App\Models\Product::all()->where('brand_id', '=', $task_id);
     $brand = App\Models\Brand::find($task_id);
-    $divHeader = '<form method="GET" id="form-add-order"></form></form><table class="table table-bordered">
-                    <tr>
-                        <th>Nome</th>
-                        <th style="text-align: center">Estoque</th>
-                        <th style="text-align: center">Quantidade</th>
-                    </tr>';
-    $divs = [];
-    $divFooter = '</table>';
-    foreach ($products as $product){
-        $divCont = '<tr>
-                        <td>'.$product->name.'
-                        </td>
-                        <td style="text-align: center">'.$product->qtd.'
-                        </td>
-                        <td style="text-align: center" form="form-add-order">'. \Bootstrapper\Facades\Button::appendIcon(Icon::plus())->withAttributes(
-                                        ['class' => 'btn btn-xs', 'onclick' => "myFunction1($product->id)"]) .' &nbsp;&nbsp;  
-                                <input style="width: 30px" type="number" id="quantidade'.$product->id.'" min="0" max="'.$product->qtd.'"> &nbsp;&nbsp;'.
-                            \Bootstrapper\Facades\Button::appendIcon(Icon::minus())->withAttributes(
-                                ['class' => 'btn btn-xs', 'onclick' => "myFunction2($product->id)"]).'
-                                
-                        </td>
-                        </tr>';
-        array_push($divs, $divCont);
-    }
-    $string = implode($divs);
-    $table = $divHeader.$string.$divFooter;
-
+    $sellController = new \App\Http\Controllers\SellController();
+    $tableHTML = $sellController->listaProdutosPorMarca($products);
     $resposta = [
-        'table' => $table,
+        'table' => $tableHTML,
         'name' => $brand->name,
         'id' => $task_id
     ];
