@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 class SellController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -96,9 +97,24 @@ class SellController extends Controller
     {
         if($pedido->id == null)
             $pedido->save();
+        else{
+            $pedidoAntigo = Order::find($pedido->id);
+            $pedidoAntigo->total += $pedido->total;
+            $pedidoAntigo->save();
+        }
         foreach($itens as $item){
             $item->order_id = $pedido->id;
-            $item->save();
+            $itemAntigo = Item::where([
+                ['order_id', '=', $item->order_id],
+                ['product_id', '=', $item->product_id]
+            ])->get();
+            if($itemAntigo->isNotEmpty())
+            {
+                $itemAntigo[0]->qtd += $item->qtd;
+                $itemAntigo[0]->total += $item->total;
+                $itemAntigo[0]->save();
+            }else
+                $item->save();
         }
         return $pedido->id;
     }

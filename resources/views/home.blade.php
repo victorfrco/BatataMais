@@ -6,7 +6,7 @@
             <h2>PÁGINA TESTE</h2>
     </div>
         <div class="row">
-            <div class="col-sm-8" style="background-color:lightblue; height: 400px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-sm-8" style="border-color: #2F3133; border: groove; height: 400px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
 
                     foreach($categories as $category){
@@ -34,21 +34,17 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-sm-4" style="background-color:firebrick; height: 400px">
+            <div class="col-sm-4" style="border-color: #2F3133; border: groove; height: 400px; overflow: auto">
                 @php
-                    if(isset($order))
+                    if(isset($order)){
                         echo '<div align="center" style="background-color:#99cb84;"> Produtos de '.$order->client->name.'</div>';
-                    else
-                        echo '<div align="center" style="background-color:#99cb84;"> Lista de Produtos </div><div style="background-color:#c9e2b3; margin-top: 97%">TOTAL</div>';
+                        $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id);
+                        echo $tabela;
+                        echo '<div style="position: absolute; bottom: 10px; width: 90%;background-color:#c9e2b3">Valor total da compra: '.$order->total.'</div>';
+
+                    }else
+                        echo '<div align="center" style="background-color:#99cb84;"> Lista de Produtos </div>';
                 @endphp
-                <table>
-                    <tr>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </table>
 
             </div>
         </div>
