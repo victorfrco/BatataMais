@@ -134,6 +134,12 @@ class DatabaseSeeder extends Seeder
             'adr_compl' => ''
         ]);
 
+        DB::table('clients')->insert([
+            'name' =>'Venda Avulsa',
+            'nickname' => 'avulsa',
+            'phone1' => '067999999990'
+        ]);
+
         // $this->call(UsersTableSeeder::class);
     }
 }
