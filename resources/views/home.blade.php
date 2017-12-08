@@ -78,10 +78,10 @@
 @section('scripts')
     <script>
         function myFunction1($id) {
-            document.getElementById("quantidade"+$id).stepUp(1);
+            document.getElementById($id).stepUp(1);
         }
         function myFunction2($id) {
-            document.getElementById("quantidade"+$id).stepDown(1);
+            document.getElementById($id).stepDown(1);
         }
         $('#tabsCategorias > ul> li:last').click(function (e) {
             e.preventDefault();

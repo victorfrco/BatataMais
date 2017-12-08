@@ -175,8 +175,7 @@ class SellController extends Controller
                         <td style="text-align: center" form="form-add-order">'.
                 \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::plus())->withAttributes(
                     ['class' => 'btn btn-xs', 'onclick' => "myFunction1($product->id)"]).
-                       \Bootstrapper\Facades\Form::number($product->id, '0', array('id' => "quantidade", 'min' => 0, 'max' => $product->qtd, 'style' => 'width:50px')).
-                                 
+                       \Bootstrapper\Facades\Form::number($product->id, '0', array('id' => $product->id, 'min' => 0, 'max' => $product->qtd, 'style' => 'width:80px')).
                 \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::minus())->withAttributes(
                     ['class' => 'btn btn-xs', 'onclick' => "myFunction2($product->id)"]).'
                                 
