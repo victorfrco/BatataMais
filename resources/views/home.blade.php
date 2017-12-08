@@ -1,14 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        $order = new App\Models\Order();
-            if(isset($_POST["order"])){
-                $order = $_POST["order"];
-            }
-$order->client_id = "Victor Oliveira";
-
-    @endphp
     <div class="container">
         <div class="row">
             <h2>PÁGINA TESTE</h2>
@@ -43,8 +35,21 @@ $order->client_id = "Victor Oliveira";
                 {!! Tabbable::withContents($names) !!}
             </div>
             <div class="col-sm-4" style="background-color:firebrick; height: 400px">
-                <div align="center" style="background-color:#99cb84;"> Produtos de {{$order->client_id}}</div>
-                <div style="background-color:#c9e2b3; margin-top: 97%">TOTAL</div>
+                @php
+                    if(isset($order))
+                        echo '<div align="center" style="background-color:#99cb84;"> Produtos de '.$order->client->name.'</div>';
+                    else
+                        echo '<div align="center" style="background-color:#99cb84;"> Lista de Produtos </div><div style="background-color:#c9e2b3; margin-top: 97%">TOTAL</div>';
+                @endphp
+                <table>
+                    <tr>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+
             </div>
         </div>
 
@@ -56,11 +61,16 @@ $order->client_id = "Victor Oliveira";
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo" id="titulo"></h4>
                 </div>
+                {!! Form::open(array('action' => 'SellController@addProducts', 'method' => 'post')) !!}
                 <div class="modal-body task" id="task" >
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-save" value="add" form="form-add-order">Save changes</button>
-                    <input type="hidden" id="task_id" name="task_id" value="0">
+                    @php
+                        if(isset($order))
+                            echo Form::hidden('order_id', $order->id);
+                    @endphp
+                    {!! Form::submit('Adicionar à venda!') !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

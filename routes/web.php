@@ -11,6 +11,7 @@
 |
 */
 
+Route::post('/addProducts', 'SellController@addProducts');
 
 Route::get('/tasks/{task_id?}',function($task_id){
     $products = App\Models\Product::all()->where('brand_id', '=', $task_id);
