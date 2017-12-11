@@ -16,7 +16,7 @@ class Product extends Model implements TableInterface
 
     public function itens()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsToMany(Item::class);
     }
 
     /**

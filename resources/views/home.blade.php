@@ -1,20 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        $order = new App\Models\Order();
-            if(isset($_POST["order"])){
-                $order = $_POST["order"];
-            }
-$order->client_id = "Victor Oliveira";
-
-    @endphp
     <div class="container">
         <div class="row">
             <h2>PÁGINA TESTE</h2>
     </div>
         <div class="row">
-            <div class="col-sm-8" style="background-color:lightblue; height: 400px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="margin-left:-100px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
 
                     foreach($categories as $category){
@@ -42,10 +34,30 @@ $order->client_id = "Victor Oliveira";
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-sm-4" style="background-color:firebrick; height: 400px">
-                <div align="center" style="background-color:#99cb84;"> Produtos de {{$order->client_id}}</div>
-                <div style="background-color:#c9e2b3; margin-top: 97%">TOTAL</div>
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="border-color: #2F3133; border: groove; height: 450px; overflow: auto">
+                @php
+                    if(isset($order)){
+                        echo '<div align="center" style="background-color:#99cb84;"> Produtos de '.$order->client->name.'</div>';
+                        $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id);
+                        echo $tabela;
+
+                    }else
+                        echo '<div align="center" style="background-color:#99cb84;"> Lista de Produtos </div>';
+                @endphp
+
             </div>
+        </div>
+        <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-left:59%; text-align:left;">
+            Valor total da compra: R$@php if(isset($order))echo number_format((float)$order->total, 2, '.', ''); else echo '0,00' @endphp <br>
+            @php
+                if(isset($order)){
+                    echo Button::success('Concluir Venda')->addAttributes(['style' => 'height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#concluirVendaModal']);
+                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#cancelarVendaModal']);
+                }else{
+                    echo Button::success('Concluir Venda')->addAttributes(['style' => 'height:40px; width:210px', 'disabled' => 'true']);
+                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'height:40px; width:210px', 'disabled' => 'true']);
+                }
+            @endphp
         </div>
 
     </div>
@@ -56,15 +68,48 @@ $order->client_id = "Victor Oliveira";
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo" id="titulo"></h4>
                 </div>
+                {!! Form::open(array('action' => 'SellController@addProducts', 'method' => 'post')) !!}
                 <div class="modal-body task" id="task" >
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-save" value="add" form="form-add-order">Save changes</button>
-                    <input type="hidden" id="task_id" name="task_id" value="0">
+                    @php
+                        if(isset($order))
+                            echo Form::hidden('order_id', $order->id);
+                    @endphp
+                    {!! Form::submit('Adicionar à venda!') !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="concluirVendaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Finalizar Venda</h4>
+                </div>
+                {!! Form::open(array('action' => 'SellController@concluirVenda', 'method' => 'post')) !!}
+                <div class="modal-body">
+                    Selecione a forma de pagamento: <br>
+                    {!! Form::select('formaPagamento', ['Dinheiro', 'Cartão de Débito', 'Cartão de Crédito'])  !!}
+                    @php
+                        if(isset($order))
+                            echo Form::hidden('order_id', $order->id);
+                    @endphp
+                    {!! Form::token() !!}
+
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Concluir!') !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="{{asset('js/ajax-crud.js')}}"></script>
 
@@ -72,10 +117,10 @@ $order->client_id = "Victor Oliveira";
 @section('scripts')
     <script>
         function myFunction1($id) {
-            document.getElementById("quantidade"+$id).stepUp(1);
+            document.getElementById($id).stepUp(1);
         }
         function myFunction2($id) {
-            document.getElementById("quantidade"+$id).stepDown(1);
+            document.getElementById($id).stepDown(1);
         }
         $('#tabsCategorias > ul> li:last').click(function (e) {
             e.preventDefault();

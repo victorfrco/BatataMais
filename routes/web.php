@@ -11,42 +11,22 @@
 |
 */
 
+Route::post('/addProducts', 'SellController@addProducts');
 
-Route::get('/tasks/{task_id?}',function($task_id){
-    $products = App\Models\Product::all()->where('brand_id', '=', $task_id);
-    $brand = App\Models\Brand::find($task_id);
+Route::post('/concluirVenda', 'SellController@concluirVenda');
+
+Route::get('/modal/{product_id?}',function($product_id){
+    $products = App\Models\Product::all()->where('brand_id', '=', $product_id);
+    $brand = App\Models\Brand::find($product_id);
     $sellController = new \App\Http\Controllers\SellController();
     $tableHTML = $sellController->listaProdutosPorMarca($products);
     $resposta = [
         'table' => $tableHTML,
         'name' => $brand->name,
-        'id' => $task_id
+        'id' => $product_id
     ];
 
     return Response::json($resposta);
-});
-
-Route::post('/tasks',function(Request $request){
-    $task = Task::create($request->all());
-
-    return Response::json($task);
-});
-
-Route::put('/tasks/{task_id?}',function(Request $request,$task_id){
-    $task = Task::find($task_id);
-
-    $task->task = $request->task;
-    $task->description = $request->description;
-
-    $task->save();
-
-    return Response::json($task);
-});
-
-Route::delete('/tasks/{task_id?}',function($task_id){
-    $task = Task::destroy($task_id);
-
-    return Response::json($task);
 });
 
 Route::get('/', function () {
