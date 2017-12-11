@@ -48,6 +48,8 @@
 
             </div>
         </div>
+        <div style="margin-left:68%; width: auto;background-color:#c9e2b3">Valor total da compra: R$@php if(isset($order))echo number_format((float)$order->total, 2, '.', ''); else echo '0,00' @endphp </div>
+
 
     </div>
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="productModal" tabindex="-1">

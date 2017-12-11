@@ -103,18 +103,20 @@ class SellController extends Controller
             $pedidoAntigo->save();
         }
         foreach($itens as $item){
-            $item->order_id = $pedido->id;
-            $itemAntigo = Item::where([
-                ['order_id', '=', $item->order_id],
-                ['product_id', '=', $item->product_id]
-            ])->get();
-            if($itemAntigo->isNotEmpty())
-            {
-                $itemAntigo[0]->qtd += $item->qtd;
-                $itemAntigo[0]->total += $item->total;
-                $itemAntigo[0]->save();
-            }else
-                $item->save();
+            if ($item->qtd > 0){
+                $item->order_id = $pedido->id;
+                $itemAntigo = Item::where([
+                    ['order_id', '=', $item->order_id],
+                    ['product_id', '=', $item->product_id]
+                ])->get();
+                if($itemAntigo->isNotEmpty())
+                {
+                    $itemAntigo[0]->qtd += $item->qtd;
+                    $itemAntigo[0]->total += $item->total;
+                    $itemAntigo[0]->save();
+                }else
+                    $item->save();
+            }
         }
         return $pedido->id;
     }
