@@ -19,12 +19,16 @@ class Sell extends Model
                             </tr>';
         $tableCont = [];
         foreach ($itens as $item){
+            //da baixa provisoria no estoque
+            $product = Product::find($item->product_id);
+            $product->qtd -= $item->qtd;
+            $product->save();
             $product = Product::find($item->product_id);
             $tupla = '      <tr>
                                 <td align="left">'.$product->name.'</td>
                                 <td align="right">'.$item->qtd.'</td>
                                 <td align="right">'.$product->price_resale.'</td>
-                                <td align="right">'.$item->total.'</td>
+                                <td align="right">'.number_format((float)$item->total, 2, '.', '').'</td>
                             </tr>';
             array_push($tableCont, $tupla);
         }

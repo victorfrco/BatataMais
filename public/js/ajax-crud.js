@@ -1,12 +1,12 @@
 $(document).ready(function(){
-    var url = "/tasks";
+    var url = "/modal";
 
     //listar produtos
-    $('.order-modal').click(function(){
-        var task_id = $(this).data('id');
-        console.log(task_id);
+    $('.product-modal').click(function(){
+        var product_id = $(this).data('id');
+        console.log(product_id);
 
-        $.get(url + '/' + task_id, function (data) {
+        $.get(url + '/' + product_id, function (data) {
             //success data
             console.log(data);
 

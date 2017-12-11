@@ -12,6 +12,8 @@ use Auth;
 use function compact;
 use function dd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use function redirect;
 
 class SellController extends Controller
 {
@@ -190,4 +192,14 @@ class SellController extends Controller
 
         return $table;
     }
+
+    public function concluirVenda(Request $request){
+        $formaPagamento = $request->toArray()['formaPagamento'];
+        $order = Order::find($request->toArray()['order_id']);
+        //status 3 = Paga
+        $order->status = 3;
+        $order->save();
+        return Redirect::to('/home')->with('message', 'Venda realizada com sucesso!');
+    }
+
 }
