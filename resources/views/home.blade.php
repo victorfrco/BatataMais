@@ -40,7 +40,6 @@
                         echo '<div align="center" style="background-color:#99cb84;"> Produtos de '.$order->client->name.'</div>';
                         $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id);
                         echo $tabela;
-                        echo '<div style="position: absolute; bottom: 10px; width: 90%;background-color:#c9e2b3">Valor total da compra: '.$order->total.'</div>';
 
                     }else
                         echo '<div align="center" style="background-color:#99cb84;"> Lista de Produtos </div>';
@@ -51,13 +50,14 @@
         <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-left:59%; text-align:left;">
             Valor total da compra: R$@php if(isset($order))echo number_format((float)$order->total, 2, '.', ''); else echo '0,00' @endphp <br>
             @php
-                if(isset($order))
+                if(isset($order)){
                     echo Button::success('Concluir Venda')->addAttributes(['style' => 'height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#concluirVendaModal']);
-                else
+                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#cancelarVendaModal']);
+                }else{
                     echo Button::success('Concluir Venda')->addAttributes(['style' => 'height:40px; width:210px', 'disabled' => 'true']);
+                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'height:40px; width:210px', 'disabled' => 'true']);
+                }
             @endphp
-            {!! Button::danger('Cancelar Venda')->addAttributes(['style' => 'height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#cancelarVendaModal']) !!}
-
         </div>
 
     </div>

@@ -79,11 +79,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('brands')->insert([
+            'name' =>'Guaraná Antarctica',
+            'description' => 'O original do Brasil',
+            'logo_path' => 'https://pedidodaweb.com.br/upload/1501087688-GUARANA.png',
+            'status' => 1,
+            'category_id' => 3
+        ]);
+
+        DB::table('brands')->insert([
+            'name' =>'Budweiser',
+            'description' => 'Great Times Are Coming!',
+            'logo_path' => 'https://i0.wp.com/freepngimages.com/wp-content/uploads/2016/10/budweiser-logo.png?fit=624%2C394',
+            'status' => 1,
+            'category_id' => 4
+        ]);
+
+        DB::table('brands')->insert([
             'name' =>'Marca Inativa',
             'description' => 'Teste de exibição',
             'logo_path' => 'http://4.bp.blogspot.com/-hGzRYUhG_eA/U6P9fKxgCSI/AAAAAAAAAFA/qF8UR5QHOq4/s1600/BMW_1954.png',
             'status' => 0,
-            'category_id' => 4
+            'category_id' => 2
         ]);
 
         DB::table('products')->insert([
@@ -97,13 +113,43 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'name' =>'Fanta Lata',
+            'name' =>'Heineken 600ml',
+            'description' => 'Garrafa de 600',
+            'price_cost' => 6.0,
+            'price_resale' => 8,
+            'price_discount' => 7.60,
+            'qtd' => '100',
+            'brand_id' => 2
+        ]);
+
+        DB::table('products')->insert([
+            'name' =>'Coca Lata',
             'description' => 'contém 355ml',
             'price_cost' => 1.80,
             'price_resale' => 3,
             'price_discount' => 3,
             'qtd' => '150',
-            'brand_id' => 3
+            'brand_id' => 5
+        ]);
+
+        DB::table('products')->insert([
+            'name' =>'Guaraná Lata',
+            'description' => 'contém 355ml',
+            'price_cost' => 1.80,
+            'price_resale' => 3,
+            'price_discount' => 3,
+            'qtd' => '150',
+            'brand_id' => 6
+        ]);
+
+        DB::table('products')->insert([
+            'name' =>'Guaraná 600ml',
+            'description' => 'Garrafa 600ml',
+            'price_cost' => 2.80,
+            'price_resale' => 5,
+            'price_discount' => 5,
+            'qtd' => '50',
+            'brand_id' => 6
         ]);
 
         DB::table('clients')->insert([
