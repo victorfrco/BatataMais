@@ -43,7 +43,8 @@
 
             </div>
         </div>
-        <div class="col-xs-7 col-sm-6 col-lg-7" style="height: 50px; width:770px;margin-left:-70px;">
+        <div>Mesas:</div>
+        <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-70px; overflow-x: auto;white-space: nowrap;">
             @php
                 $orderController = new App\Http\Controllers\OrderController();
                 echo $orderController->carregaPedidosAbertos();
