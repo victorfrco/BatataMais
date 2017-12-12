@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,73 +9,85 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Batata+') }}</title>
+    <title>{{ config('app.name', 'Batata') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
+<div id="app">
+    @php
+        $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('home'))->inverse();
+         if(Auth::check()){
+             $arrayLinks = [
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                 [
+                  'Produtos',
+                  [
+                      [
+                          'link' => route('admin.categories.index'),
+                          'title' => 'Categorias'
+                      ],
+                      [
+                          'link' => route('admin.brands.index'),
+                          'title' => 'Marcas'
+                      ],
+                      [
+                          'link' => route('admin.products.index'),
+                          'title' => 'Produtos'
+                      ],
+                      Navigation::NAVIGATION_DIVIDER,
+                      [
+                          'link' => '#',
+                          'title' => 'Relatórios'
+                      ],
+                  ]
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Batata ') }}{!! '&ensp;'.Icon::plus() !!}
-                    </a>
-                </div>
+              ],
+              ['link' => route('admin.clients.index'), 'title' => 'Clientes'],
+              ['link' => route('admin.providers.index'), 'title' => 'Fornecedores']
+             ];
+             $arrayLinksRight = [
+             [
+                Icon::user().' '.Auth::user()->name,
+                [
+                    [
+                            'link' => route('logout'),
+                            'title' => 'Logout &ensp;'.Icon::create('log-out'),
+                            'linkAttributes' => [
+                                'onclick' => "event.preventDefault();getElementById(\"form-logout\").submit();"
+                            ]
+                        ]
+                    ]
+                ]
+             ];
+             $navbar->withContent(Navigation::links($arrayLinks))
+                    ->withContent(Navigation::links($arrayLinksRight)->right());
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+             $formLogout = FormBuilder::plain([
+                'id' => 'form-logout',
+                'url' => route('logout'),
+                'method' => 'POST',
+                'style' => 'display:none'
+            ]);
+         }
+    @endphp
+    {!! $navbar !!}
+    @auth
+        {!! form($formLogout) !!}
+    @endauth
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {!! Icon::user().'&emsp;'!!}{{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+    @if(Session::has('message'))
+        <div class="container">
+            {!! Alert::success(Session::get('message'))->close() !!}
+        </div>
+    @endif
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+    @yield('content')
+</div>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
-    </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('scripts')
 </body>
 </html>

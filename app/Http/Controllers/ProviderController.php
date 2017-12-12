@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\BrandForm;
-use App\Models\Brand;
+use App\Forms\providerForm;
+use App\Models\provider;
 use function compact;
 use Illuminate\Http\Request;
-use function redirect;
 use function route;
 use function view;
 
-class BrandController extends Controller
+class providerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::paginate();
-        return view('admin.brands.index', compact('brands'));
+        $providers = provider::paginate();
+        return view('admin.providers.index', compact('providers'));
     }
 
     /**
@@ -30,12 +29,12 @@ class BrandController extends Controller
      */
     public function create()
     {
-        $form = \FormBuilder::create(BrandForm::class, [
-            'url' => route('admin.brands.store'),
+        $form = \FormBuilder::create(providerForm::class, [
+            'url' => route('admin.providers.store'),
             'method' => 'POST'
         ]);
 
-        return view('admin.brands.create', compact('form'));
+        return view('admin.providers.create', compact('form'));
     }
 
     /**
@@ -47,7 +46,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         /**@var Form $form*/
-        $form = \FormBuilder::create(BrandForm::class);
+        $form = \FormBuilder::create(providerForm::class);
         if(!$form->isValid()){
             return redirect()
                 ->back()
@@ -56,51 +55,51 @@ class BrandController extends Controller
         }
 
         $data = $form->getFieldValues();
-        Brand::create($data);
+        provider::create($data);
 
-        $request->session()->flash('message', 'Marca cadastrada com sucesso!');
-        return redirect()->route('admin.brands.index');
+        $request->session()->flash('message', 'Fornecedor cadastrado com sucesso!');
+        return redirect()->route('admin.providers.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show(provider $provider)
     {
-        return view('admin.brands.show', compact('brand'));
+        return view('admin.providers.show', compact('provider'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(provider $provider)
     {
-        $form = \FormBuilder::create(BrandForm::class,[
-            'url' => route('admin.brands.update', ['brand' => $brand->id]),
+        $form = \FormBuilder::create(providerForm::class,[
+            'url' => route('admin.providers.update', ['provider' => $provider->id]),
             'method' => 'PUT',
-            'model' => $brand
+            'model' => $provider
         ]);
 
-        return view('admin.brands.edit', compact('form'));
+        return view('admin.providers.edit', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Brand $brand)
+    public function update(provider $provider)
     {
         /**@var Form $form*/
-        $form = \FormBuilder::create(BrandForm::class,
-            ['data' => ['id' => $brand->id]
+        $form = \FormBuilder::create(providerForm::class,
+            ['data' => ['id' => $provider->id]
             ]);
 
         if(!$form->isValid()){
@@ -110,23 +109,24 @@ class BrandController extends Controller
                 ->withInput();
         }
 
-        $data = $form->getFieldValues();
-        $brand->update($data);
 
-        session()->flash('message', 'Marca alterada com sucesso!');
-        return redirect()->route('admin.brands.index');
+        $data = $form->getFieldValues();
+        $provider->update($data);
+
+        session()->flash('message', 'Fornecedor alterado com sucesso!');
+        return redirect()->route('admin.providers.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(provider $provider)
     {
-        $brand->delete();
-        session()->flash('message', 'Marca excluída com sucesso!');
-        return redirect()->route('admin.brands.index');
+        $provider->delete();
+        session()->flash('message', 'Fornecedor excluído com sucesso!');
+        return redirect()->route('admin.providers.index');
     }
 }

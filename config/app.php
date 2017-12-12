@@ -233,8 +233,14 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Table' => Bootstrapper\Facades\Table::class,
         'Button' => Bootstrapper\Facades\Button::class,
-        'Icon' => Bootstrapper\Facades\Icon::class
-
+        'Icon' => Bootstrapper\Facades\Icon::class,
+        'Navbar' => Bootstrapper\Facades\Navbar::class,
+        'Navigation' => Bootstrapper\Facades\Navigation::class,
+        'Tabbable' => Bootstrapper\Facades\Tabbable::class,
+        'Image' => Bootstrapper\Facades\Image::class,
+        'MediaObject' => Bootstrapper\Facades\MediaObject::class,
+        'Modal' => Bootstrapper\Facades\Modal::class,
+        'Alert' => Bootstrapper\Facades\Alert::class
     ],
 
 ];

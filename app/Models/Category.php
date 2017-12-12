@@ -10,9 +10,9 @@ class Category extends Model implements TableInterface
     protected $table = 'categories';
     protected $fillable = ['name', 'description'];
 
-    public function products()
+    public function brands()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Brand::class);
     }
 
     /**
@@ -47,3 +47,4 @@ class Category extends Model implements TableInterface
         }
     }
 }
+

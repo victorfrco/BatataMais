@@ -16,7 +16,7 @@ class CreateItensTable extends Migration
         Schema::create('itens', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('qtd');
-            $table->double('total');
+            $table->double('total')->nullable();
             $table->timestamps();
 
             $table->unsignedInteger('order_id');

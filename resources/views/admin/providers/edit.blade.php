@@ -3,14 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>Nova Marca</h2>
-            {!! dd($form)!!}
-            {!! form($form->add('insert', 'submit', [
+            <h2>Editar Fornecedor</h2>
+            {!! form($form->add('edit', 'submit', [
             'attr' => ['class' => 'btn btn-primary btn-block'],
-            'label' => 'inserir'
+            'label' => 'Editar'
             ]))
             !!}
-
         </div>
     </div>
 @endsection

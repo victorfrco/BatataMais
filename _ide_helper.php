@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2017-10-18.
+ * Generated for Laravel 5.4.36 on 2017-10-31.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12202,6 +12202,905 @@ namespace Bootstrapper\Facades {
         }
          
     }
+
+    class Icon {
+        
+        /**
+         * Renders the object
+         *
+         * @return string 
+         * @throws IconException
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Icon::render();
+        }
+        
+        /**
+         * Creates a span link with the correct icon link
+         *
+         * @param string $icon The icon name
+         * @return string 
+         * @static 
+         */ 
+        public static function create($icon)
+        {
+            return \Bootstrapper\Icon::create($icon);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Icon::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Icon::addClass($classes);
+        }
+         
+    }
+
+    class Navbar {
+        
+        /**
+         * Renders the navbar
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Navbar::render();
+        }
+        
+        /**
+         * Sets the brand of the navbar
+         *
+         * @param string $brand The brand
+         * @param null|string $link The link. If not set we default to linking to
+         *                           '/' using the UrlGenerator
+         * @return $this 
+         * @static 
+         */ 
+        public static function withBrand($brand, $link = null)
+        {
+            return \Bootstrapper\Navbar::withBrand($brand, $link);
+        }
+        
+        /**
+         * Sets the brand of the navbar
+         *
+         * @param string $image The brand image
+         * @param null|string $link The link. If not set we default to linking to
+         *                             '/' using the UrlGenerator
+         * @param string $altText The alt text for the image
+         * @return $this 
+         * @static 
+         */ 
+        public static function withBrandImage($image, $link = null, $altText = '')
+        {
+            return \Bootstrapper\Navbar::withBrandImage($image, $link, $altText);
+        }
+        
+        /**
+         * Adds some content to the navbar
+         *
+         * @param mixed $content Anything that can become a string! If you pass in a
+         *                       Bootstrapper\Navigation object we'll make sure
+         *                       it's a navbar on render.
+         * @return $this 
+         * @static 
+         */ 
+        public static function withContent($content)
+        {
+            return \Bootstrapper\Navbar::withContent($content);
+        }
+        
+        /**
+         * Sets the navbar to be inverse
+         *
+         * @param string $position
+         * @param array $attributes
+         * @return $this 
+         * @static 
+         */ 
+        public static function inverse($position = null, $attributes = array())
+        {
+            return \Bootstrapper\Navbar::inverse($position, $attributes);
+        }
+        
+        /**
+         * Sets the position to top
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function staticTop()
+        {
+            return \Bootstrapper\Navbar::staticTop();
+        }
+        
+        /**
+         * Sets the type of the navbar
+         *
+         * @param string $type The type of the navbar. Assumes that the navbar-
+         *                     prefix is there
+         * @return $this 
+         * @static 
+         */ 
+        public static function setType($type)
+        {
+            return \Bootstrapper\Navbar::setType($type);
+        }
+        
+        /**
+         * Sets the position of the navbar
+         *
+         * @param string $position The position of the navbar. Assumes that the
+         *                         navbar- prefix is there
+         * @return $this 
+         * @static 
+         */ 
+        public static function setPosition($position)
+        {
+            return \Bootstrapper\Navbar::setPosition($position);
+        }
+        
+        /**
+         * Sets the position of the navbar to the top
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function top()
+        {
+            return \Bootstrapper\Navbar::top();
+        }
+        
+        /**
+         * Sets the position of the navbar to the bottom
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function bottom()
+        {
+            return \Bootstrapper\Navbar::bottom();
+        }
+        
+        /**
+         * Creates a navbar with a position and attributes
+         *
+         * @param string $position The position of the navbar
+         * @param array $attributes The attributes of the navbar
+         * @return $this 
+         * @static 
+         */ 
+        public static function create($position, $attributes = array())
+        {
+            return \Bootstrapper\Navbar::create($position, $attributes);
+        }
+        
+        /**
+         * Sets the navbar to be fluid
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function fluid()
+        {
+            return \Bootstrapper\Navbar::fluid();
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Navbar::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Navbar::addClass($classes);
+        }
+         
+    }
+
+    class Navigation {
+        
+        /**
+         * Renders the navigation object
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Navigation::render();
+        }
+        
+        /**
+         * Creates a pills navigation block
+         *
+         * @param array $links The links
+         * @param array $attributes The attributes. Does not overwrite the
+         *                          previous values if not set
+         * @see Bootstrapper\Navigatation::$links
+         * @return $this 
+         * @static 
+         */ 
+        public static function pills($links = array(), $attributes = null)
+        {
+            return \Bootstrapper\Navigation::pills($links, $attributes);
+        }
+        
+        /**
+         * Sets the links of the navigation object
+         *
+         * @param array $links The links
+         * @return $this 
+         * @see Bootstrapper\Navigation::$links
+         * @static 
+         */ 
+        public static function links($links)
+        {
+            return \Bootstrapper\Navigation::links($links);
+        }
+        
+        /**
+         * Creates a navigation tab object.
+         *
+         * @param array $links The links to be passed in
+         * @param array $attributes The attributes of the navigation object. Will
+         *                          overwrite unless not set.
+         * @return $this 
+         * @static 
+         */ 
+        public static function tabs($links = array(), $attributes = null)
+        {
+            return \Bootstrapper\Navigation::tabs($links, $attributes);
+        }
+        
+        /**
+         * Sets the autorouting. Pass false to turn it off, true to turn it on
+         *
+         * @param bool $autoroute Whether the autorouting should be on
+         * @return $this 
+         * @static 
+         */ 
+        public static function autoroute($autoroute)
+        {
+            return \Bootstrapper\Navigation::autoroute($autoroute);
+        }
+        
+        /**
+         * Turns the navigation object into one for navbars
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function navbar()
+        {
+            return \Bootstrapper\Navigation::navbar();
+        }
+        
+        /**
+         * Makes the navigation links justified
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function justified()
+        {
+            return \Bootstrapper\Navigation::justified();
+        }
+        
+        /**
+         * Makes the navigation stacked
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function stacked()
+        {
+            return \Bootstrapper\Navigation::stacked();
+        }
+        
+        /**
+         * Makes the navigation links float right
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function right()
+        {
+            return \Bootstrapper\Navigation::right();
+        }
+        
+        /**
+         * Makes the navigation links float left
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function left()
+        {
+            return \Bootstrapper\Navigation::left();
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Navigation::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Navigation::addClass($classes);
+        }
+         
+    }
+
+    class Tabbable {
+        
+        /**
+         * Renders the tabbable object
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Tabbable::render();
+        }
+        
+        /**
+         * Creates content with a tabbed navigation
+         *
+         * @param array $contents The content
+         * @return $this 
+         * @see Bootstrapper\Navigation::$contents
+         * @static 
+         */ 
+        public static function tabs($contents = array())
+        {
+            return \Bootstrapper\Tabbable::tabs($contents);
+        }
+        
+        /**
+         * Creates content with a pill navigation
+         *
+         * @param array $contents
+         * @return $this 
+         * @see Bootstrapper\Navigation::$contents
+         * @static 
+         */ 
+        public static function pills($contents = array())
+        {
+            return \Bootstrapper\Tabbable::pills($contents);
+        }
+        
+        /**
+         * Sets the contents
+         *
+         * @param array $contents An array of arrays
+         * @return $this 
+         * @see Bootstrapper\Navigation::$contents
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+            return \Bootstrapper\Tabbable::withContents($contents);
+        }
+        
+        /**
+         * Sets which tab should be active
+         *
+         * @param int $active
+         * @return $this 
+         * @static 
+         */ 
+        public static function active($active)
+        {
+            return \Bootstrapper\Tabbable::active($active);
+        }
+        
+        /**
+         * Sets the tabbable objects to fade in
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function fade()
+        {
+            return \Bootstrapper\Tabbable::fade();
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Tabbable::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Tabbable::addClass($classes);
+        }
+         
+    }
+
+    class Image {
+        
+        /**
+         * Renders the image
+         *
+         * @return string 
+         * @throws ImageException If the image source is not set
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Image::render();
+        }
+        
+        /**
+         * Sets the source of the image
+         *
+         * @param string $source The source of the image
+         * @return $this 
+         * @static 
+         */ 
+        public static function withSource($source)
+        {
+            return \Bootstrapper\Image::withSource($source);
+        }
+        
+        /**
+         * Sets the alt text of the image
+         *
+         * @param string $alt The alt text of the image
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAlt($alt)
+        {
+            return \Bootstrapper\Image::withAlt($alt);
+        }
+        
+        /**
+         * Sets the image to be responsive
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function responsive()
+        {
+            return \Bootstrapper\Image::responsive();
+        }
+        
+        /**
+         * Creates a rounded image
+         *
+         * @param null|string $src The source of the image. Pass null to use the
+         *                         previous value of the source
+         * @param null|string $alt The alt text of the image. Pass null to use
+         *                         the previous value
+         * @return $this 
+         * @static 
+         */ 
+        public static function rounded($src = null, $alt = null)
+        {
+            return \Bootstrapper\Image::rounded($src, $alt);
+        }
+        
+        /**
+         * Creates a circle image
+         *
+         * @param null|string $src The source of the image. Pass null to use the
+         *                         previous value of the source
+         * @param null|string $alt The alt text of the image. Pass null to use
+         *                         the previous value
+         * @return $this 
+         * @static 
+         */ 
+        public static function circle($src = null, $alt = null)
+        {
+            return \Bootstrapper\Image::circle($src, $alt);
+        }
+        
+        /**
+         * Creates a thumbnail image
+         *
+         * @param null|string $src The source of the image. Pass null to use the
+         *                         previous value of the source
+         * @param null|string $alt The alt text of the image. Pass null to use
+         *                         the previous value
+         * @return $this 
+         * @static 
+         */ 
+        public static function thumbnail($src = null, $alt = null)
+        {
+            return \Bootstrapper\Image::thumbnail($src, $alt);
+        }
+        
+        /**
+         * BC version of Image::addClass()
+         *
+         * @param string|array $class
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($class)
+        {
+            return \Bootstrapper\Image::addClass($class);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Image::withAttributes($attributes);
+        }
+         
+    }
+
+    class MediaObject {
+        
+        /**
+         * Renders the media object
+         *
+         * @return string 
+         * @throws MediaObjectException if there is no contents
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\MediaObject::render();
+        }
+        
+        /**
+         * Sets the contents of the media object
+         *
+         * @param array $contents The contents of the media object
+         * @return $this 
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+            return \Bootstrapper\MediaObject::withContents($contents);
+        }
+        
+        /**
+         * Force the media object to become a list
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function asList()
+        {
+            return \Bootstrapper\MediaObject::asList();
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\MediaObject::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\MediaObject::addClass($classes);
+        }
+         
+    }
+
+    class Modal {
+        
+        /**
+         * Renders the modal
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Modal::render();
+        }
+        
+        /**
+         * Sets the title of the modal
+         *
+         * @param string $title
+         * @return $this 
+         * @static 
+         */ 
+        public static function withTitle($title)
+        {
+            return \Bootstrapper\Modal::withTitle($title);
+        }
+        
+        /**
+         * Sets the body of the modal
+         *
+         * @param string $body The new body of the modal
+         * @return $this 
+         * @static 
+         */ 
+        public static function withBody($body)
+        {
+            return \Bootstrapper\Modal::withBody($body);
+        }
+        
+        /**
+         * Set the footer of the modal
+         *
+         * @param string $footer The footer
+         * @return $this 
+         * @static 
+         */ 
+        public static function withFooter($footer)
+        {
+            return \Bootstrapper\Modal::withFooter($footer);
+        }
+        
+        /**
+         * Sets the name of the modal
+         *
+         * @param string $name The name of the modal
+         * @return $this 
+         * @static 
+         */ 
+        public static function named($name)
+        {
+            return \Bootstrapper\Modal::named($name);
+        }
+        
+        /**
+         * Sets the button
+         *
+         * @param \Button $button The button to open the modal with
+         * @return $this 
+         * @static 
+         */ 
+        public static function withButton($button = null)
+        {
+            return \Bootstrapper\Modal::withButton($button);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Modal::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Modal::addClass($classes);
+        }
+         
+    }
+
+    class Alert {
+        
+        /**
+         * Sets the type of the alert. The alert prefix is not assumed.
+         *
+         * @param $type string
+         * @return $this 
+         * @static 
+         */ 
+        public static function setType($type)
+        {
+            return \Bootstrapper\Alert::setType($type);
+        }
+        
+        /**
+         * Renders the alert
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Alert::render();
+        }
+        
+        /**
+         * Creates an info alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function info($contents = '')
+        {
+            return \Bootstrapper\Alert::info($contents);
+        }
+        
+        /**
+         * Creates a success alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function success($contents = '')
+        {
+            return \Bootstrapper\Alert::success($contents);
+        }
+        
+        /**
+         * Creates a warning alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function warning($contents = '')
+        {
+            return \Bootstrapper\Alert::warning($contents);
+        }
+        
+        /**
+         * Creates a danger alert box
+         *
+         * @param string $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function danger($contents = '')
+        {
+            return \Bootstrapper\Alert::danger($contents);
+        }
+        
+        /**
+         * Sets the contents of the alert box
+         *
+         * @param $contents
+         * @return $this 
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+            return \Bootstrapper\Alert::withContents($contents);
+        }
+        
+        /**
+         * Adds a close button with the given text
+         *
+         * @param string $closer
+         * @return $this 
+         * @static 
+         */ 
+        public static function close($closer = '&times;')
+        {
+            return \Bootstrapper\Alert::close($closer);
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Alert::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Alert::addClass($classes);
+        }
+         
+    }
  
 }
 
@@ -15309,6 +16208,22 @@ namespace  {
     class Table extends \Bootstrapper\Facades\Table {}
 
     class Button extends \Bootstrapper\Facades\Button {}
+
+    class Icon extends \Bootstrapper\Facades\Icon {}
+
+    class Navbar extends \Bootstrapper\Facades\Navbar {}
+
+    class Navigation extends \Bootstrapper\Facades\Navigation {}
+
+    class Tabbable extends \Bootstrapper\Facades\Tabbable {}
+
+    class Image extends \Bootstrapper\Facades\Image {}
+
+    class MediaObject extends \Bootstrapper\Facades\MediaObject {}
+
+    class Modal extends \Bootstrapper\Facades\Modal {}
+
+    class Alert extends \Bootstrapper\Facades\Alert {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 
