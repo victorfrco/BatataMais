@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->double('total');
             $table->smallInteger('status');
             $table->boolean('associated');
+            $table->smallInteger('pay_method')->nullable();
             $table->timestamps();
 
             $table->unsignedInteger('client_id');

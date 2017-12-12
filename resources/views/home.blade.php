@@ -3,12 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>PÁGINA TESTE</h2>
+            <h2>PÁGINA TESTE {!! \Bootstrapper\Facades\Button::primary('Nova Mesa') !!}</h2>
     </div>
         <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="margin-left:-100px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="margin-left:-60px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
-
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
                         $listadivs = [];
@@ -30,25 +29,28 @@
                          'title' => Icon::create('plus'),
                          'content' => ''
                      ];
-
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-xs-5 col-sm-6 col-lg-5" style="border-color: #2F3133; border: groove; height: 450px; overflow: auto">
-                @php
-                    if(isset($order)){
-                        echo '<div align="center" style="background-color:#99cb84;"> Produtos de '.$order->client->name.'</div>';
-                        $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id);
-                        echo $tabela;
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-right:-40px; border-color: #2F3133; border: groove; height: 450px; overflow: auto">
+                @if(isset($order))
+                        <div align="center" style="background-color:#99cb84;"> Produtos de {{$order->client->name}}</div>
+                        {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
 
-                    }else
-                        echo '<div align="center" style="background-color:#99cb84;"> Lista de Produtos </div>';
-                @endphp
+                    @else
+                        <div align="center" style="background-color:#99cb84;"> Lista de Produtos </div>
+                @endif
 
             </div>
         </div>
-        <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-left:59%; text-align:left;">
-            Valor total da compra: R$@php if(isset($order))echo number_format((float)$order->total, 2, '.', ''); else echo '0,00' @endphp <br>
+        <div class="col-xs-7 col-sm-6 col-lg-7" style="height: 50px; width:770px;margin-left:-70px;">
+            @php
+                $orderController = new App\Http\Controllers\OrderController();
+                echo $orderController->carregaPedidosAbertos();
+            @endphp
+        </div>
+        <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-right:-150px; text-align:left;">
+            Valor total da compra: R$@if(isset($order)){{number_format((float)$order->total, 2, '.', '')}} @else 0,00 @endif <br>
             @php
                 if(isset($order)){
                     echo Button::success('Concluir Venda')->addAttributes(['style' => 'height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#concluirVendaModal']);
@@ -59,8 +61,8 @@
                 }
             @endphp
         </div>
-
     </div>
+
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="productModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -94,9 +96,13 @@
                 <div class="modal-body">
                     Selecione a forma de pagamento: <br>
                     {!! Form::select('formaPagamento', ['Dinheiro', 'Cartão de Débito', 'Cartão de Crédito'])  !!}
+
                     @php
-                        if(isset($order))
+                        if(isset($order)){
                             echo Form::hidden('order_id', $order->id);
+                            echo Form::hidden('associado', $order->associated);
+                            echo Form::checkbox('associado', 1, $order->associated);
+                        }
                     @endphp
                     {!! Form::token() !!}
 

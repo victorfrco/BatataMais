@@ -14,6 +14,8 @@ use function dd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use function redirect;
+use function Sodium\compare;
+use function view;
 
 class SellController extends Controller
 {
@@ -194,12 +196,21 @@ class SellController extends Controller
     }
 
     public function concluirVenda(Request $request){
-        $formaPagamento = $request->toArray()['formaPagamento'];
         $order = Order::find($request->toArray()['order_id']);
+        $order->pay_method = $request->toArray()['formaPagamento'];
+        $order->associated = $request->toArray()['associado'];
         //status 3 = Paga
         $order->status = 3;
         $order->save();
         return Redirect::to('/home')->with('message', 'Venda realizada com sucesso!');
+    }
+
+    public function redireciona($id)
+    {
+        $order = Order::find($id);
+        $categories = Category::all();
+        dd($categories, $order);
+        return view('/home', compact('order', 'categories'));
     }
 
 }
