@@ -20,6 +20,9 @@ use function view;
 class SellController extends Controller
 {
 
+    private $STATUS_PAGA = 3;
+    private $STATUS_MESA = 2;
+    private $STATUS_EM_ABERTO = 4;
     /**
      * Display a listing of the resource.
      *
@@ -97,6 +100,19 @@ class SellController extends Controller
         //
     }
 
+    public function criarMesa(Request $request){
+        $order = new Order();
+        $order->client_id = $request->toArray()['item_id'];
+        $order->total = 0;
+        $order->status = $this->STATUS_MESA;
+        $order->associated = $request->toArray()['associated'];
+        $order->user_id = Auth::user()->id;
+        $order->save();
+
+        $categories = Category::all();
+        return view('home', compact('order', 'categories'));
+    }
+
     public function vinculaItensNoPedido(Order $pedido, array $itens)
     {
         if($pedido->id == null)
@@ -135,8 +151,7 @@ class SellController extends Controller
             $order = new Order();
         $order->client_id = 3;
         $order->associated = 0;
-        //status 4 = EM ABERTO
-        $order->status = 4;
+        $order->status = $this->STATUS_EM_ABERTO;
         $order->user_id = Auth::user()->id;
         $order->total = 0;
 
@@ -199,8 +214,7 @@ class SellController extends Controller
         $order = Order::find($request->toArray()['order_id']);
         $order->pay_method = $request->toArray()['formaPagamento'];
         $order->associated = $request->toArray()['associado'];
-        //status 3 = Paga
-        $order->status = 3;
+        $order->status = $this->STATUS_PAGA;
         $order->save();
         return Redirect::to('/home')->with('message', 'Venda realizada com sucesso!');
     }

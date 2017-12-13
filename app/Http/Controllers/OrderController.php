@@ -18,7 +18,7 @@ use function implode;
 class OrderController extends Controller
 {
     public function carregaPedidosAbertos(){
-        $pedidos = Order::all()->where('status','=', '4');
+        $pedidos = Order::all()->where('status','=', '2');
         $listaDeDivs = $this->criaListaPedidos($pedidos);
         return implode($listaDeDivs);
     }
@@ -27,14 +27,16 @@ class OrderController extends Controller
         $lista =[];
         $categories = Category::all();
         foreach ($pedidos as $order) {
-            $div = Button::success()->withAttributes([
+            $div = Button::success($order->client->name)->withAttributes([
                         'id' => $order->id,
                         'style' =>
-                                   'width: 100px;
+                                   'min-width: 100px;
                                    height: 40px;
                                    font-size: 12px;
                                    font-weight:bold;
-                                   text-align: center;'
+                                   text-align: center;
+                                   line-height: 28px;
+                                   margin-right: 10px'
             ])->asLinkTo('/home/'.$order->id, compact('order'));
             array_push($lista, $div);
         }

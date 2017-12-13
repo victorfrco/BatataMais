@@ -16,6 +16,7 @@ use App\Models\Category;
 use App\Models\Order;
 
 Route::post('/addProducts', 'SellController@addProducts');
+Route::post('/criarMesa', 'SellController@criarMesa');
 
 Route::get('/home/{id}', function($id){
     $order = Order::find($id);
