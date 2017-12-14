@@ -144,16 +144,18 @@ class SellController extends Controller
 
     public function addProducts(Request $request)
     {
+//        dd($request->toArray());
         $items = [];
         $valorTotal = 0;
+        $order = new Order();
         if(array_key_exists( 'order_id' , $request->toArray()))
             $order = Order::find($request->toArray()['order_id']);
-        else
-            $order = new Order();
-        $order->client_id = 3;
-        $order->associated = 0;
-        $order->status = $this->STATUS_EM_ABERTO;
-        $order->user_id = Auth::user()->id;
+        else {
+            $order->client_id = 3;
+            $order->associated = 0;
+            $order->status = $this->STATUS_EM_ABERTO;
+            $order->user_id = Auth::user()->id;
+        }
         $order->total = 0;
 
         foreach ($request->toArray() as $produto => $quantidade){
@@ -161,7 +163,7 @@ class SellController extends Controller
             if($produto != "_token" && $produto != "order_id") {
                 $item = new Item();
                 $item->product_id = $produto;
-                if($order->id != null)
+                if($order->associated == 0)
                     $item->total = $quantidade * Product::find($produto)->price_resale;
                 else
                     $item->total = $quantidade * Product::find($produto)->price_discount;
@@ -222,6 +224,8 @@ class SellController extends Controller
         $order->pay_method = $request->toArray()['formaPagamento'];
         $order->associated = $request->toArray()['associado'];
         $order->status = $this->STATUS_PAGA;
+        if($request->toArray()['associado'])
+            $order = $this->verificaAssociado($order);
         $order->save();
         return Redirect::to('/home')->with('message', 'Venda realizada com sucesso!');
     }
@@ -252,5 +256,18 @@ class SellController extends Controller
             $product->save();
         }
 
+    }
+
+    private function verificaAssociado($order)
+    {
+        $itens = Item::all()->where('order_id', '=', $order->id);
+        $valorTotal = 0;
+        foreach ($itens as $item){
+            $item->total = $item->qtd * $item->product->price_discount;
+            $item->save();
+            $valorTotal += $item->total;
+        }
+        $order->total = $valorTotal;
+        return $order;
     }
 }

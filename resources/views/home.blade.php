@@ -142,6 +142,7 @@
                             echo Form::hidden('order_id', $order->id);
                             echo Form::hidden('associado', $order->associated);
                             echo Form::checkbox('associado', 1, $order->associated, array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;'));
+                            echo '<br><p style="display:inline; vertical-align: middle;font-size: 11px">*Obs.: Ao informar associado o valor da venda será automaticamente alterado!</p>';
                         }
                     @endphp
                     {!! Form::token() !!}
