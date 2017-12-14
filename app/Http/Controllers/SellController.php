@@ -20,8 +20,9 @@ use function view;
 class SellController extends Controller
 {
 
-    private $STATUS_PAGA = 3;
+    private $STATUS_CANCELADA = 1;
     private $STATUS_MESA = 2;
+    private $STATUS_PAGA = 3;
     private $STATUS_EM_ABERTO = 4;
     /**
      * Display a listing of the resource.
@@ -102,7 +103,7 @@ class SellController extends Controller
 
     public function criarMesa(Request $request){
         $order = new Order();
-        $order->client_id = $request->toArray()['item_id'];
+        $order->client_id = $request->toArray()['client_id'];
         $order->total = 0;
         $order->status = $this->STATUS_MESA;
         $order->associated = $request->toArray()['associated'];
@@ -143,16 +144,18 @@ class SellController extends Controller
 
     public function addProducts(Request $request)
     {
+//        dd($request->toArray());
         $items = [];
         $valorTotal = 0;
+        $order = new Order();
         if(array_key_exists( 'order_id' , $request->toArray()))
             $order = Order::find($request->toArray()['order_id']);
-        else
-            $order = new Order();
-        $order->client_id = 3;
-        $order->associated = 0;
-        $order->status = $this->STATUS_EM_ABERTO;
-        $order->user_id = Auth::user()->id;
+        else {
+            $order->client_id = 3;
+            $order->associated = 0;
+            $order->status = $this->STATUS_EM_ABERTO;
+            $order->user_id = Auth::user()->id;
+        }
         $order->total = 0;
 
         foreach ($request->toArray() as $produto => $quantidade){
@@ -160,7 +163,10 @@ class SellController extends Controller
             if($produto != "_token" && $produto != "order_id") {
                 $item = new Item();
                 $item->product_id = $produto;
-                $item->total = $quantidade * Product::find($produto)->price_resale;
+                if($order->associated == 0)
+                    $item->total = $quantidade * Product::find($produto)->price_resale;
+                else
+                    $item->total = $quantidade * Product::find($produto)->price_discount;
                 $item->qtd = $quantidade;
                 $item->order_id = $order->id;
                 array_push($items, $item);
@@ -181,6 +187,7 @@ class SellController extends Controller
                         <th>Nome</th>
                         <th style="text-align: center">Estoque</th>
                         <th style="text-align: center">Preço</th>
+                        <th style="text-align: center">Associado</th>
                         <th style="text-align: center">Quantidade</th>
                     </tr>';
         $divFooter = '<input name="_token" type="hidden" value="'. csrf_token().'"/></table>';
@@ -192,6 +199,8 @@ class SellController extends Controller
                         '.$product->qtd.'
                         </td>
                         <td style="text-align: center">R$ '.$product->price_resale.'
+                        </td>
+                        <td style="text-align: center">R$ '.$product->price_discount.'
                         </td>
                         <td style="text-align: center" form="form-add-order">'.
                 \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::plus())->withAttributes(
@@ -215,8 +224,18 @@ class SellController extends Controller
         $order->pay_method = $request->toArray()['formaPagamento'];
         $order->associated = $request->toArray()['associado'];
         $order->status = $this->STATUS_PAGA;
+        if($request->toArray()['associado'])
+            $order = $this->verificaAssociado($order);
         $order->save();
         return Redirect::to('/home')->with('message', 'Venda realizada com sucesso!');
+    }
+
+    public function cancelarVenda(Request $request){
+        $order = Order::find($request->toArray()['order_id']);
+        $order->status = $this->STATUS_CANCELADA;
+        $order->save();
+        $this->devolveProdutoEstoque($order->id);
+        return Redirect::to('/home');
     }
 
     public function redireciona($id)
@@ -227,4 +246,28 @@ class SellController extends Controller
         return view('/home', compact('order', 'categories'));
     }
 
+    private function devolveProdutoEstoque($id)
+    {
+        $itens = Item::all()->where('order_id', '=', $id);
+
+        foreach ($itens as $item){
+            $product = Product::find($item->product_id);
+            $product->qtd += $item->qtd;
+            $product->save();
+        }
+
+    }
+
+    private function verificaAssociado($order)
+    {
+        $itens = Item::all()->where('order_id', '=', $order->id);
+        $valorTotal = 0;
+        foreach ($itens as $item){
+            $item->total = $item->qtd * $item->product->price_discount;
+            $item->save();
+            $valorTotal += $item->total;
+        }
+        $order->total = $valorTotal;
+        return $order;
+    }
 }

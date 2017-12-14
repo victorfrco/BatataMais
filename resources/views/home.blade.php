@@ -51,7 +51,7 @@
             @endphp
         </div>
         <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-top:-20px; margin-right:-150px; text-align:left;">
-            Valor total da compra: R$@if(isset($order)){{number_format((float)$order->total, 2, '.', '')}} @else 0,00 @endif <br>
+            &ensp;&ensp; Valor total da compra: R$@if(isset($order)){{number_format((float)$order->total, 2, '.', '')}} @else 0,00 @endif <br>
             @php
                 if(isset($order)){
                     echo Button::success('Concluir Venda')->addAttributes(['style' => 'margin-left:25px;height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#concluirVendaModal']);
@@ -98,14 +98,16 @@
                 <div class="modal-body task" id="task" >
                     <div class="form-group">
                         {!! Form::Label('cliente', 'Selecione um Cliente:') !!}
-                        <select class="selectpicker" data-live-search="true" name="item_id">
+                        <select style="max-height: 50px; overflow: auto" class="selectpicker" data-live-search="true" name="client_id">
                             {!! $clientes = App\Models\Client::all() !!}
                             @foreach($clientes as $client)
                                 <option value="{{$client->id}}">{{$client->nickname}}</option>
                             @endforeach
                         </select>
+                        <br>
+                        <p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>
                         {!! Form::hidden('associated', 0) !!}
-                        {!! Form::checkbox('associated', 1) !!}
+                        {!! Form::checkbox('associated', 1, '',array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;')) !!}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -114,7 +116,7 @@
                         echo Form::hidden('order_id', $order->id);
                     @endphp
 
-                    {!! Form::submit('Criar Mesa!', array('class' => 'btn btn-primary')) !!}
+                    {!! Form::submit('Criar Mesa!', array('class' => 'btn btn-success')) !!}
                     {!! Form::close() !!}
                     {!! Button::primary('Novo Cliente')->asLinkTo(route('admin.clients.create')) !!}
                 </div>
@@ -131,22 +133,51 @@
                 </div>
                 {!! Form::open(array('action' => 'SellController@concluirVenda', 'method' => 'post')) !!}
                 <div class="modal-body">
-                    Selecione a forma de pagamento: <br>
-                    {!! Form::select('formaPagamento', ['Dinheiro', 'Cartão de Débito', 'Cartão de Crédito'])  !!}
+                    <br><p style="display:inline; vertical-align: middle;font-weight: bold">Selecione a forma de pagamento: </p>
+                    {!! Form::select('formaPagamento', ['Dinheiro', 'Cartão de Débito', 'Cartão de Crédito'], null, ['class' => 'selectpicker'])  !!}
 
                     @php
                         if(isset($order)){
+                            echo '<br><p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>';
                             echo Form::hidden('order_id', $order->id);
                             echo Form::hidden('associado', $order->associated);
-                            echo Form::checkbox('associado', 1, $order->associated);
+                            echo Form::checkbox('associado', 1, $order->associated, array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;'));
+                            echo '<br><p style="display:inline; vertical-align: middle;font-size: 11px">*Obs.: Ao informar associado o valor da venda será automaticamente alterado!</p>';
                         }
                     @endphp
                     {!! Form::token() !!}
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Concluir!') !!}
+                    {!! Form::submit('Concluir!', array('class' => 'btn btn-success')) !!}
                     {!! Form::close() !!}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="cancelarVendaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{!!\Bootstrapper\Facades\Icon::create('warning-sign')->withAttributes(['class' => 'btn-lg'])!!}&ensp;&ensp;  Cancelar</h4>
+                </div>
+                {!! Form::open(array('action' => 'SellController@cancelarVenda', 'method' => 'post')) !!}
+                <div class="modal-body">
+                    <br><p style="display:inline; vertical-align: middle;font-weight: bold">  Deseja realmente cancelar a venda? </p>
+
+                    @php
+                        if(isset($order)){
+                            echo Form::hidden('order_id', $order->id);
+                        }
+                    @endphp
+                    {!! Form::token() !!}
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Sim!', array('class' => 'btn btn-danger')) !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
                 </div>
             </div>
         </div>
@@ -174,7 +205,5 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
 
 @endsection
