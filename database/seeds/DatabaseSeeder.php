@@ -17,6 +17,18 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin')
         ]);
 
+        DB::table('users')->insert([
+        'name' =>'ADMIN',
+        'email' => 'admin',
+        'password' => bcrypt('pubadmin2017')
+         ]);
+
+        DB::table('users')->insert([
+            'name' =>'user',
+            'email' => 'user',
+            'password' => bcrypt('hookahpub')
+        ]);
+
         DB::table('categories')->insert([
             'name' =>'Comidas',
             'description' => 'Produtos como Doritos, Ruffles, Pimentinha, Salamitos e Pé de moleque.'

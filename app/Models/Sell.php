@@ -20,10 +20,6 @@ class Sell extends Model
                             </tr>';
         $tableCont = [];
         foreach ($itens as $item){
-            //da baixa provisoria no estoque
-            $product = Product::find($item->product_id);
-            $product->qtd -= $item->qtd;
-            $product->save();
             $product = Product::find($item->product_id);
             if($order->associated == 1)
                 $price = $product->price_discount;

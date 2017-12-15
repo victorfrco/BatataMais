@@ -138,6 +138,9 @@ class SellController extends Controller
                 }else
                     $item->save();
             }
+            $product = Product::find($item->product_id);
+            $product->qtd -= $item->qtd;
+            $product->save();
         }
         return $pedido->id;
     }
