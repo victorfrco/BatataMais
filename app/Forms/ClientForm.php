@@ -21,9 +21,10 @@ class ClientForm extends Form
                 'label' => 'Telefone',
                 'rules' => 'max:11'
             ])
-            ->add('cpf', 'text', [
-                'label' => 'CPF',
-                'rules' => "max:11|unique:clients,cpf,{$id}"
-            ]);
+//            ->add('cpf', 'text', [
+//                'label' => 'CPF',
+//                'rules' => "max:11|unique:clients,cpf,{$id}"
+//            ])
+        ;
     }
 }

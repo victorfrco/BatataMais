@@ -187,7 +187,6 @@ class SellController extends Controller
                         <th>Nome</th>
                         <th style="text-align: center">Estoque</th>
                         <th style="text-align: center">Preço</th>
-                        <th style="text-align: center">Associado</th>
                         <th style="text-align: center">Quantidade</th>
                     </tr>';
         $divFooter = '<input name="_token" type="hidden" value="'. csrf_token().'"/></table>';
@@ -199,8 +198,6 @@ class SellController extends Controller
                         '.$product->qtd.'
                         </td>
                         <td style="text-align: center">R$ '.$product->price_resale.'
-                        </td>
-                        <td style="text-align: center">R$ '.$product->price_discount.'
                         </td>
                         <td style="text-align: center" form="form-add-order">'.
                 \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::plus())->withAttributes(

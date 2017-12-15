@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Federal Hookah Pub</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -71,22 +71,14 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Página Inicial</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a> |
-                        <a href="{{ route('register') }}">Cadastrar-se</a>
+                        <a href="{{ route('login') }}">Login</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Batata+
-                </div>
-
-                <div class="links">
-                    <a href="{{ route('admin.products.index') }}">Produtos</a>
-                    <a href="{{ route('admin.brands.index') }}">Marcas</a>
-                    <a href="{{ route('admin.categories.index') }}">Categorias</a>
-                    <a href="{{ route('admin.clients.index') }}">Clientes</a>
+                    Federal Hookah Pub
                 </div>
             </div>
         </div>
