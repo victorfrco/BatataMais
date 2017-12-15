@@ -6,7 +6,7 @@
             <h2>Federal Hookah Pub &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
     </div>
         <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="margin-left:-60px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="overflow: auto; margin-left:-60px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
