@@ -11,7 +11,19 @@
 |
 */
 
+
+use App\Models\Category;
+use App\Models\Order;
+
 Route::post('/addProducts', 'SellController@addProducts');
+Route::post('/criarMesa', 'SellController@criarMesa');
+Route::post('/cancelarVenda', 'SellController@cancelarVenda');
+
+Route::get('/home/{id}', function($id){
+    $order = Order::find($id);
+    $categories = Category::all();
+    return view('/home', compact('order', 'categories'));
+});
 
 Route::post('/concluirVenda', 'SellController@concluirVenda');
 
