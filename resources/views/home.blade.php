@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>PÁGINA TESTE {!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
+            <h2>Batata+ &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
     </div>
         <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="margin-left:-60px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
@@ -32,13 +32,13 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-right:-40px; border-color: #2F3133; border: groove; height: 450px; overflow: auto">
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
                 @if(isset($order))
-                        <div align="center" style="background-color:#99cb84;"> Produtos de {{$order->client->name}}</div>
+                        <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de {{$order->client->name}}</div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
 
                     @else
-                        <div align="center" style="background-color:#99cb84;"> Lista de Produtos </div>
+                        <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Lista de Produtos </div>
                 @endif
 
             </div>
@@ -79,7 +79,7 @@
                         if(isset($order))
                             echo Form::hidden('order_id', $order->id);
                     @endphp
-                    {!! Form::submit('Adicionar à venda!') !!}
+                    {!! Form::submit('Adicionar à venda!', array('class' => 'btn btn-success')) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -105,9 +105,9 @@
                             @endforeach
                         </select>
                         <br>
-                        <p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>
+                        {{--<p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>--}}
                         {!! Form::hidden('associated', 0) !!}
-                        {!! Form::checkbox('associated', 1, '',array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;')) !!}
+                        {{--{!! Form::checkbox('associated', 1, '',array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;')) !!}--}}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -138,11 +138,11 @@
 
                     @php
                         if(isset($order)){
-                            echo '<br><p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>';
+                            //echo '<br><p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>';
                             echo Form::hidden('order_id', $order->id);
                             echo Form::hidden('associado', $order->associated);
-                            echo Form::checkbox('associado', 1, $order->associated, array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;'));
-                            echo '<br><p style="display:inline; vertical-align: middle;font-size: 11px">*Obs.: Ao informar associado o valor da venda será automaticamente alterado!</p>';
+                            //echo Form::checkbox('associado', 1, $order->associated, array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;'));
+                            //echo '<br><p style="display:inline; vertical-align: middle;font-size: 11px">*Obs.: Ao informar associado o valor da venda será automaticamente alterado!</p>';
                         }
                     @endphp
                     {!! Form::token() !!}

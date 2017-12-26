@@ -14,6 +14,7 @@
              }) !!}
         </div>
         {!! $categories->links() !!}
+        <br>
         {!! Button::primary('Nova Categoria')->asLinkTo(route('admin.categories.create')) !!}
     </div>
 @endsection

@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use function dd;
+use Bootstrapper\Facades\Button;
+use Bootstrapper\Facades\Icon;
 use Illuminate\Database\Eloquent\Model;
 
 class Sell extends Model
@@ -17,13 +18,10 @@ class Sell extends Model
                                 <th>Quantidade</th>
                                 <th>Valor Unid.</th>
                                 <th>Valor Total</th>
+                                <th style="text-align: center">'.Icon::remove().'</th>
                             </tr>';
         $tableCont = [];
         foreach ($itens as $item){
-            //da baixa provisoria no estoque
-            $product = Product::find($item->product_id);
-            $product->qtd -= $item->qtd;
-            $product->save();
             $product = Product::find($item->product_id);
             if($order->associated == 1)
                 $price = $product->price_discount;
@@ -36,6 +34,7 @@ class Sell extends Model
                                 <td align="right">'.$item->qtd.'</td>
                                 <td align="right">'.$price.'</td>
                                 <td align="right">'.number_format((float)$item->total, 2, '.', '').'</td>
+                                <td align="center">'.Button::link(Icon::remove())->asLinkTo(route('removeItem', ['item' => $item])).'</td>
                             </tr>';
             array_push($tableCont, $tupla);
         }

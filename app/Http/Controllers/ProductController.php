@@ -11,6 +11,28 @@ use function view;
 
 class ProductController extends Controller
 {
+
+	/**
+	 * Display a listing of the products and its stock.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function stock()
+	{
+		$products = Product::all();
+		return view('admin.products.stock', compact('products'));
+	}
+
+	public function addStock(Request $request)
+	{
+		$product = Product::find($request->toArray()['product_id']);
+		$product->qtd += $request->toArray()['product_qtd'];
+		$product->save();
+
+		$success = 'Produto adicionado ao estoque!';
+		return view('admin.products.stock', compact('success'));
+	}
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +40,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        $products = Product::paginate(6);
         return view('admin.products.index', compact('products'));
     }
 

@@ -12,10 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' =>'ADMINISTRADOR',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('admin')
+            'name' =>'Vendedor',
+            'email' => 'user',
+            'password' => bcrypt('user')
         ]);
+
+        DB::table('users')->insert([
+        'name' =>'ADMIN',
+        'email' => 'admin',
+        'password' => bcrypt('admin2017')
+         ]);
 
         DB::table('categories')->insert([
             'name' =>'Comidas',
@@ -91,7 +97,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Great Times Are Coming!',
             'logo_path' => 'https://i0.wp.com/freepngimages.com/wp-content/uploads/2016/10/budweiser-logo.png?fit=624%2C394',
             'status' => 1,
-            'category_id' => 4
+            'category_id' => 2
         ]);
 
         DB::table('brands')->insert([
@@ -153,6 +159,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('clients')->insert([
+            'name' =>'Venda Avulsa',
+            'nickname' => 'avulsa',
+            'phone1' => '067999999990'
+        ]);
+
+        DB::table('clients')->insert([
             'name' =>'Victor Oliveira',
             'nickname' => 'Chico',
             'phone1' => '067991321331',
@@ -178,12 +190,6 @@ class DatabaseSeeder extends Seeder
             'adr_neighborhood' => 'Anhandui',
             'adr_cep' => '79025000',
             'adr_compl' => ''
-        ]);
-
-        DB::table('clients')->insert([
-            'name' =>'Venda Avulsa',
-            'nickname' => 'avulsa',
-            'phone1' => '067999999990'
         ]);
 
         // $this->call(UsersTableSeeder::class);

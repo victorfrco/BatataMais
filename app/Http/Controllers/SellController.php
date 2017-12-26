@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Order;
@@ -101,6 +102,20 @@ class SellController extends Controller
         //
     }
 
+    //exclui item do pedido e devolve a quantidade ao estoque;
+    public function removeItem(Request $request){
+		$item = Item::find($request->toArray()['item']);
+	    $product = Product::find($item->product_id);
+	    $categories = Category::all();
+
+	    $product->qtd += $item->qtd;
+	    $product->save();
+	    $item->delete();
+	    $order = $this->atualizaPedido($item->order_id);
+
+	    return view('home', compact('order', 'categories'));
+    }
+
     public function criarMesa(Request $request){
         $order = new Order();
         $order->client_id = $request->toArray()['client_id'];
@@ -138,20 +153,22 @@ class SellController extends Controller
                 }else
                     $item->save();
             }
+            $product = Product::find($item->product_id);
+            $product->qtd -= $item->qtd;
+            $product->save();
         }
         return $pedido->id;
     }
 
     public function addProducts(Request $request)
     {
-//        dd($request->toArray());
         $items = [];
         $valorTotal = 0;
         $order = new Order();
         if(array_key_exists( 'order_id' , $request->toArray()))
             $order = Order::find($request->toArray()['order_id']);
         else {
-            $order->client_id = 3;
+            $order->client_id = Client::find(1)->id;
             $order->associated = 0;
             $order->status = $this->STATUS_EM_ABERTO;
             $order->user_id = Auth::user()->id;
@@ -187,7 +204,6 @@ class SellController extends Controller
                         <th>Nome</th>
                         <th style="text-align: center">Estoque</th>
                         <th style="text-align: center">Preço</th>
-                        <th style="text-align: center">Associado</th>
                         <th style="text-align: center">Quantidade</th>
                     </tr>';
         $divFooter = '<input name="_token" type="hidden" value="'. csrf_token().'"/></table>';
@@ -199,8 +215,6 @@ class SellController extends Controller
                         '.$product->qtd.'
                         </td>
                         <td style="text-align: center">R$ '.$product->price_resale.'
-                        </td>
-                        <td style="text-align: center">R$ '.$product->price_discount.'
                         </td>
                         <td style="text-align: center" form="form-add-order">'.
                 \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::plus())->withAttributes(
@@ -238,14 +252,6 @@ class SellController extends Controller
         return Redirect::to('/home');
     }
 
-    public function redireciona($id)
-    {
-        $order = Order::find($id);
-        $categories = Category::all();
-        dd($categories, $order);
-        return view('/home', compact('order', 'categories'));
-    }
-
     private function devolveProdutoEstoque($id)
     {
         $itens = Item::all()->where('order_id', '=', $id);
@@ -269,5 +275,19 @@ class SellController extends Controller
         }
         $order->total = $valorTotal;
         return $order;
+    }
+
+    private function atualizaPedido($id){
+	    $itens = Item::all()->where('order_id', '=', $id);
+		$order = Order::find($id);
+		$total = 0;
+
+		foreach ($itens as $item){
+			$product = Product::find($item->product_id);
+			$total += $item->qtd * $product->price_resale;
+		}
+		$order->total = $total;
+	    $order->save();
+    	return $order;
     }
 }

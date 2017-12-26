@@ -17,7 +17,7 @@ class CreateBrandsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('logo_path')->nullable();
-            $table->smallInteger('status');
+            $table->smallInteger('status')->default(1);
             $table->timestamps();
 
             $table->unsignedInteger('category_id');
