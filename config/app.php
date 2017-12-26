@@ -140,6 +140,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+	    Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
@@ -197,6 +198,7 @@ return [
 
     'aliases' => [
 
+	    'PDF' => Barryvdh\DomPDF\Facade::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -240,7 +242,8 @@ return [
         'Image' => Bootstrapper\Facades\Image::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'Modal' => Bootstrapper\Facades\Modal::class,
-        'Alert' => Bootstrapper\Facades\Alert::class
+        'Alert' => Bootstrapper\Facades\Alert::class,
+        'Carousel' => Bootstrapper\Facades\Carousel::class
     ],
 
 ];

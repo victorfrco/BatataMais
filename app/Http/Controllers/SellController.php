@@ -102,6 +102,20 @@ class SellController extends Controller
         //
     }
 
+    //exclui item do pedido e devolve a quantidade ao estoque;
+    public function removeItem(Request $request){
+		$item = Item::find($request->toArray()['item']);
+	    $product = Product::find($item->product_id);
+	    $categories = Category::all();
+
+	    $product->qtd += $item->qtd;
+	    $product->save();
+	    $item->delete();
+	    $order = $this->atualizaPedido($item->order_id);
+
+	    return view('home', compact('order', 'categories'));
+    }
+
     public function criarMesa(Request $request){
         $order = new Order();
         $order->client_id = $request->toArray()['client_id'];
@@ -148,7 +162,6 @@ class SellController extends Controller
 
     public function addProducts(Request $request)
     {
-//        dd($request->toArray());
         $items = [];
         $valorTotal = 0;
         $order = new Order();
@@ -239,14 +252,6 @@ class SellController extends Controller
         return Redirect::to('/home');
     }
 
-    public function redireciona($id)
-    {
-        $order = Order::find($id);
-        $categories = Category::all();
-        dd($categories, $order);
-        return view('/home', compact('order', 'categories'));
-    }
-
     private function devolveProdutoEstoque($id)
     {
         $itens = Item::all()->where('order_id', '=', $id);
@@ -270,5 +275,19 @@ class SellController extends Controller
         }
         $order->total = $valorTotal;
         return $order;
+    }
+
+    private function atualizaPedido($id){
+	    $itens = Item::all()->where('order_id', '=', $id);
+		$order = Order::find($id);
+		$total = 0;
+
+		foreach ($itens as $item){
+			$product = Product::find($item->product_id);
+			$total += $item->qtd * $product->price_resale;
+		}
+		$order->total = $total;
+	    $order->save();
+    	return $order;
     }
 }

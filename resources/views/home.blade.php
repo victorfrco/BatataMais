@@ -6,7 +6,7 @@
             <h2>Federal Hookah Pub &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
     </div>
         <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="overflow: auto; margin-left:-60px; border-color: #2F3133; border: groove; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
@@ -32,7 +32,7 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-right:-40px; border-color: #2F3133; border: groove; height: 450px; overflow: auto">
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
                 @if(isset($order))
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de {{$order->client->name}}</div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
@@ -79,7 +79,7 @@
                         if(isset($order))
                             echo Form::hidden('order_id', $order->id);
                     @endphp
-                    {!! Form::submit('Adicionar à venda!') !!}
+                    {!! Form::submit('Adicionar à venda!', array('class' => 'btn btn-success')) !!}
                     {!! Form::close() !!}
                 </div>
             </div>

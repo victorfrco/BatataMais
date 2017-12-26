@@ -19,7 +19,7 @@ class ClientForm extends Form
             ])
             ->add('phone1', 'text', [
                 'label' => 'Telefone',
-                'rules' => 'max:11'
+                'rules' => 'max:11|required'
             ])
 //            ->add('cpf', 'text', [
 //                'label' => 'CPF',

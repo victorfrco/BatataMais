@@ -17,6 +17,7 @@
         </div>
 
         {!!$clients->links();!!}
+        <br>
         {!! Button::primary('Novo Cliente')->asLinkTo(route('admin.clients.create')) !!}
     </div>
 @endsection

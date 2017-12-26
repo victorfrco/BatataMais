@@ -20,6 +20,7 @@
              !!}
         </div>
         {!! $products->links(); !!}
+        <br>
         {!! Button::primary('Novo Produto')->asLinkTo(route('admin.products.create')) !!}
     </div>
 @endsection
