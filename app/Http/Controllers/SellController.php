@@ -168,7 +168,7 @@ class SellController extends Controller
         if(array_key_exists( 'order_id' , $request->toArray()))
             $order = Order::find($request->toArray()['order_id']);
         else {
-            $order->client_id = Client::all()->where('name', '=', 'Venda Avulsa')[0]->id;
+            $order->client_id = Client::find(1)->id;
             $order->associated = 0;
             $order->status = $this->STATUS_EM_ABERTO;
             $order->user_id = Auth::user()->id;
