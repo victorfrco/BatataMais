@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>Federal Hookah Pub &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
+            <h2>Batata+ &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
     </div>
         <div class="row">
             <div class="col-xs-7 col-sm-6 col-lg-8" style="overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">

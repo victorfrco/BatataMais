@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Federal Hookah Pub') }}</title>
+    <title>{{ config('app.name', 'Bar das Atléticas') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body>
 <div id="app">
     @php
-        $navbar = Navbar::withBrand(config('app.name'), route('home'))->inverse();
+        $navbar = Navbar::withBrand(config('app.name').'+', route('home'))->inverse();
          if(Auth::check()){
             if(Auth::user()->name == 'ADMIN'){
                 $arrayLinks = [
