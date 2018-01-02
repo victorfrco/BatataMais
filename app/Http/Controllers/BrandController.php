@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Forms\BrandForm;
 use App\Models\Brand;
 use function compact;
+use function dd;
+use const DIRECTORY_SEPARATOR;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use function redirect;
 use function route;
+use function storage_path;
 use function view;
 
 class BrandController extends Controller
@@ -46,7 +50,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        /**@var Form $form*/
+    	if($request->logo) {
+		    $photoName = $request->get( 'name' ) . '.' . $request->logo->getClientOriginalExtension();
+		    $request->logo->move( storage_path( 'app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'brands' ), $photoName );
+	    }
+	    /**@var Form $form*/
         $form = \FormBuilder::create(BrandForm::class);
         if(!$form->isValid()){
             return redirect()
@@ -56,6 +64,8 @@ class BrandController extends Controller
         }
 
         $data = $form->getFieldValues();
+        if($request->logo)
+            $data['logo_path'] = 'storage/images/brands/'.$photoName;
         Brand::create($data);
 
         $request->session()->flash('message', 'Marca cadastrada com sucesso!');
@@ -129,4 +139,15 @@ class BrandController extends Controller
         session()->flash('message', 'Marca excluída com sucesso!');
         return redirect()->route('admin.brands.index');
     }
+
+	public function upload()
+	{
+		return view ('admin.sells.index');
+	}
+
+	public function moveLogo(Request $request)
+	{
+		$photoName = $request->get('name').'.'.$request->user_photo->getClientOriginalExtension();
+		$request->user_photo->move(storage_path('app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'brands'), $photoName);
+	}
 }

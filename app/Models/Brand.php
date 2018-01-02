@@ -18,7 +18,7 @@ class Brand extends Model implements TableInterface
       $brand = Brand::find($id);
 
       if($brand->logo_path != null)
-        $divCont = $brand->name.Image::rounded($brand->logo_path, 'rounded')
+        $divCont = $brand->name.Image::rounded(asset($brand->logo_path), 'rounded')
                                     ->responsive()
                                     ->withAttributes(['style' => 'height:110px; padding-left:7px']);
       else

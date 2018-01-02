@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Input;
+
 return [
 
     /*
@@ -243,7 +245,8 @@ return [
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'Modal' => Bootstrapper\Facades\Modal::class,
         'Alert' => Bootstrapper\Facades\Alert::class,
-        'Carousel' => Bootstrapper\Facades\Carousel::class
+        'Carousel' => Bootstrapper\Facades\Carousel::class,
+	    'Input' => Illuminate\Support\Facades\Input::class
     ],
 
 ];
