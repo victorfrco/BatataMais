@@ -26,6 +26,8 @@ class BrandForm extends Form
                 }
             ])->add('status', 'hidden', [
             	'value' => '1'
+	        ])->add('logo','file', [
+		        'label' => 'Logo'
 	        ]);
     }
 }

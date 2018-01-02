@@ -3,16 +3,25 @@
 @section('content')
 
     <div class="container">
-        <div class="row">
-            <h2>Informações da Marca</h2>
+        <div class="row" align="left">
+            <h2>Informações sobre: {{$brand->name}}</h2>
+    <div align="center" style="margin-right: 80%">
+        {!! Image::rounded(asset($brand->logo_path), 'rounded')
+            ->responsive()
+            ->withAttributes(['style' => 'height:200px;'])->withAlt('PENGUINS');
+         !!}
+
+        <h5>{{$brand->description}}</h5>
+    </div>
             @php
                 $linkEdit = route('admin.brands.edit', ['brand' => $brand->id]);
                 $linkDelete = route('admin.brands.destroy', ['brand' => $brand->id]);
             @endphp
-        {!! Button::primary('Editar  '.Icon::pencil())->asLinkTo($linkEdit) !!}
-        {!! Button::danger('Excluir  '.Icon::remove())->asLinkTo($linkDelete)->addAttributes([
-            'onClick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
-        ]) !!}
+            {!! Button::primary('Editar  '.Icon::pencil())->asLinkTo($linkEdit) !!}
+            {!! Button::danger('Excluir  '.Icon::remove())->asLinkTo($linkDelete)->addAttributes([
+                'onClick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
+            ]) !!}
+
             @php
                 $formDelete = FormBuilder::plain([
                     'id' => 'form-delete',
@@ -21,24 +30,7 @@
                     'style' => 'display:none'
                 ]);
             @endphp
-            <!-- exibe o formulário -->
             {!! form($formDelete) !!}
-            <table class="table table-bordered">
-                <tbody>
-                <tr>
-                    <th scope="row">#</th>
-                    <td>{{$brand->id}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Nome</th>
-                    <td>{{$brand->name}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Descrição</th>
-                    <td>{{$brand->description}}</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 @endsection

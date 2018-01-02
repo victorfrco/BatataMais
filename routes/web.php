@@ -64,5 +64,6 @@ Route::prefix('admin')->group(function(){
         Route::resource('providers', 'ProviderController');
     });
 });
-
+Route::get('/upload', 'BrandController@upload');
+Route::post('/move', 'BrandController@move')->name('move');
 Route::get('/home', 'HomeController@index')->name('home');
