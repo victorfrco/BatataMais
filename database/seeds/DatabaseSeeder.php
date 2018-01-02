@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Brahma',
             'description' => 'A melhor cerveja!',
-            'logo_path' => 'http://www.hugoborges.com.br/wp-content/uploads/2016/11/BRAHMA_1.png',
+            'logo_path' => 'storage/images/brands/Brahma.png',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Heineken',
             'description' => 'Open your world!',
-            'logo_path' => 'https://www.knijff.com/markmatters/wp-content/uploads/2017/09/heineken-logo.png',
+            'logo_path' => 'storage/images/brands/Heineken.jpg',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Stella Artois',
             'description' => 'Be Legacy!',
-            'logo_path' => 'https://seeklogo.com/images/S/stella-artois-logo-04BFEE2241-seeklogo.com.png',
+            'logo_path' => 'storage/images/brands/Stella Artois.png',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Antarctica Original',
             'description' => 'É difícil achar, mas vale a pena!',
-            'logo_path' => 'http://viracoposlanchonete.com.br/images/LOGO-BEBIDAS/ORIGINAL.png',
+            'logo_path' => 'storage/images/brands/Antarctica Original.png',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Coca-Cola',
             'description' => 'Abra a felicidade!',
-            'logo_path' => 'https://seeklogo.com/images/C/Coca-Cola-logo-00A6B20F2F-seeklogo.com.png',
+            'logo_path' => 'storage/images/brands/Coca-Cola.png',
             'status' => 1,
             'category_id' => 3
         ]);
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Guaraná Antarctica',
             'description' => 'O original do Brasil',
-            'logo_path' => 'https://pedidodaweb.com.br/upload/1501087688-GUARANA.png',
+            'logo_path' => 'storage/images/brands/Guarana Antarctica.png',
             'status' => 1,
             'category_id' => 3
         ]);
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Budweiser',
             'description' => 'Great Times Are Coming!',
-            'logo_path' => 'https://i0.wp.com/freepngimages.com/wp-content/uploads/2016/10/budweiser-logo.png?fit=624%2C394',
+            'logo_path' => 'storage/images/brands/Budweiser.png',
             'status' => 1,
             'category_id' => 2
         ]);
@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->insert([
             'name' =>'Marca Inativa',
             'description' => 'Teste de exibição',
-            'logo_path' => 'http://4.bp.blogspot.com/-hGzRYUhG_eA/U6P9fKxgCSI/AAAAAAAAAFA/qF8UR5QHOq4/s1600/BMW_1954.png',
+            'logo_path' => 'storage/images/brands/Marca Inativa.png',
             'status' => 0,
             'category_id' => 2
         ]);

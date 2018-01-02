@@ -4,15 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Forms\BrandForm;
 use App\Models\Brand;
+use function base64_encode;
 use function compact;
+use DB;
 use function dd;
 use const DIRECTORY_SEPARATOR;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use function preg_replace_array;
 use function redirect;
 use function route;
 use function storage_path;
+use function str_after;
+use function str_contains;
+use function str_split;
+use function strlen;
+use function strtolower;
+use function strtoupper;
+use function utf8_encode;
+use function var_dump;
 use function view;
+use function xdebug_var_dump;
 
 class BrandController extends Controller
 {
@@ -51,9 +63,13 @@ class BrandController extends Controller
     public function store(Request $request)
     {
     	if($request->logo) {
-		    $photoName = $request->get( 'name' ) . '.' . $request->logo->getClientOriginalExtension();
+    		//retorna o valor inteiro do ultimo ID registrado no banco
+    		$id = DB::select('SELECT MAX(id) as id from brands')[0]->id;
+    		//incrementa um representando o proximo ID a ser inserido no banco
+		    $id++;
+    		$photoName = 'brand'.$id.'.' . $request->logo->getClientOriginalExtension();
 		    $request->logo->move( storage_path( 'app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'brands' ), $photoName );
-	    }
+    	}
 	    /**@var Form $form*/
         $form = \FormBuilder::create(BrandForm::class);
         if(!$form->isValid()){
@@ -121,6 +137,9 @@ class BrandController extends Controller
         }
 
         $data = $form->getFieldValues();
+	    if($data['logo'] != null) {
+			    $data['logo']->move( storage_path( 'app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'brands' ), $brand->logo_path );
+	    }
         $brand->update($data);
 
         session()->flash('message', 'Marca alterada com sucesso!');

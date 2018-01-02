@@ -23,22 +23,7 @@
             @endphp
             <!-- exibe o formulário -->
             {!! form($formDelete) !!}
-            <table class="table table-bordered">
-                <tbody>
-                <tr>
-                    <th scope="row">#</th>
-                    <td>{{$brand->id}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Nome</th>
-                    <td>{{$brand->name}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Descrição</th>
-                    <td>{{$brand->description}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <h3>Nome: {{$brand->name}}</h3>
         </div>
     </div>
 @endsection

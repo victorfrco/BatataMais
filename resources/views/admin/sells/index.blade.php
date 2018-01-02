@@ -14,7 +14,7 @@
         {{Form::close()}}
         <div class="row" >
             <div style="max-height: 100px; max-width: 100px; background-color: black;">
-                <a href="{!! route('admin.products.index') !!}"><img style="max-height: 100px; max-width: 100px;" src="{{asset('storage/images/brands/heinekenLogo.jpg')}}"></a>
+                <a href="{!! route('admin.products.index') !!}"><img style="max-height: 100px; max-width: 100px;" src="{{asset('storage/images/brands/teste.jpg')}}"></a>
             </div>
         </div>
     </div>
