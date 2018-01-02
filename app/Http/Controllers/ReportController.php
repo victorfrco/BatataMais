@@ -21,8 +21,8 @@ class ReportController extends Controller
 
 	private function buscaDadosPorData($date) {
     	$dados = [];
-
-    	$dados['data'] = $date;
+		$dataFormatada = new \DateTime($date);
+    	$dados['data'] = $dataFormatada->format('d-m-Y');
 		$dados['totalDeVendas'] = DB::table('orders')->whereDate('created_at','=', $date)->count();
 		$dados['vlrTotalDeVendas'] = DB::table('orders')->whereDate('created_at','=', $date)->sum('total');
 
@@ -61,8 +61,22 @@ class ReportController extends Controller
 		$dados['vlrVendasCredito'] = DB::table('orders')->where('pay_method', '=', 2)
 		                               ->whereDate('created_at','=', $date)->sum('total');
 
-		$dados['vendasPorUsuario'] = DB::table('orders')->select('id', 'total', 'pay_method')->get();
+		$dados['vendasPorUsuario'] = DB::table('orders')->select(DB::raw('user_id, sum(total) as vlr, count(*) as qtd'))->where('status','=',3)->whereDate('created_at', '=', $date)->groupBy('user_id')->get();
 
+		$dados['maisVendido'] = DB::table('itens')
+		                          ->join('orders', 'itens.order_id', '=', 'orders.id')
+		                          ->join('products', 'itens.product_id', '=', 'products.id')
+		                          ->select(DB::raw('products.name as nome, count(*) as qtd'))
+		                          ->where('orders.status', '=', 3)
+		                          ->whereDate('orders.created_at','=', $date)
+		                          ->groupBy('products.name')
+		                          ->orderByDesc('qtd')
+		->limit(1)->get()[0];
+
+		$dados['valorMedio'] = DB::table('orders')
+		                         ->where('status', '=', 3)
+		                         ->whereDate('created_at','=', $date)
+		                         ->avg('total');
 //		return dd($dados);
 		return $dados;
 	}

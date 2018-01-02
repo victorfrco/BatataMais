@@ -17,6 +17,10 @@
 <body>
 <h2 align="center"> Relatório Diário - Sintético</h2>
 <h4 align="center"> Data: {{$dados['data']}}</h4>
+
+<p><span style="font-weight: bold">Produto mais vendido* :</span> {{$dados['maisVendido']->nome}} ({{ $dados['maisVendido']->qtd }})</p>
+<p><span style="font-weight: bold">Valor médio de vendas* :</span>R$ {{number_format((float)$dados['valorMedio'], 2, '.', '')}}</p>
+<h5 style="font-weight: bold">Vendas - Geral</h5>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -48,6 +52,8 @@
     </tr>
     </tbody>
 </table>
+<br>
+<h5 style="font-weight: bold">Vendas - Forma de Pagamento</h5>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -74,4 +80,25 @@
     </tr>
     </tbody>
 </table>
+<br>
+<h5 style="font-weight: bold">Vendas por Usuário</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th width="40%">Usuário</th>
+        <th width="40%">Quantidade</th>
+        <th width="20%">Valor Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($dados['vendasPorUsuario'] as $venda)
+    <tr>
+        <th>{{$venda->user_id}}</th>
+        <td>{{$venda->qtd}}</td>
+        <td>R$ {{number_format((float)$venda->vlr, 2, '.', '')}}</td>
+    </tr>
+    @endforeach
+    </tbody>
+</table>
 </body>
+<footer>&ensp;&ensp;* Contabilizadas somente as vendas concluídas(pagas)</footer>
