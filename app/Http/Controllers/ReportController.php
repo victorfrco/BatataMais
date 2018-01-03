@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App;
+use Barryvdh\DomPDF\Facade as PDF;
+use function compact;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function view;
@@ -16,7 +19,9 @@ class ReportController extends Controller
         $date = $request->toArray()['date'];
         $dados = $this->buscaDadosPorData($date);
 
-        return view('admin.reports.show', compact('dados'));
+
+	    $pdf =  PDF::loadView('admin.reports.show', compact('dados'));
+	    return $pdf->download('Relatorio_Sintetico_'.$dados['data'].'.pdf');
     }
 
 	private function buscaDadosPorData($date) {

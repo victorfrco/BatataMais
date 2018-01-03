@@ -18,13 +18,13 @@ class Brand extends Model implements TableInterface
       $brand = Brand::find($id);
 
       if($brand->logo_path != null)
-        $divCont = $brand->name.Image::rounded(asset($brand->logo_path), 'rounded')
+        $divCont = $brand->name.Image::circle(asset($brand->logo_path), 'rounded')
                                     ->responsive()
                                     ->withAttributes(['style' => 'height:110px; padding-left:7px']);
       else
-      	$divCont = $brand->name.Image::rounded('https://cdn.awsli.com.br/production/static/img/produto-sem-imagem.gif', 'rounded')
+      	$divCont = $brand->name.Image::circle(asset('storage/images/brands/nobrand.gif'), 'rounded')
                        ->responsive()
-                       ->withAttributes(['style' => 'height:110px; padding-left:7px']);
+                       ->withAttributes(['style' => 'height:110px']);
 
       $divEnd = ' </div>';
       $divpronta = $divCab.$divCont.$divEnd;

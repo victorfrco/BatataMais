@@ -200,7 +200,7 @@ return [
 
     'aliases' => [
 
-	    'PDF' => Barryvdh\DomPDF\Facade::class,
+	    'PDF' => 'Barryvdh\DomPDF\Facade',
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
