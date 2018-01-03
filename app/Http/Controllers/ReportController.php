@@ -66,7 +66,13 @@ class ReportController extends Controller
 		$dados['vlrVendasCredito'] = DB::table('orders')->where('pay_method', '=', 2)
 		                               ->whereDate('created_at','=', $date)->sum('total');
 
-		$dados['vendasPorUsuario'] = DB::table('orders')->select(DB::raw('user_id, sum(total) as vlr, count(*) as qtd'))->where('status','=',3)->whereDate('created_at', '=', $date)->groupBy('user_id')->get();
+		$dados['vendasPorUsuario'] = DB::table('orders')
+		                               ->join('users', 'orders.user_id', '=', 'users.id')
+		                               ->select(DB::raw('users.name as user_id, sum(orders.total) as vlr, count(*) as qtd'))
+		                               ->where('orders.status','=',3)
+		                               ->whereDate('orders.created_at', '=', $date)
+		                               ->groupBy('users.name')
+		                               ->get();
 
 		$dados['maisVendido'] = DB::table('itens')
 		                          ->join('orders', 'itens.order_id', '=', 'orders.id')
