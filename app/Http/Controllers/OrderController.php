@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use function array_push;
+use function asort;
 use Button;
 use function compact;
 use function implode;
@@ -27,7 +28,7 @@ class OrderController extends Controller
         $lista =[];
         $categories = Category::all();
         foreach ($pedidos as $order) {
-            $div = Button::success($order->client->name)->withAttributes([
+            $div = Button::primary($order->client->name)->withAttributes([
                         'id' => $order->id,
                         'style' =>
                                    'min-width: 100px;

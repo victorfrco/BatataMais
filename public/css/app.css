@@ -1420,7 +1420,7 @@ textarea {
 }
 
 a {
-  color: #3097D1;
+  color: #c8b90c;
   text-decoration: none;
 }
 
@@ -4088,9 +4088,9 @@ fieldset[disabled] .btn-default.focus {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #3097D1;
-  border-color: #2a88bd;
+  color: #000000;
+  background-color: #c8b90c;
+  border-color: #515151;
 }
 
 .btn-primary:focus,
@@ -5135,7 +5135,7 @@ tbody.collapse.in {
   margin-right: 2px;
   line-height: 1.6;
   border: 1px solid transparent;
-  border-radius: 4px 4px 0 0;
+  border-radius: 9px 9px 0 0;
 }
 
 .nav-tabs > li > a:hover {
@@ -5145,9 +5145,9 @@ tbody.collapse.in {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #555555;
-  background-color: #f5f8fa;
-  border: 1px solid #ddd;
+  color: #c8b90c;
+  background-color: #515151;
+  border: 1px solid #c8b90c;
   border-bottom-color: transparent;
   cursor: default;
 }
