@@ -6,7 +6,7 @@
             <h2>Listagem de Categorias</h2>
         </div>
         <div class="row">
-            {!! Table::withContents($categories->items())->striped()
+            {!! Table::withContents($categories->items())
              ->callback('Ações', function($campo, $model){
                 $linkEdit = route('admin.categories.edit', ['category' => $model->id]);
                 $linkShow = route('admin.categories.show', ['category' => $model->id]);

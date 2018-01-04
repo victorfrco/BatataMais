@@ -17,7 +17,8 @@
 <body>
 <div id="app">
     @php
-        $navbar = Navbar::withBrand(config('app.name').'+', route('home'))->inverse();
+        $logo = asset('storage/images/brands/logo2.png');
+        $navbar = Navbar::withBrandImage($logo, route('home'), config('app.name').'+')->inverse();
          if(Auth::check()){
             if(Auth::user()->name == 'ADMIN'){
                 $arrayLinks = [

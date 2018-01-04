@@ -1402,11 +1402,12 @@ html {
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  font-size: 14px;
+  font-family: "Verdana", sans-serif;
+  font-size: 15px;
+  font-weight: 100;
   line-height: 1.6;
-  color: #636b6f;
-  background-color: #f5f8fa;
+  color: #c8b90c;
+  background-color: #000000;
 }
 
 input,
@@ -1419,7 +1420,7 @@ textarea {
 }
 
 a {
-  color: #3097D1;
+  color: #c8b90c;
   text-decoration: none;
 }
 
@@ -4087,9 +4088,9 @@ fieldset[disabled] .btn-default.focus {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #3097D1;
-  border-color: #2a88bd;
+  color: #000000;
+  background-color: #c8b90c;
+  border-color: #515151;
 }
 
 .btn-primary:focus,
@@ -5134,7 +5135,7 @@ tbody.collapse.in {
   margin-right: 2px;
   line-height: 1.6;
   border: 1px solid transparent;
-  border-radius: 4px 4px 0 0;
+  border-radius: 9px 9px 0 0;
 }
 
 .nav-tabs > li > a:hover {
@@ -5144,9 +5145,9 @@ tbody.collapse.in {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #555555;
-  background-color: #f5f8fa;
-  border: 1px solid #ddd;
+  color: #c8b90c;
+  background-color: #515151;
+  border: 1px solid #c8b90c;
   border-bottom-color: transparent;
   cursor: default;
 }
@@ -5267,7 +5268,7 @@ tbody.collapse.in {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 22px;
+  margin-bottom: 10px;
   border: 1px solid transparent;
 }
 
@@ -5423,7 +5424,7 @@ tbody.collapse.in {
 
 .navbar-brand {
   float: left;
-  padding: 14px 15px;
+  padding: 09px 0px;
   font-size: 18px;
   line-height: 22px;
   height: 50px;
@@ -5806,7 +5807,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 
 .navbar-inverse {
-  background-color: #222;
+  background-color: #000000;
   border-color: #090909;
 }
 
@@ -5821,11 +5822,11 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+  color: #c8b90c;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #c8b90c;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -5888,7 +5889,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #fff;
+    color: #242424;
     background-color: transparent;
   }
 
