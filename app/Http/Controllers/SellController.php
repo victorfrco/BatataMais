@@ -117,6 +117,7 @@ class SellController extends Controller
     }
 
     public function criarMesa(Request $request){
+    	dd($request->toArray());
         $order = new Order();
         $order->client_id = $request->toArray()['client_id'];
         $order->total = 0;
@@ -161,7 +162,50 @@ class SellController extends Controller
     }
 
     public function codBarra(Request $request){
-    	dd($request->toArray());
+    	$product = $request->get('product_barcode');
+    	$product = Product::where('id', '=', $product)->first();
+	    if($product != null){
+	        if(array_key_exists( 'order_id' , $request->toArray()))
+			    $order = Order::find( $request->toArray()['order_id']);
+	        else {
+			    $order = new Order();
+			    $order->client_id = 1;
+			    $order->total = 0;
+			    $order->status = $this->STATUS_MESA;
+			    $order->associated = 0;
+			    $order->user_id = Auth::user()->id;
+			    $order->save();
+	        }
+				//verifica se ja existe um item com esse produto nesse pedido;
+			    $item = Item::where('order_id', '=', $order->id)->where('product_id','=', $product->id)->first();
+				if($item != null) {
+					//adiciona mais 1 quantidade do produto ao item;
+					$item->qtd ++;
+					//todo
+					// Implementar ASSOCIADO AQUI
+					$item->total  += $product->price_resale;
+					$order->total += $product->price_resale;
+					$item->save();
+					$order->save();
+				}
+				else{
+					$item = new Item();
+					$item->product_id = $product->id;
+					if($order->associated == 0)
+						$item->total = $product->price_resale;
+					else
+						$item->total = $product->price_discount;
+					$item->qtd = 1;
+					$item->order_id = $order->id;
+					$item->save();
+					$order->total += $item->total;
+					$order->save();
+				}
+	    }
+	    if(array_key_exists( 'order_id' , $request->toArray()))
+		    $order = Order::find( $request->toArray()['order_id']);
+	    $categories = Category::all();
+	    return view('home', compact('order', 'categories'));
     }
 
     public function addProducts(Request $request)

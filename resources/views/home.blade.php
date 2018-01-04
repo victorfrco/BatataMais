@@ -10,7 +10,7 @@
             {!! Form::search('product_barcode',null,['placeholder' => 'Código do produto...', 'class' => 'btn', 'style' => 'text-align:left; width:404px; color: #ffffff; background-color:#000000; border:thik; border-color:#C8B90C']) !!}
             {!! Form::button(Icon::barcode(), ['type'=>'submit', 'class' => 'btn btn-primary']) !!}
             @isset($order)
-                    echo Form::hidden('order_id', $order->id);)
+                   {!! Form::hidden('order_id', $order->id) !!}
             @endisset
             {!! Form::close() !!}
         </div>
