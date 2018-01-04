@@ -117,7 +117,6 @@ class SellController extends Controller
     }
 
     public function criarMesa(Request $request){
-    	dd($request->toArray());
         $order = new Order();
         $order->client_id = $request->toArray()['client_id'];
         $order->total = 0;
