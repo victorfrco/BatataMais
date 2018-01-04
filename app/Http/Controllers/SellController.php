@@ -160,6 +160,10 @@ class SellController extends Controller
         return $pedido->id;
     }
 
+    public function codBarra(Request $request){
+    	dd($request->toArray());
+    }
+
     public function addProducts(Request $request)
     {
         $items = [];

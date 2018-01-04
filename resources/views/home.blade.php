@@ -2,11 +2,20 @@
 
 @section('content')
     <div class="container">
+        <div class="col-xs-7 col-sm-6 col-lg-7"  style="margin-left:-90px; margin-right: 130px; margin-bottom: 10px;">
+            {!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}
+        </div>
+        <div class="row" style="text-align: right">
+            {!! Form::open(array('action' => 'SellController@codBarra', 'method' => 'post')) !!}
+            {!! Form::search('product_barcode',null,['placeholder' => 'Código do produto...', 'class' => 'btn', 'style' => 'text-align:left; width:404px; color: #ffffff; background-color:#000000; border:thik; border-color:#C8B90C']) !!}
+            {!! Form::button(Icon::barcode(), ['type'=>'submit', 'class' => 'btn btn-primary']) !!}
+            @isset($order)
+                    echo Form::hidden('order_id', $order->id);)
+            @endisset
+            {!! Form::close() !!}
+        </div>
         <div class="row">
-            <h2>Batata+ &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
-    </div>
-        <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="background-color: dimgrey; overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#515151)); overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
@@ -32,7 +41,7 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-xs-5 col-sm-6 col-lg-5" style="background-color: dimgrey; margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#515151)); margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
                 @if(isset($order))
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de {{$order->client->name}}</div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
