@@ -15,6 +15,7 @@
                              <br><br>'.
                              Form::submit('Enviar', ['class' => 'btn btn-primary']).''.
                              Form::close().'',
+             'style'=>''
         ],
         [
             'title' => 'Relatório Analítico',

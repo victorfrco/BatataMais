@@ -12,7 +12,7 @@ class Sell extends Model
     {
         $order = Order::find($order_id);
         $itens = Item::all()->where('order_id', '=', $order_id);
-        $tableHeader = '<table class="table">
+        $tableHeader = '<table class="table" style="font-size: 13px">
                             <tr>
                                 <th>Descrição</th>
                                 <th>Quantidade</th>
