@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Batata') }}</title>
+    <title>{{ config('app.name', 'Bar das Atléticas') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -17,36 +17,44 @@
 <body>
 <div id="app">
     @php
-        $navbar = Navbar::withBrand(config('app.name').'&ensp;'.Icon::plus(), route('home'))->inverse();
+        $logo = asset('storage/images/brands/logo2.png');
+        $navbar = Navbar::withBrandImage($logo, route('home'), config('app.name').'+')->inverse();
          if(Auth::check()){
-             $arrayLinks = [
+            if(Auth::user()->name == 'ADMIN'){
+                $arrayLinks = [
+                    [
+                        'Produtos',
+                         [
+                            [
+                              'link' => route('admin.categories.index'),
+                              'title' => 'Categorias'
+                            ],
+                            [
+                              'link' => route('admin.brands.index'),
+                              'title' => 'Marcas'
+                            ],
+                            [
+                              'link' => route('admin.products.index'),
+                              'title' => 'Produtos'
+                            ],
+                            Navigation::NAVIGATION_DIVIDER,
+                            [
+                               'link' => route('report'),
+                               'title' => 'Relatórios'
+                            ],
+                         ]
 
-                 [
-                  'Produtos',
-                  [
-                      [
-                          'link' => route('admin.categories.index'),
-                          'title' => 'Categorias'
-                      ],
-                      [
-                          'link' => route('admin.brands.index'),
-                          'title' => 'Marcas'
-                      ],
-                      [
-                          'link' => route('admin.products.index'),
-                          'title' => 'Produtos'
-                      ],
-                      Navigation::NAVIGATION_DIVIDER,
-                      [
-                          'link' => '#',
-                          'title' => 'Relatórios'
-                      ],
-                  ]
-
-              ],
-              ['link' => route('admin.clients.index'), 'title' => 'Clientes'],
-              ['link' => route('admin.providers.index'), 'title' => 'Fornecedores']
-             ];
+                    ],
+                    ['link' => route('admin.clients.index'), 'title' => 'Clientes'],
+                    ['link' => route('admin.providers.index'), 'title' => 'Fornecedores'],
+                    ['link' => route('estoque'), 'title' => 'Estoque']
+                ];
+            }
+            else{
+                $arrayLinks = [
+                        ['link' => route('admin.clients.index'), 'title' => 'Clientes']
+                    ];
+            }
              $arrayLinksRight = [
              [
                 Icon::user().' '.Auth::user()->name,

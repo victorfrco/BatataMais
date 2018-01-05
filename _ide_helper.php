@@ -1,13 +1,156 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2017-10-31.
+ * Generated for Laravel 5.4.36 on 2017-12-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
  */
 namespace  {
     exit("This file should not be included, only analyzed by your IDE");
+}
+
+namespace Barryvdh\DomPDF { 
+
+    class Facade {
+        
+        /**
+         * Get the DomPDF instance
+         *
+         * @return \Barryvdh\DomPDF\Dompdf 
+         * @static 
+         */ 
+        public static function getDomPDF()
+        {
+            return \Barryvdh\DomPDF\PDF::getDomPDF();
+        }
+        
+        /**
+         * Set the paper size (default A4)
+         *
+         * @param string $paper
+         * @param string $orientation
+         * @return $this 
+         * @static 
+         */ 
+        public static function setPaper($paper, $orientation = 'portrait')
+        {
+            return \Barryvdh\DomPDF\PDF::setPaper($paper, $orientation);
+        }
+        
+        /**
+         * Show or hide warnings
+         *
+         * @param bool $warnings
+         * @return $this 
+         * @static 
+         */ 
+        public static function setWarnings($warnings)
+        {
+            return \Barryvdh\DomPDF\PDF::setWarnings($warnings);
+        }
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $string
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */ 
+        public static function loadHTML($string, $encoding = null)
+        {
+            return \Barryvdh\DomPDF\PDF::loadHTML($string, $encoding);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return static 
+         * @static 
+         */ 
+        public static function loadFile($file)
+        {
+            return \Barryvdh\DomPDF\PDF::loadFile($file);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */ 
+        public static function loadView($view, $data = array(), $mergeData = array(), $encoding = null)
+        {
+            return \Barryvdh\DomPDF\PDF::loadView($view, $data, $mergeData, $encoding);
+        }
+        
+        /**
+         * Set/Change an option in DomPdf
+         *
+         * @param array $options
+         * @return static 
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+            return \Barryvdh\DomPDF\PDF::setOptions($options);
+        }
+        
+        /**
+         * Output the PDF as a string.
+         *
+         * @return string The rendered PDF as string
+         * @static 
+         */ 
+        public static function output()
+        {
+            return \Barryvdh\DomPDF\PDF::output();
+        }
+        
+        /**
+         * Save the PDF to a file
+         *
+         * @param $filename
+         * @return static 
+         * @static 
+         */ 
+        public static function save($filename)
+        {
+            return \Barryvdh\DomPDF\PDF::save($filename);
+        }
+        
+        /**
+         * Make the PDF downloadable by the user
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */ 
+        public static function download($filename = 'document.pdf')
+        {
+            return \Barryvdh\DomPDF\PDF::download($filename);
+        }
+        
+        /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */ 
+        public static function stream($filename = 'document.pdf')
+        {
+            return \Barryvdh\DomPDF\PDF::stream($filename);
+        }
+         
+    }
+ 
 }
 
 namespace Kris\LaravelFormBuilder\Facades { 
@@ -7141,8 +7284,8 @@ namespace Illuminate\Support\Facades {
          * 
          * Order of precedence: PATH (routing placeholders or custom attributes), GET, BODY
          *
-         * @param string $key the key
-         * @param mixed $default the default value if the parameter key does not exist
+         * @param string $key The key
+         * @param mixed $default The default value if the parameter key does not exist
          * @return mixed 
          * @static 
          */ 
@@ -7775,6 +7918,24 @@ namespace Illuminate\Support\Facades {
         {
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::isMethodCacheable();
+        }
+        
+        /**
+         * Returns the protocol version.
+         * 
+         * If the application is behind a proxy, the protocol version used in the
+         * requests between the client and the proxy and between the proxy and the
+         * server might be different. This returns the former (from the "Via" header)
+         * if the proxy is trusted (see "setTrustedProxies()"), otherwise it returns
+         * the latter (from the "SERVER_PROTOCOL" server parameter).
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getProtocolVersion()
+        {
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getProtocolVersion();
         }
         
         /**
@@ -13101,6 +13262,86 @@ namespace Bootstrapper\Facades {
         }
          
     }
+
+    class Carousel {
+        
+        /**
+         * Names the carousel
+         *
+         * @param string $name The name of the carousel
+         * @return $this 
+         * @static 
+         */ 
+        public static function named($name)
+        {
+            return \Bootstrapper\Carousel::named($name);
+        }
+        
+        /**
+         * Set the control icons or text
+         *
+         * @param string $previousButton Left arrorw, previous text
+         * @param string $nextButton right arrow, next string
+         * @return \Bootstrapper\this 
+         * @static 
+         */ 
+        public static function withControls($previousButton, $nextButton)
+        {
+            return \Bootstrapper\Carousel::withControls($previousButton, $nextButton);
+        }
+        
+        /**
+         * Sets the contents of the carousel
+         *
+         * @param array $contents The new contents. Should be an array of arrays,
+         *                        with the inner keys being "image", "alt" and
+         *                        (optionally) "caption"
+         * @return $this 
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+            return \Bootstrapper\Carousel::withContents($contents);
+        }
+        
+        /**
+         * Renders the carousel
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Bootstrapper\Carousel::render();
+        }
+        
+        /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return $this 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Carousel::withAttributes($attributes);
+        }
+        
+        /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return $this 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {
+            //Method inherited from \Bootstrapper\RenderedObject            
+            return \Bootstrapper\Carousel::addClass($classes);
+        }
+         
+    }
  
 }
 
@@ -14116,6 +14357,8 @@ namespace Collective\Html {
 
 
 namespace  { 
+
+    class PDF extends \Barryvdh\DomPDF\Facade {}
 
     class FormBuilder extends \Kris\LaravelFormBuilder\Facades\FormBuilder {}
 
@@ -16224,6 +16467,8 @@ namespace  {
     class Modal extends \Bootstrapper\Facades\Modal {}
 
     class Alert extends \Bootstrapper\Facades\Alert {}
+
+    class Carousel extends \Bootstrapper\Facades\Carousel {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 

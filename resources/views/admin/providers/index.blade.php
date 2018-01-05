@@ -19,6 +19,7 @@
              !!}
         </div>
         {!! $providers->links(); !!}
+        <br>
         {!! Button::primary('Novo Fornecedor')->asLinkTo(route('admin.providers.create')) !!}
     </div>
 @endsection
