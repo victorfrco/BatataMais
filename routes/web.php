@@ -14,12 +14,14 @@
 use App\Models\Category;
 use App\Models\Order;
 
+Route::post('/associado','SellController@aplicarRemoverDesconto');
 Route::post('/admin/generateReport', 'ReportController@generateReport');
 Route::get('/admin/report', 'ReportController@index')->name('report');
 Route::post('/admin/addStock', 'ProductController@addStock');
 Route::get('/admin/stock', 'ProductController@stock')->name('estoque');
 Route::get('/removeItem','SellController@removeItem')->name('removeItem');
-Route::post('/addProducts', 'SellController@addProducts');
+Route::post('/home', 'SellController@addProducts');
+Route::post('/home/cod', 'SellController@codBarra');
 Route::post('/criarMesa', 'SellController@criarMesa');
 Route::post('/cancelarVenda', 'SellController@cancelarVenda');
 

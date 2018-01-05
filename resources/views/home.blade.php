@@ -1,12 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('inexistente'))
+        @php
+            $order = session('inexistente');
+        @endphp
+        <div class="alert alert-danger" style="position:fixed; width: 40%; margin-left: 30%; z-index:9999;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Ops!</strong> Produto inexistente, <a href="{{route('admin.products.create')}}" class="alert-link">clique aqui </a>caso queira adicioná-lo.
+        </div>
+    @endif
+    @if (session('semEstoque'))
+        @php
+            $order = session('semEstoque');
+        @endphp
+        <div class="alert alert-warning" style="position:fixed; width: 60%; margin-left: 20%; z-index:9999;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Ops!</strong> Produto com estoque negativo, <a href="{{route('estoque')}}" class="alert-link">clique aqui </a>caso queira aumentar seu estoque.
+        </div>
+    @endif
     <div class="container">
+        <div class="col-xs-7 col-sm-6 col-lg-7"  style="margin-left:-90px; margin-right: 130px; margin-bottom: 10px;">
+            {!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}
+        </div>
+        <div class="row" style="text-align: right">
+            {!! Form::open(array('action' => 'SellController@codBarra', 'method' => 'post', 'style' => 'display:inline')) !!}
+            {!! Form::search('product_barcode',null,['placeholder' => 'Código do produto...', 'class' => 'btn', 'style' => 'text-align:left; width:300px; color: #ffffff; background-color:#000000; border:thik; border-color:#C8B90C', 'id' => 'codBar']) !!}
+            {!! Form::button(Icon::barcode(), ['type'=>'submit', 'class' => 'btn btn-primary']) !!}
+            @isset($order)
+                   {!! Form::hidden('order_id', $order->id) !!}
+            @endisset
+            {!! Form::close() !!}
+            @if(isset($order) && !$order->associated)
+                {!! Button::success(Icon::create('link'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'data-toggle' => 'modal', 'data-target' => '#confirmarAssociadoModal'])  !!}
+            @elseif(isset($order) && $order->associated)
+                {!! Button::danger(Icon::create('link'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'data-toggle' => 'modal', 'data-target' => '#removerAssociadoModal'])  !!}
+            @else
+                {!! Button::primary(Icon::create('link'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'disabled' => 'true'])  !!}
+            @endif
+        </div>
         <div class="row">
-            <h2>Batata+ &ensp;&ensp;&ensp;{!! \Bootstrapper\Facades\Button::primary('Nova Mesa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaMesaModal']) !!}</h2>
-    </div>
-        <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="background-color: dimgrey; overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#515151)); overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
@@ -32,12 +66,11 @@
                 @endphp
                 {!! Tabbable::withContents($names) !!}
             </div>
-            <div class="col-xs-5 col-sm-6 col-lg-5" style="background-color: dimgrey; margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#515151)); margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
                 @if(isset($order))
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de {{$order->client->name}}</div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
-
-                    @else
+                @else
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Lista de Produtos </div>
                 @endif
 
@@ -50,15 +83,16 @@
                 echo $orderController->carregaPedidosAbertos();
             @endphp
         </div>
-        <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-top:-20px; margin-right:-150px; text-align:left;">
-            &ensp;&ensp; Valor total da compra: R$@if(isset($order)){{number_format((float)$order->total, 2, '.', '')}} @else 0,00 @endif <br>
+        <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-top:-20px; margin-right: -60px; text-align:left;  display: inline;">
+            <p style="margin-left: 10px; margin-top: -5px">Valor total da compra: <span style="font-size: 22px;  display: inline;">R$@if(isset($order)){{number_format((float)$order->total, 2, '.', '')}} @else 0,00 @endif </span></p>
             @php
                 if(isset($order)){
-                    echo Button::success('Concluir Venda')->addAttributes(['style' => 'margin-left:25px;height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#concluirVendaModal']);
-                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'margin-right:-25px;margin-left:25px; height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#cancelarVendaModal']);
+                    echo Button::success('Concluir Venda')->addAttributes(['style' => 'margin-top:-18px; margin-left:25px;height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#concluirVendaModal']);
+                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'margin-top:-18px; margin-right:-25px;margin-left:25px; height:40px; width:210px', 'data-toggle' => 'modal', 'data-target' => '#cancelarVendaModal']);
+
                 }else{
-                    echo Button::success('Concluir Venda')->addAttributes(['style' => 'margin-left:25px;height:40px; width:210px', 'disabled' => 'true']);
-                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'margin-right:-25px;margin-left:25px;height:40px; width:210px', 'disabled' => 'true']);
+                    echo Button::success('Concluir Venda')->addAttributes(['style' => 'margin-top:-18px; margin-left:25px; height:40px; width:210px', 'disabled' => 'true']);
+                    echo Button::danger('Cancelar Venda')->addAttributes(['style' => 'margin-top:-18px; margin-right:-25px;margin-left:25px; height:40px; width:210px', 'disabled' => 'true']);
                 }
             @endphp
         </div>
@@ -138,11 +172,7 @@
 
                     @php
                         if(isset($order)){
-                            //echo '<br><p style="display:inline; vertical-align: middle;font-weight: bold">É cliente associado? </p>';
                             echo Form::hidden('order_id', $order->id);
-                            echo Form::hidden('associado', $order->associated);
-                            //echo Form::checkbox('associado', 1, $order->associated, array('class'=>'checkbox-inline','style' => 'margin-top: -1px;width: 20px; height: 20px;'));
-                            //echo '<br><p style="display:inline; vertical-align: middle;font-size: 11px">*Obs.: Ao informar associado o valor da venda será automaticamente alterado!</p>';
                         }
                     @endphp
                     {!! Form::token() !!}
@@ -183,16 +213,73 @@
         </div>
     </div>
 
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="confirmarAssociadoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="color: #2F3133">{!!\Bootstrapper\Facades\Icon::create('warning-sign')->withAttributes(['class' => 'btn-lg'])!!}&ensp;&ensp;  Aplicar Desconto</h4>
+                </div>
+                {!! Form::open(array('action' => 'SellController@aplicarRemoverDesconto', 'method' => 'post')) !!}
+                <div class="modal-body">
+                    <br><p style="display:inline; vertical-align: middle;font-weight: bold; color: #2F3133">  Deseja aplicar desconto de associado para esta venda? </p>
+
+                    @php
+                        if(isset($order)){
+                            echo Form::hidden('order_id', $order->id);
+                        }
+                    @endphp
+                    {!! Form::token() !!}
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Sim!', array('class' => 'btn btn-success')) !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="removerAssociadoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="color: #2F3133">{!!\Bootstrapper\Facades\Icon::create('warning-sign')->withAttributes(['class' => 'btn-lg'])!!}&ensp;&ensp;  Remover Desconto</h4>
+                </div>
+                {!! Form::open(array('action' => 'SellController@aplicarRemoverDesconto', 'method' => 'post')) !!}
+                <div class="modal-body">
+                    <br><p style="display:inline; vertical-align: middle;font-weight: bold; color: #2F3133">  Deseja remover o desconto de associado para esta venda? </p>
+
+                    @php
+                        if(isset($order)){
+                            echo Form::hidden('order_id', $order->id);
+                        }
+                    @endphp
+                    {!! Form::token() !!}
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Sim!', array('class' => 'btn btn-danger')) !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="{{asset('js/ajax-crud.js')}}"></script>
 
 @endsection
 @section('scripts')
     <script>
-        function myFunction1($id) {
+        setTimeout(function() {
+            document.getElementById( "codBar" ).focus();
+        }, 0 );
+        function incrementaProduto($id) {
             document.getElementById($id).stepUp(1);
         }
-        function myFunction2($id) {
+        function decrementaProduto($id) {
             document.getElementById($id).stepDown(1);
         }
         $('#tabsCategorias > ul> li:last').click(function (e) {

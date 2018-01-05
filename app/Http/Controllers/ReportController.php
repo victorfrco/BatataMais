@@ -7,6 +7,9 @@ use Barryvdh\DomPDF\Facade as PDF;
 use function compact;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use function redirect;
+use function route;
 use function view;
 
 class ReportController extends Controller
@@ -15,13 +18,18 @@ class ReportController extends Controller
     	return view('admin.reports.index');
     }
 
-    public function generateReport(Request $request){
-        $date = $request->toArray()['date'];
-        $dados = $this->buscaDadosPorData($date);
+    public function generateReport(Request $request) {
+	    $date  = $request->toArray()['date'];
+	    $dados = $this->buscaDadosPorData( $date );
 
+	    if ( $dados['maisVendido'] != null ) {
+		    $pdf = PDF::loadView( 'admin.reports.show', compact( 'dados' ) );
 
-	    $pdf =  PDF::loadView('admin.reports.show', compact('dados'));
-	    return $pdf->download('Relatorio_Sintetico_'.$dados['data'].'.pdf');
+		    return $pdf->download( 'Relatorio_Sintetico_' . $dados['data'] . '.pdf' );
+	    } else {
+		    $request->session()->flash('message', 'Não existe nenhuma venda CONCLUÍDA na data informada!');
+		    return redirect()->route('report');
+	    }
     }
 
 	private function buscaDadosPorData($date) {
@@ -82,7 +90,7 @@ class ReportController extends Controller
 		                          ->whereDate('orders.created_at','=', $date)
 		                          ->groupBy('products.name')
 		                          ->orderByDesc('qtd')
-		->limit(1)->get()[0];
+		                          ->first();
 
 		$dados['valorMedio'] = DB::table('orders')
 		                         ->where('status', '=', 3)

@@ -12,7 +12,9 @@
                 $linkShow = route('admin.clients.show', ['client' => $model->id]);
                  return Button::link('Editar &nbsp'.Icon::pencil())->asLinkTo($linkEdit).' | '
                  .Button::link('Ver &nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow);
-             })
+             })->withAttributes([
+                'style' => 'font-size: 13px'
+             ])
              !!}
         </div>
 

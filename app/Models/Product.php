@@ -38,7 +38,6 @@ class Product extends Model implements TableInterface
      */
     public function getValueForHeader($header)
     {
-        $brand = Brand::find($this->brand_id);
         switch ($header){
             case 'Id':
                 return $this->id;
@@ -50,13 +49,13 @@ class Product extends Model implements TableInterface
                 return $this->description;
                 break;
             case 'Preço de Custo':
-                return $this->price_cost;
+                return 'R$ '.number_format((float)$this->price_cost, 2, '.', '');
                 break;
             case 'Preço de Venda':
-                return $this->price_resale;
+	            return 'R$ '.number_format((float)$this->price_resale, 2, '.', '');
                 break;
             case 'Preço Associado':
-                return $this->price_discount;
+	            return 'R$ '.number_format((float)$this->price_discount, 2, '.', '');
                 break;
             case 'Estoque':
                 return $this->qtd;

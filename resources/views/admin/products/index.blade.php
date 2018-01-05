@@ -15,7 +15,7 @@
                     .Button::link('Ver &nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow).' | '
                     .Button::link('Adicionar &nbsp;'.Icon::create('plus'))->asLinkTo($linkIncrement);
              })->withAttributes([
-
+                'style' => 'font-size: 13px'
              ]);
              !!}
         </div>
