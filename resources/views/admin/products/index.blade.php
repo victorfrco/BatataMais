@@ -11,9 +11,9 @@
                 $linkEdit = route('admin.products.edit', ['product' => $model->id]);
                 $linkShow = route('admin.products.show', ['product' => $model->id]);
                 $linkIncrement = route('admin.products.show', ['product' => $model->id]);
-                 return Button::link('Editar &nbsp'.Icon::pencil())->asLinkTo($linkEdit).' | '
-                    .Button::link('Ver &nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow).' | '
-                    .Button::link('Adicionar &nbsp;'.Icon::create('plus'))->asLinkTo($linkIncrement);
+                 return Button::link('&nbsp'.Icon::pencil())->asLinkTo($linkEdit).'|'
+                    .Button::link('&nbsp;'.Icon::create('eye-open'))->asLinkTo($linkShow).'|'
+                    .Button::link('&nbsp;'.Icon::create('plus'))->asLinkTo($linkIncrement);
              })->withAttributes([
                 'style' => 'font-size: 13px'
              ]);

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements TableInterface
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'qtd', 'brand_id'];
+    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'barcode', 'qtd', 'brand_id'];
 
     public function brands(){
         return $this->belongsTo(Brand::class);
@@ -26,7 +26,7 @@ class Product extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['Id', 'Nome', 'Descrição', 'Preço de Custo', 'Preço de Venda', 'Preço Associado', 'Estoque'];
+        return ['Id', 'Nome', 'Descrição', 'Preço de Custo', 'Preço de Venda', 'Preço Associado', 'Estoque', 'Código de Barras'];
     }
 
     /**
@@ -57,9 +57,12 @@ class Product extends Model implements TableInterface
             case 'Preço Associado':
 	            return 'R$ '.number_format((float)$this->price_discount, 2, '.', '');
                 break;
-            case 'Estoque':
-                return $this->qtd;
-                break;
+	        case 'Estoque':
+		        return $this->qtd;
+		        break;
+	        case 'Código de Barras':
+		        return $this->barcode;
+		        break;
         }
     }
 }
