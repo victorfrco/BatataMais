@@ -16,6 +16,7 @@ class ProductForm extends Form
             ->add('price_cost', 'text', ['label' => 'Preço de Compra'])
             ->add('price_resale', 'text', ['label' => 'Preço de Venda'])
             ->add('price_discount', 'text', ['label' => 'Preço Associado'])
+	        ->add('barcode','text', ['label' => 'Código de Barras'])
             ->add('brand_id','entity', [
                 'label' => 'Marca',
                 'class' => 'App\Models\Brand',
