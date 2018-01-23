@@ -16,9 +16,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->decimal('price_cost', 8,2);
-            $table->decimal('price_resale', 8,2);
-            $table->decimal('price_discount', 8,2);
+            $table->decimal('price_cost', 8,2)->default(0);
+            $table->decimal('price_resale', 8,2)->default(0);
+            $table->decimal('price_discount', 8,2)->default(0);
+            $table->decimal('price_card', 8,2)->default(0);
             $table->integer('qtd')->nullable();
             $table->string('barcode')->nullable();
             $table->timestamps();

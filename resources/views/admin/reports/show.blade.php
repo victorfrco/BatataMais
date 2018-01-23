@@ -24,14 +24,19 @@
         <td>R$ {{number_format((float)$dados['vlrTotalDeVendas'], 2, '.', '')}}</td>
     </tr>
     <tr>
-        <th>Em Aberto</th>
-        <td>{{$dados['totalDeVendasEmAberto']}}</td>
-        <td>R$ {{number_format((float)$dados['vlrTotalDeVendasEmAberto'], 2, '.', '')}}</td>
-    </tr>
-    <tr>
         <th>Finalizadas</th>
         <td>{{$dados['totalDeVendasFinalizadas']}}</td>
         <td>R$ {{number_format((float)$dados['vlrTotalDeVendasFinalizadas'], 2, '.', '')}}</td>
+    </tr>
+    <tr>
+        <th>Mesas Abertas</th>
+        <td>{{$dados['totalDeMesasEmAberto']}}</td>
+        <td>R$ {{number_format((float)$dados['totalDeMesasEmAberto'], 2, '.', '')}}</td>
+    </tr>
+    <tr>
+        <th>Não Concluídas</th>
+        <td>{{$dados['totalDeVendasEmAberto']}}</td>
+        <td>R$ {{number_format((float)$dados['vlrTotalDeVendasEmAberto'], 2, '.', '')}}</td>
     </tr>
     <tr>
         <th>Canceladas</th>

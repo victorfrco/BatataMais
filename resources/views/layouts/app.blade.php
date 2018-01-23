@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Bar das Atléticas') }}</title>
+    <title>{{ 'Federal Hookah Pub' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,7 +18,7 @@
 <div id="app">
     @php
         $logo = asset('storage/images/brands/logo2.png');
-        $navbar = Navbar::withBrandImage($logo, route('home'), config('app.name').'+')->inverse();
+        $navbar = Navbar::withBrandImage($logo, route('home'), config('app.name'))->inverse();
          if(Auth::check()){
             if(Auth::user()->name == 'ADMIN'){
                 $arrayLinks = [
@@ -46,8 +46,9 @@
 
                     ],
                     ['link' => route('admin.clients.index'), 'title' => 'Clientes'],
-                    ['link' => route('admin.providers.index'), 'title' => 'Fornecedores'],
-                    ['link' => route('estoque'), 'title' => 'Estoque']
+                    ['link' => route('estoque'), 'title' => 'Estoque'],
+                    ['link' => route('admin.bonifications.index'), 'title' => 'Bonificação'],
+                    ['link' => route('history'), 'title' => 'Histórico']
                 ];
             }
             else{

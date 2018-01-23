@@ -17,11 +17,10 @@ class Brand extends Model implements TableInterface
 
       $divCab =  '<div value="'.$id.'" data-id="'.$id.'" data-target="#productModal" data-toggle="modal" class="col-sm-2 product-modal" style="width: 145px; height: 145px; font-size: 12px; font-weight:bold; text-align: center;">';
       $brand = Brand::find($id);
-
       if($brand->logo_path != null)
-        $divCont = substr($brand->name,0, 17).Image::circle(asset($brand->logo_path), 'rounded')
+        $divCont = substr($brand->name,0, 15).Image::circle(asset($brand->logo_path), 'rounded')
                                     ->responsive()
-                                    ->withAttributes(['style' => 'height:110px; padding-left:7px']);
+                                    ->withAttributes(['style' => 'background-color: #ffffff;height:110px;']);
       else
       	$divCont = $brand->name.Image::circle(asset('storage/images/brands/nobrand.gif'), 'rounded')
                        ->responsive()

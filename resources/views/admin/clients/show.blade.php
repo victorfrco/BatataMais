@@ -23,10 +23,10 @@
             @endphp
             <!-- exibe o formulário -->
             {!! form($formDelete) !!}
-            <table class="table table-bordered">
+            <table class="table table-condensed">
                 <tbody>
                 <tr>
-                    <th scope="row">#</th>
+                    <th scope="row">ID</th>
                     <td>{{$client->id}}</td>
                 </tr>
                 <tr>
@@ -36,6 +36,10 @@
                 <tr>
                     <th scope="row">Apelido</th>
                     <td>{{$client->nickname}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Telefone</th>
+                    <td>{{$client->phone1}}</td>
                 </tr>
                 </tbody>
             </table>
