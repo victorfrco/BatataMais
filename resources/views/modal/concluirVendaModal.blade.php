@@ -39,7 +39,7 @@
                     <textarea name="obs" style="width:500px"></textarea>
                 </div>
                 <div id="valorDesconto" style="display: none;">
-                    Desconto(R$) <input style="width: 90px"; id="num3" name="valorDesconto" type="text" step="0.01" onblur="calcular();">
+                    Desconto(R$) <input style="width: 90px" id="num3" name="valorDesconto" type="text" step="0.01" onblur="calcular();">
                 </div>
                 <span id="resultado" style="font-size: 22px; font-weight: bold"></span>
                 @php

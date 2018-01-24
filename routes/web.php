@@ -69,6 +69,7 @@ Route::prefix('admin')->group(function(){
         Route::resource('sells', 'SellController');
 	    Route::resource('providers', 'ProviderController');
 	    Route::resource('bonifications', 'BonificationController');
+	    Route::resource('cashes', 'CashController');
     });
 });
 
@@ -78,3 +79,4 @@ Route::get('/historyDetail', 'OrderHistoryController@show')->name('historyDetail
 Route::get('/upload', 'BrandController@upload');
 Route::post('/move', 'BrandController@move')->name('move');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/cashes', 'CashController@fecharCaixa')->name('fecharCaixa');
