@@ -16,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(6);
+        $clients = Client::orderBy('name', 'asc')->paginate(6);
         return view('admin.clients.index', compact('clients'));
     }
 
@@ -108,7 +108,6 @@ class ClientController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $data['associated'] = $data['associated'] == null ? 0 : 1;
         $client->update($data);
 
         session()->flash('message', 'Cliente alterado com sucesso!');

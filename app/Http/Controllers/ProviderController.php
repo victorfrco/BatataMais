@@ -18,7 +18,7 @@ class providerController extends Controller
      */
     public function index()
     {
-        $providers = provider::paginate(6);
+        $providers = provider::orderBy('name', 'asc')->paginate(6);
         return view('admin.providers.index', compact('providers'));
     }
 

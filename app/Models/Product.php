@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements TableInterface
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'barcode', 'qtd', 'brand_id'];
+    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'price_card', 'barcode', 'qtd', 'brand_id'];
 
     public function brands(){
         return $this->belongsTo(Brand::class);
@@ -26,7 +26,7 @@ class Product extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['Id', 'Nome', 'Descrição', 'Preço de Custo', 'Preço de Venda', 'Preço Associado', 'Estoque', 'Código de Barras'];
+        return ['Id', 'Nome', 'Preço de Custo', 'Preço de Venda', 'Preço Associado', 'Preço Cartão', 'Estoque', 'Código de Barras'];
     }
 
     /**
@@ -45,18 +45,18 @@ class Product extends Model implements TableInterface
             case 'Nome':
                 return $this->name;
                 break;
-            case 'Descrição':
-                return $this->description;
-                break;
             case 'Preço de Custo':
-                return 'R$ '.number_format((float)$this->price_cost, 2, '.', '');
+                return 'R$ '.number_format($this->price_cost, 2, ',', '.');
                 break;
             case 'Preço de Venda':
-	            return 'R$ '.number_format((float)$this->price_resale, 2, '.', '');
+	            return 'R$ '.number_format($this->price_resale, 2, ',', '.');
                 break;
-            case 'Preço Associado':
-	            return 'R$ '.number_format((float)$this->price_discount, 2, '.', '');
-                break;
+	        case 'Preço Associado':
+		        return 'R$ '.number_format($this->price_discount, 2, ',', '.');
+		        break;
+	        case 'Preço Cartão':
+		        return 'R$ '.number_format($this->price_card, 2, ',', '.');
+		        break;
 	        case 'Estoque':
 		        return $this->qtd;
 		        break;
