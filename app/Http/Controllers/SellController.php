@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cash;
 use App\Models\Client;
 use App\Models\Item;
 use App\Models\Category;
@@ -269,6 +270,12 @@ class SellController extends Controller
 	        $order->total -= $order->discount;
 	    }
 
+	    if($order->pay_method == 1){
+			$cash = CashController::buscaCaixaPorUsuario(Auth::id());
+			$cash->atual_value += $order->total;
+			$cash->update();
+	    }
+
         $order->status = $this->STATUS_PAGA;
         $order->update();
 
@@ -443,14 +450,23 @@ class SellController extends Controller
 		$moveController->registraBaixaTotal($parcial, 2);
 
 		$orderOriginal->total -= $totalItensRemovidos;
+
 		if($request->get('user_id') != null) {
 			$parcial->user_id = $request->get( 'user_id' );
 			$orderOriginal->user_id = $request->get( 'user_id' );
 		}
+
 		$parcial->save();
 		$orderOriginal->status = $this->STATUS_PAGA_PARCIALMENTE;
 		$orderOriginal->update();
-		
+
+		//Se for venda no dinheiro deve adicionar ao caixa em aberto
+		if($parcial->pay_method == 1){
+			$cash = CashController::buscaCaixaPorUsuario(Auth::id());
+			$cash->atual_value += $parcial->total;
+			$cash->update();
+		}
+
 		//verificar se a ordem de origem ainda possui itens, senão deve-se colocá-la como paga
 		if(Item::all()->where('order_id', '=', $orderOriginal->id)->isEmpty()){
 			$orderOriginal->status = $this->STATUS_PAGA;
