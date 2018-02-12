@@ -1,0 +1,3 @@
+ALTER TABLE `orders` ADD `original_order` INT UNSIGNED NULL AFTER `id`;
+
+ALTER TABLE `orders` ADD `obs` VARCHAR(255) NULL DEFAULT NULL AFTER `pay_method`;

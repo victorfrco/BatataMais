@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Forms\ProductForm;
 use App\Models\Product;
 use function compact;
+use function dd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use function route;
 use function view;
 
@@ -29,6 +32,9 @@ class ProductController extends Controller
 		$product->qtd += $request->toArray()['product_qtd'];
 		$product->save();
 
+		$moveController = new MoveController();
+		$moveController->registraEntradaIndividual($product, $request->toArray()['product_qtd'], 1);
+
 		$success = 'Produto adicionado ao estoque!';
 		return view('admin.products.stock', compact('success'));
 	}
@@ -40,7 +46,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(6);
+    	$products = Product::orderBy('name', 'asc')->paginate(6);
         return view('admin.products.index', compact('products'));
     }
 
@@ -77,6 +83,13 @@ class ProductController extends Controller
         }
 
         $data = $form->getFieldValues();
+	    $source = array('.', ',');
+	    $replace = array('', '.');
+        $data['price_cost'] = str_replace($source, $replace, $data['price_cost']);
+        $data['price_resale'] = str_replace($source, $replace, $data['price_resale']);
+        $data['price_discount'] = str_replace($source, $replace, $data['price_discount']);
+        $data['price_card'] = str_replace($source, $replace, $data['price_card']);
+
         Product::create($data);
 
         $request->session()->flash('message', 'Produto cadastrado com sucesso!');
@@ -150,5 +163,18 @@ class ProductController extends Controller
         $product->delete();
         session()->flash('message', 'Produto excluído com sucesso!');
         return redirect()->route('admin.products.index');
+    }
+
+    public function search(){
+	    $q = Input::get ( 'q' );
+	    if($q != ""){
+		    $products = Product::where ( 'name', 'LIKE', $q . '%' )->paginate (6)->setPath ( '' );
+		    $pagination = $products->appends ( array (
+			    'q' => Input::get ( 'q' )
+		    ) );
+		    if (count ( $products ) > 0)
+			    return view('admin.products.index', compact('products'));
+	    }
+	    return view ( 'admin.products.index' )->withMessage ( 'Nenhum produto encontrado!' );
     }
 }

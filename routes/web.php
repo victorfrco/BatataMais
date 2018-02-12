@@ -14,8 +14,12 @@
 use App\Models\Category;
 use App\Models\Order;
 
+Route::post('/vendaParcial', 'SellController@vendaParcial');
+Route::any('/searchProduct', 'ProductController@search');
 Route::post('/associado','SellController@aplicarRemoverDesconto');
+Route::post('/cartao','SellController@aplicarRemoverCartao');
 Route::post('/admin/generateReport', 'ReportController@generateReport');
+Route::post('/admin/analiticReport', 'ReportController@generateAnaliticReport');
 Route::get('/admin/report', 'ReportController@index')->name('report');
 Route::post('/admin/addStock', 'ProductController@addStock');
 Route::get('/admin/stock', 'ProductController@stock')->name('estoque');
@@ -63,9 +67,16 @@ Route::prefix('admin')->group(function(){
         Route::resource('products','ProductController');
         Route::resource('clients','ClientController');
         Route::resource('sells', 'SellController');
-        Route::resource('providers', 'ProviderController');
+	    Route::resource('providers', 'ProviderController');
+	    Route::resource('bonifications', 'BonificationController');
+	    Route::resource('cashes', 'CashController');
     });
 });
+
+Route::any('/searchOrderHistory', 'OrderHistoryController@search');
+Route::get('/history', 'OrderHistoryController@index')->name('history');
+Route::get('/historyDetail', 'OrderHistoryController@show')->name('historyDetail');
 Route::get('/upload', 'BrandController@upload');
 Route::post('/move', 'BrandController@move')->name('move');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/cashes', 'CashController@fecharCaixa')->name('fecharCaixa');

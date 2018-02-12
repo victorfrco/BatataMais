@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Batata+</title>
+    <title>Federal Hookah Pub</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -65,6 +65,7 @@
     </style>
 </head>
 <body>
+<img src="{{asset('storage/images/brands/giphy.gif')}}" style="width: 100%; height:100% ;position: fixed; padding-left: 0px; ">
 <div class="flex-center position-ref full-height">
     @if (Route::has('login'))
         <div class="top-right links">
@@ -72,21 +73,14 @@
                 <a href="{{ url('/home') }}">Página Inicial</a>
             @else
                 <a href="{{ route('login') }}">Login</a> |
-                <a href="{{ route('register') }}">Cadastrar-se</a>
             @endif
         </div>
     @endif
 
     <div class="content">
-        <div class="title m-b-md">
-            Batata+
-        </div>
+        <div class="title m-b-md" style="font-size: 110px;">
+            <img width="700px" src="{{asset('storage/images/brands/logo.png')}}">
 
-        <div class="links">
-            <a href="{{ route('admin.products.index') }}">Produtos</a>
-            <a href="{{ route('admin.brands.index') }}">Marcas</a>
-            <a href="{{ route('admin.categories.index') }}">Categorias</a>
-            <a href="{{ route('admin.clients.index') }}">Clientes</a>
         </div>
     </div>
 </div>
