@@ -20,6 +20,8 @@ Route::post('/associado','SellController@aplicarRemoverDesconto');
 Route::post('/cartao','SellController@aplicarRemoverCartao');
 Route::post('/admin/generateReport', 'ReportController@generateReport');
 Route::post('/admin/analiticReport', 'ReportController@generateAnaliticReport');
+Route::post('/admin/sellReport', 'ReportController@generateSellReport');
+Route::post('/admin/userReport', 'ReportController@generateUserReport');
 Route::get('/admin/report', 'ReportController@index')->name('report');
 Route::post('/admin/addStock', 'ProductController@addStock');
 Route::get('/admin/stock', 'ProductController@stock')->name('estoque');
@@ -67,9 +69,9 @@ Route::prefix('admin')->group(function(){
         Route::resource('products','ProductController');
         Route::resource('clients','ClientController');
         Route::resource('sells', 'SellController');
-	    Route::resource('providers', 'ProviderController');
-	    Route::resource('bonifications', 'BonificationController');
-	    Route::resource('cashes', 'CashController');
+        Route::resource('providers', 'ProviderController');
+        Route::resource('bonifications', 'BonificationController');
+        Route::resource('cashes', 'CashController');
     });
 });
 
