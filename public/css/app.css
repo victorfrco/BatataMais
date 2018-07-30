@@ -5150,7 +5150,7 @@ tbody.collapse.in {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #edb820;
+  border-bottom: 1px solid #ffcc00;
 }
 
 .nav-tabs > li {
@@ -5160,7 +5160,10 @@ tbody.collapse.in {
 
 .nav-tabs > li > a {
   margin-right: 2px;
+  width: 103px;
+  height: 45px;
   line-height: 1.6;
+  background-color: #202020;
   border: 1px solid transparent;
   border-radius: 9px 9px 0 0;
 }
@@ -5172,9 +5175,9 @@ tbody.collapse.in {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #edb820;
+  color: #ffcc00;
   background-color: #515151;
-  border: 1px solid #edb820;
+  border: 1px solid #ffcc00;
   border-bottom-color: transparent;
   cursor: default;
 }

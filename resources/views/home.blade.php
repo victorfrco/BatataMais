@@ -70,7 +70,7 @@
             @endif
         </div>
         <div class="row">
-            <div class="col-xs-7 col-sm-6 col-lg-8" style="background-color:#000000; background-image:url({{asset('storage/images/brands/listaEsquerda.jpg')}}); overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
+            <div class="col-xs-7 col-sm-6 col-lg-8" style="background-color:#000000; background-image:url({{asset('storage/images/brands/logoteste.png')}}); overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
                         $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
@@ -84,13 +84,13 @@
                         $string = implode($listadivs);
 
                        $names[] = [
-                                'title' => $category->name,
+                                'title' => '<p style="text-align:center; font-size:12px" rel="tooltip" title="'.$category->name.' : '.$category->description.'">'.substr($category->name,0,9).'</p>',
                                 'content' => "<div>$string</div>"
                             ];
                             unset($listadivs);
                      }
                       $names[] = [
-                         'title' => Icon::create('plus'),
+                         'title' => '<p style="text-align:center; vertical-align: top; font-size:20px" rel="tooltip" title="Nova Categoria">'.Icon::create('plus').'</p>',
                          'content' => ''
                      ];
                 @endphp
@@ -100,7 +100,7 @@
                     <h4>Para iniciar uma venda clique em "Nova Mesa"!</h4>
                 @endif
             </div>
-            <div class="col-xs-5 col-sm-6 col-lg-5" style="background-color:#000000; background-image:url({{asset('storage/images/brands/listaEsquerda.jpg')}}); margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
+            <div class="col-xs-5 col-sm-6 col-lg-5" style="background-color:#000000; background-image:url({{asset('storage/images/brands/listaDireita.jpg')}}); margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
                 @if(isset($order))
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de {{$order->client->name}}</div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
@@ -110,8 +110,8 @@
 
             </div>
         </div>
-        <div style="margin-left:-70px">Mesas:</div>
-        <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-80px; overflow-x: auto;white-space: nowrap;">
+        <div style="margin-left:-75px">Mesas:</div>
+        <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-90px; overflow-x: auto;white-space: nowrap;">
             @php
                 if(App\Http\Controllers\CashController::buscaCaixaPorUsuario(\Illuminate\Support\Facades\Auth::id()) != null){
                     $orderController = new App\Http\Controllers\OrderController();
@@ -120,7 +120,7 @@
             @endphp
         </div>
         <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-top:-20px; margin-right: -60px; text-align:left;  display: inline;">
-            <p style="margin-left: 10px; margin-top: -5px">Valor total da compra: <span style="font-size: 22px;  display: inline;">R$@if(isset($order)){{number_format($order->total, 2, ',', '.')}} @else 0,00 @endif </span>
+            <p style="margin-left: 27px; margin-top: -5px">Valor total da compra: <span style="font-size: 22px; text-shadow: 1px 1px #ffcc00; color: #ffffff; display: inline;">R$@if(isset($order)){{number_format($order->total, 2, ',', '.')}} @else 0,00 @endif </span>
                 @php
                     if(isset($order))
                         if(\App\Http\Controllers\OrderController::possuiPagamento($order))
@@ -227,6 +227,10 @@
         function mostraDesconto(){
             document.getElementById('valorDesconto').style.display = 'block';
         }
+
+        $(document).ready(function(){
+            $("[rel=tooltip]").tooltip({ placement: 'bottom'});
+        });
 
     </script>
     <!-- Latest compiled and minified CSS -->
