@@ -78,9 +78,12 @@
     @endif
 
     <div class="content">
-        <div class="title m-b-md" style="font-size: 110px;">
-            <img width="700px" src="{{asset('storage/images/brands/logo.png')}}">
-
+        <div class="title m-b-md" style="font-size: 200px;">
+            {{--<img width="700px" src="{{asset('storage/images/brands/logo4.png')}}">--}}
+            <p style="  color: #ffcc00;
+                font-family: Impact, Charcoal, sans-serif;
+                 text-shadow: #0f0f0f 1px 3px;
+            ">MINHA LOJA</p>
         </div>
     </div>
 </div>
