@@ -7596,7 +7596,12 @@ button.close {
 
 .tooltip.bottom {
   margin-top: 3px;
-  padding: 5px 0;
+  min-width: 150px;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: center;
+  background-color: #000000;
+  border-radius: 4px;
 }
 
 .tooltip.left {

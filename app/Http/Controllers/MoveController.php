@@ -68,4 +68,9 @@ class MoveController {
 	public function registraEntradaIndividual($product, $qtd, $status){
 		$this->salvaMovimentacao($status, $product->id, $qtd, $product->price_cost, null, Auth::id());
 	}
+
+    public function registraSaidaIndividual($product, $qtd, $status)
+    {
+        $this->salvaMovimentacao($status, $product->id, $qtd, $product->price_cost, null, Auth::id());
+    }
 }

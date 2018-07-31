@@ -39,6 +39,20 @@ class ProductController extends Controller
 		return view('admin.products.stock', compact('success'));
 	}
 
+    public function decreaseStock(Request $request)
+    {
+        $product = Product::find($request->toArray()['product_id']);
+        $product->qtd -= $request->toArray()['product_qtd'];
+        $product->update();
+
+        $moveController = new MoveController();
+        //status 3 para saida com observacao (quebra, estoque errado, etc...)
+        $moveController->registraSaidaIndividual($product, $request->toArray()['product_qtd'], 3);
+
+        $success = 'Produto removido do estoque!';
+        return view('admin.products.stock', compact('success'));
+    }
+
     /**
      * Display a listing of the resource.
      *
