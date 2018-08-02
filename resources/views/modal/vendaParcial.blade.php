@@ -22,11 +22,13 @@
                     </select>
                     <div id="obsParcial" style="display: block; width:500px">';
                         if(isset($order))
-                            echo 'Valor total pago: <input id="valorPago" name="valorPago" type="number" max="'.$order->total.'" step="0.01">
+                            echo 'Valor Dinheiro: <input id="dinheiro" name="dinheiro" type="number" max="'.$order->total.'" step="0.01">
                             <br>
-                        Informe uma observação:
-                        <textarea name="obsParcial" style="width:500px"></textarea>
-                    </div>
+                            Valor Débito: <input id="debito" name="debito" type="number" max="'.$order->total.'" step="0.01">
+                            <br>
+                            Valor Crédito: <input id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01">
+                            <br>
+                    
                     <div id="produtosParciais">';
                     if(isset($order)){
                             echo Form::hidden('order_id', $order->id);
@@ -51,10 +53,12 @@
                     </select>
                     <div id="obsParcial" style="display: none; width:500px">';
                         if(isset($order))
-                            echo 'Valor total pago: <input id="valorPago" name="valorPago" type="number" max="'.$order->total.'" step="0.01">
+                            echo 'Valor Dinheiro: <input id="dinheiro" name="dinheiro" type="number" max="'.$order->total.'" step="0.01">
                             <br>
-                        Informe uma observação:
-                        <textarea name="obsParcial" style="width:500px"></textarea>
+                            Valor Débito: <input id="debito" name="debito" type="number" max="'.$order->total.'" step="0.01">
+                            <br>
+                            Valor Crédito: <input id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01">
+                            <br>
                     </div>
                     <div id="produtosParciais">
                     <br><p style="display:inline; vertical-align: middle;font-weight: bold">Selecione os produtos a pagar: </p>';

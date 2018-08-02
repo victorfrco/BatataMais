@@ -377,12 +377,17 @@ class SellController extends Controller
 	public function vendaParcial(Request $request){
 		//verificar se o item só contem um produto, se for unico troca o order_id do item,
 		//     senão cria um novo item para essa order e subtrai a quantidade de produtos do item da ordem antiga
-
+        $dinheiro = $request->get('dinheiro');
+        $debito = $request->get('debito');
+        $credito = $request->get('credito');
         $orderOriginal = Order::find($request->get('order_id'));
 		$parcial = new Order();
 		//setar forma de pagamento, e valor total da ordem derivada,
 		$parcial->pay_method = $request->get('formaPagamento');
-		$parcial->total = 0;
+		$parcial->total = $debito + $credito + $dinheiro;
+        $parcial->debit = $debito;
+        $parcial->credit = $credito;
+        $parcial->money = $dinheiro;
 		$parcial->status = 1;
 		$parcial->client_id = $orderOriginal->client_id;
 		$parcial->user_id = $orderOriginal->user_id;
@@ -390,11 +395,9 @@ class SellController extends Controller
 		$parcial->original_order = $orderOriginal->id;
 
         if($parcial->pay_method == 4) {
-            $parcial->total = $request->toArray()['valorPago'];
-            $parcial->obs = $request->toArray()['obsParcial'];
             $orderOriginal->total -= $parcial->total;
 
-            if($orderOriginal->total < 1){
+            if($orderOriginal->total < 0.01){
                 $orderOriginal->status = $this->STATUS_PAGA;
                 $orderOriginal->update();
                 $parcial->save();
