@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CashMoves;
 use App\Models\Cash;
 use App\Models\Client;
 use App\Models\Item;
@@ -388,7 +389,7 @@ class SellController extends Controller
         $parcial->debit = $debito;
         $parcial->credit = $credito;
         $parcial->money = $dinheiro;
-		$parcial->status = 1;
+		$parcial->status = $this->STATUS_PAGA;
 		$parcial->client_id = $orderOriginal->client_id;
 		$parcial->user_id = $orderOriginal->user_id;
 		$parcial->associated = $orderOriginal->associated;
@@ -401,18 +402,35 @@ class SellController extends Controller
                 $orderOriginal->status = $this->STATUS_PAGA;
                 $orderOriginal->update();
                 $parcial->save();
+                $cash = CashController::buscaCaixaPorUsuario(Auth::id());
+                $cashMoves = new CashMoves();
+                $cashMoves->type = $cashMoves->getTIPOVENDA();
+                $cashMoves->cash_id = $cash->id;
+                $cashMoves->order_id = $parcial->id;
+                $cashMoves->user_id = Auth::id();
+                $cashMoves->money += $parcial->money;
+                $cashMoves->debit += $parcial->debit;
+                $cashMoves->credit += $parcial->credit;
+                $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
+                return Redirect::to('/home')->with('vendaRealizada', 'Venda realizada com sucesso!');
+            }else
+                $orderOriginal->status = $this->STATUS_PAGA_PARCIALMENTE;
+
+                $orderOriginal->update();
+                $parcial->save();
+                $cash = CashController::buscaCaixaPorUsuario(Auth::id());
+                $cashMoves = new CashMoves();
+                $cashMoves->type = $cashMoves->getTIPOVENDA();
+                $cashMoves->cash_id = $cash->id;
+                $cashMoves->order_id = $parcial->id;
+                $cashMoves->user_id = Auth::id();
+                $cashMoves->money += $parcial->money;
+                $cashMoves->debit += $parcial->debit;
+                $cashMoves->credit += $parcial->credit;
+                $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
+                $order = $orderOriginal;
                 $categories = Category::all();
                 return view('home', compact('order', 'categories'));
-            }else
-	            $orderOriginal->status = $this->STATUS_PAGA_PARCIALMENTE;
-
-            $orderOriginal->update();
-            $parcial->save();
-
-            $order = $orderOriginal;
-            $categories = Category::all();
-            return view('home', compact('order', 'categories'));
-
         }
 
 		$totalItensRemovidos = 0;
@@ -463,17 +481,35 @@ class SellController extends Controller
 		$orderOriginal->status = $this->STATUS_PAGA_PARCIALMENTE;
 		$orderOriginal->update();
 
-		//Se for venda no dinheiro deve adicionar ao caixa em aberto
-		if($parcial->pay_method == 1){
-			$cash = CashController::buscaCaixaPorUsuario(Auth::id());
-			$cash->atual_value += $parcial->total;
-			$cash->update();
-		}
+		//Adicionar as vendas ao caixa
+        $cash = CashController::buscaCaixaPorUsuario(Auth::id());
+        $cashMoves = new CashMoves();
+        $cashMoves->cash_id = $cash->id;
+        $cashMoves->order_id = $parcial->id;
+        $cashMoves->user_id = Auth::id();
+        $cashMoves->type = $cashMoves->getTIPOVENDA();
+        switch ($parcial->pay_method){
+            case 1:
+                $cashMoves->money += $parcial->total;
+                $cashMoves->total += $parcial->total;
+                break;
+            case 2:
+                $cashMoves->debit += $parcial->total;
+                $cashMoves->total += $parcial->total;
+                break;
+            case 3:
+                $cashMoves->credit += $parcial->total;
+                $cashMoves->total += $parcial->total;
+                break;
+            default:
+                break;
+        }
+        $cashMoves->save();
 
 		//verificar se a ordem de origem ainda possui itens, senão deve-se colocá-la como paga
 		if(Item::all()->where('order_id', '=', $orderOriginal->id)->isEmpty()){
 			$orderOriginal->status = $this->STATUS_PAGA;
-			$orderOriginal->save();
+			$orderOriginal->update();
 			return Redirect::to('/home')->with('vendaRealizada', 'Venda realizada com sucesso!');
 		}
 

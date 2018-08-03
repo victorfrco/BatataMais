@@ -30,6 +30,13 @@ class FkTables extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('cash_moves', function($table){
+            $table->foreign('cash_id')->references('id')->on('cashes');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
     }
 
     /**

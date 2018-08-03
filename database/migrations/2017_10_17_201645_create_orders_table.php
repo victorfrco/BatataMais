@@ -19,6 +19,9 @@ class CreateOrdersTable extends Migration
 	        $table->decimal('total', 8,2)->nullable();
 	        $table->decimal('absolut_total', 8,2)->nullable();
 	        $table->decimal('discount', 8,2)->nullable();
+	        $table->decimal('debit', 8,2)->nullable();
+	        $table->decimal('credit', 8,2)->nullable();
+	        $table->decimal('money', 8,2)->nullable();
             $table->smallInteger('status');
             $table->boolean('associated');
             $table->smallInteger('pay_method')->nullable();

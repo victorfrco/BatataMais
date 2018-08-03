@@ -11,10 +11,18 @@
                     echo 'Não existe caixa em aberto. Por favor realize a abertura de caixa!<br><br>';
                     echo \Bootstrapper\Facades\Button::success('Abrir Caixa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#abrirCaixaModal']);
                 }else{
-                    echo 'Hora de abertura do caixa: '.$caixa->getDataAberturaFormatada().'<br>';
-                    echo 'Valor de abertura: '.$caixa->getValorAberturaFormatado().'<br>';
-                    echo 'Valor de vendas *: '.$caixa->getValorAtualFormatado().'<br>';
-                    echo 'Valor atual (caixa + troco): '.$caixa->getValorTotalFormatado().'<br><br>';
+                    echo \Bootstrapper\Facades\Button::success('Nova Entrada').' ';
+                    echo \Bootstrapper\Facades\Button::danger('Nova Saída').'<br><br>';
+                    echo \Bootstrapper\Facades\Button::normal('<img src="https://png.icons8.com/metro/50/000000/cash-register.png">   Valor de Abertura: '.$caixa->getValorAberturaFormatado())->large().'<br><br>';
+                    echo \Bootstrapper\Facades\Button::INFO(\Bootstrapper\Facades\Icon::create('credit-card')->withAttributes(['style' => 'color:black']).'  Débito: '.$caixa->getValorAberturaFormatado()).' ';
+                    echo \Bootstrapper\Facades\Button::INFO(\Bootstrapper\Facades\Icon::create('credit-card')->withAttributes(['style' => 'color:black']).'  Crédito: '.$caixa->getValorAberturaFormatado()).' ';
+                    echo \Bootstrapper\Facades\Button::INFO('<img src="https://png.icons8.com/metro/50/000000/money.png">  Dinheiro: '.$caixa->getValorAberturaFormatado()).'<br><br>';
+                    echo \Bootstrapper\Facades\Button::success('Entradas: '.$caixa->getValorAberturaFormatado())->large()->withAttributes(['style' => 'background-color: #99ffd6; color:black']);
+                    echo \Bootstrapper\Facades\Button::danger('Saídas: '.$caixa->getValorAberturaFormatado())->large()->withAttributes(['style' => 'background-color: #ff8080; color:black']).'<BR><BR>VALOR TOTAL: R$10,00<br>';
+                    //echo 'Hora de abertura do caixa: '.$caixa->getDataAberturaFormatada().'<br>';
+                    //echo 'Valor de abertura: '.$caixa->getValorAberturaFormatado().'<br>';
+                    //echo 'Valor de vendas *: '.$caixa->getValorAtualFormatado().'<br>';
+                    //echo 'Valor atual (caixa + troco): '.$caixa->getValorTotalFormatado().'<br><br>';
                     echo \Bootstrapper\Facades\Button::danger('Fechar Caixa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#fecharCaixaModal']);
                 }
             @endphp
@@ -76,7 +84,6 @@
             </div>
         </div>
     </div>
-    <footer style="position: absolute; bottom: 50px;">* Vendas pagas no DINHEIRO</footer>
 @endsection
 @section('scripts')
     <!-- Latest compiled and minified CSS -->
