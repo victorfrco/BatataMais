@@ -263,18 +263,47 @@ class SellController extends Controller
         if($request->get('user_id') != null)
         	$order->user_id = $request->get('user_id');
 
-        if($order->pay_method == 4)
-            $order->obs = $request->toArray()['obs'];
+        $cash = CashController::buscaCaixaPorUsuario(Auth::id());
+        $cashMoves = new CashMoves();
+        $cashMoves->type = $cashMoves->getTIPOVENDA();
+        $cashMoves->cash_id = $cash->id;
+        $cashMoves->order_id = $order->id;
+        $cashMoves->user_id = Auth::id();
+        switch ($order->pay_method){
+            case 1:
+                $cashMoves->money += $order->total;
+                $cashMoves->total += $order->total;
+                break;
+            case 2:
+                $cashMoves->debit += $order->total;
+                $cashMoves->total += $order->total;
+                break;
+            case 3:
+                $cashMoves->credit += $order->total;
+                $cashMoves->total += $order->total;
+                break;
+            case 4:
+                $cashMoves->money += $order->money;
+                $cashMoves->debit += $order->debit;
+                $cashMoves->credit += $order->credit;
+                $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
+                $cashMoves->save();
+                break;
+            default:
+                break;
+        }
+        $cashMoves->save();
 
 	    if(array_key_exists('valorDesconto', $request->toArray())) {
 		    $order->discount = $request->toArray()['valorDesconto'];
 	        $order->total -= $order->discount;
-	    }
-
-	    if($order->pay_method == 1){
-			$cash = CashController::buscaCaixaPorUsuario(Auth::id());
-			$cash->atual_value += $order->total;
-			$cash->update();
+            $cashMovesDiscount = new CashMoves();
+            $cashMovesDiscount->type = $cashMoves->getTIPODESCONTO();
+            $cashMovesDiscount->cash_id = $cash->id;
+            $cashMovesDiscount->order_id = $order->id;
+            $cashMovesDiscount->user_id = Auth::id();
+            $cashMovesDiscount->total = $order->discount;
+            $cashMovesDiscount->save();
 	    }
 
         $order->status = $this->STATUS_PAGA;
@@ -342,12 +371,12 @@ class SellController extends Controller
 		$itens = Item::all()->where('order_id', '=', $order->id);
 		$divs = [];
 		$divHeader = '<table class="table table-bordered" style="font-size: 13px; color:black">
-                    <tr>
-                        <th style="text-align: center">Descrição</th>
-                        <th style="text-align: center">Quantidade</th>
-                        <th style="text-align: center">Valor Unidade</th>
-                        <th style="text-align: center">A Pagar</th>
-                    </tr>';
+                        <tr>
+                            <th style="text-align: center">Descrição</th>
+                            <th style="text-align: center">Quantidade</th>
+                            <th style="text-align: center">Valor Unidade</th>
+                            <th style="text-align: center">A Pagar</th>
+                        </tr>';
 		$divFooter = '<input name="_token" type="hidden" value="'. csrf_token().'"/></table>';
 		foreach ($itens as $item){
 			$product = Product::find($item->product_id);
@@ -412,6 +441,7 @@ class SellController extends Controller
                 $cashMoves->debit += $parcial->debit;
                 $cashMoves->credit += $parcial->credit;
                 $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
+                $cashMoves->save();
                 return Redirect::to('/home')->with('vendaRealizada', 'Venda realizada com sucesso!');
             }else
                 $orderOriginal->status = $this->STATUS_PAGA_PARCIALMENTE;
@@ -428,6 +458,7 @@ class SellController extends Controller
                 $cashMoves->debit += $parcial->debit;
                 $cashMoves->credit += $parcial->credit;
                 $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
+                $cashMoves->save();
                 $order = $orderOriginal;
                 $categories = Category::all();
                 return view('home', compact('order', 'categories'));

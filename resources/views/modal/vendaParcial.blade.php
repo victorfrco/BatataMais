@@ -51,14 +51,23 @@
                         <option value="3">Cartão de Crédito</option>
                         <option value="4">Múltiplo</option>
                     </select>
-                    <div id="obsParcial" style="display: none; width:500px">';
+                    <div id="obsParcial" style="display: none; width:400px">';
                         if(isset($order))
-                            echo 'Valor Dinheiro: <input id="dinheiro" name="dinheiro" type="number" max="'.$order->total.'" step="0.01">
-                            <br>
-                            Valor Débito: <input id="debito" name="debito" type="number" max="'.$order->total.'" step="0.01">
-                            <br>
-                            Valor Crédito: <input id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01">
-                            <br>
+                            echo '
+                            <table class="table">
+                            <tr>
+                                <td>Valor Dinheiro: </td>
+                                <td><input style="width:120px" id="dinheiro" name="dinheiro" type="number" max="'.$order->total.'" step="0.01"></td>
+                            </tr>
+                            <tr>
+                                <td>Valor Débito: </td>
+                                <td><input style="width:120px" id="debito" name="debito" type="number" max="'.$order->total.'" step="0.01"></td>
+                            </tr>
+                            <tr>
+                                <td>Valor Crédito: </td>
+                                <td><input style="width:120px" id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01"></td>
+                            </tr>
+                            </table>
                     </div>
                     <div id="produtosParciais">
                     <br><p style="display:inline; vertical-align: middle;font-weight: bold">Selecione os produtos a pagar: </p>';

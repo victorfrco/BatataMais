@@ -10,6 +10,15 @@ class CashMoves extends Model
     private static $TIPO_ENTRADA = 1;
     private static $TIPO_SAIDA = 2;
     private static $TIPO_VENDA = 3;
+    private static $TIPO_DESCONTO = 4;
+
+    /**
+     * @return int
+     */
+    public static function getTIPODESCONTO()
+    {
+        return self::$TIPO_DESCONTO;
+    }
 
     /**
      * @return int

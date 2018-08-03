@@ -24,11 +24,11 @@
                 </select>
                 <div id="troco" style="display: none;">
                     @if(isset($order))
-                        Valor da venda (R$): <input style="margin-left: 5px; width: 90px" type="text" id="num1" value="{{$order->total}}" disabled="true" />
-                        |
+                        <table class="table">
+                            <tr> <td>Valor da venda (R$): </td> <td><input style="margin-left: 5px; width: 90px" type="text" id="num1" value="{{$order->total}}" disabled="true" /></td></tr>
                     @endif
-                    Valor entregue: <input style="margin-left: 5px; width: 90px" type="text" id="num2" onblur="calcular();" />
-                    <br>
+                            <tr> <td>Valor entregue: </td> <td><input style="margin-left: 5px; width: 90px" type="text" id="num2" onblur="calcular();" /></td></tr>
+                        </table>
                 </div>
                 <div id="obsTotal" style="display: none; width:500px">
                     @if(isset($order))
