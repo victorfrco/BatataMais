@@ -295,15 +295,18 @@ class SellController extends Controller
         $cashMoves->save();
 
 	    if(array_key_exists('valorDesconto', $request->toArray())) {
-		    $order->discount = $request->toArray()['valorDesconto'];
-	        $order->total -= $order->discount;
-            $cashMovesDiscount = new CashMoves();
-            $cashMovesDiscount->type = $cashMoves->getTIPODESCONTO();
-            $cashMovesDiscount->cash_id = $cash->id;
-            $cashMovesDiscount->order_id = $order->id;
-            $cashMovesDiscount->user_id = Auth::id();
-            $cashMovesDiscount->total = $order->discount;
-            $cashMovesDiscount->save();
+            if($request->toArray()['valorDesconto'] != "") {
+                $discount = Sell::converteMoedaParaDecimal($request->toArray()['valorDesconto']);
+                $order->total -= $discount;
+                $order->discount = $discount;
+                $cashMovesDiscount = new CashMoves();
+                $cashMovesDiscount->type = $cashMoves->getTIPODESCONTO();
+                $cashMovesDiscount->cash_id = $cash->id;
+                $cashMovesDiscount->order_id = $order->id;
+                $cashMovesDiscount->user_id = Auth::id();
+                $cashMovesDiscount->total = $discount;
+                $cashMovesDiscount->save();
+            }
 	    }
 
         $order->status = $this->STATUS_PAGA;

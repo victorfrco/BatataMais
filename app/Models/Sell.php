@@ -46,4 +46,15 @@ class Sell extends Model
         return $string;
     }
 
+    public static function converteMoedaParaDecimal($valorDesconto)
+    {
+        $teste = trim($valorDesconto, 'R\$\ ');
+        $teste = str_replace('.', '', $teste);
+        $teste = str_replace(',', '.', $teste);
+        if($valorDesconto != "")
+            if($valorDesconto[0] === '.')
+                $teste = '0' . $teste;
+        return $teste;
+    }
+
 }
