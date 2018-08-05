@@ -28,7 +28,7 @@
                             <br>
                             Valor Crédito: <input id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01">
                             <br>
-                    
+
                     <div id="produtosParciais">';
                     if(isset($order)){
                             echo Form::hidden('order_id', $order->id);
@@ -57,15 +57,15 @@
                             <table class="table">
                             <tr>
                                 <td>Valor Dinheiro: </td>
-                                <td><input style="width:120px" id="dinheiro" name="dinheiro" type="number" max="'.$order->total.'" step="0.01"></td>
+                                <td><input style="width:120px" id="dinheiro" name="dinheiro" type="text" max="'.$order->total.'"  ></td>
                             </tr>
                             <tr>
                                 <td>Valor Débito: </td>
-                                <td><input style="width:120px" id="debito" name="debito" type="number" max="'.$order->total.'" step="0.01"></td>
+                                <td><input style="width:120px" id="debito" name="debito" type="text" max="'.$order->total.'"  ></td>
                             </tr>
                             <tr>
                                 <td>Valor Crédito: </td>
-                                <td><input style="width:120px" id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01"></td>
+                                <td><input style="width:120px" id="credito" name="credito" type="text" max="'.$order->total.'"  ></td>
                             </tr>
                             </table>
                     </div>
@@ -87,4 +87,15 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         </div>
     </div>
-</div></div>
+</div>
+<script>
+    $('#debito, #credito, #dinheiro').keyup(function(){
+        var v = $(this).val();
+        v=v.replace(/\D/g,'');
+        v=v.replace(/(\d{1,2})$/, ',$1');
+        v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        v = v != ''?'R$ '+v:'';
+        v=v.replace(/^0+/, '');
+        $(this).val(v);
+    });
+</script>

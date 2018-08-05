@@ -38,8 +38,20 @@
                 </div>
                 <div id="obsTotal" style="display: none; width:500px">
                     @if(isset($order))
-                        Valor total pago: <input id="valorPago" name="valorPago" type="number" value="{{$order->total}}" disabled="true" step="0.01">
-                        <br>
+                        <table class="table">
+                            <tr>
+                                <td>Valor Dinheiro: </td>
+                                <td><input style="width:120px" id="dinheiro" name="dinheiro" type="text" max="'.$order->total.'"></td>
+                            </tr>
+                            <tr>
+                                <td>Valor Débito: </td>
+                                <td><input style="width:120px" id="debito" name="debito" type="text" max="'.$order->total.'"></td>
+                            </tr>
+                            <tr>
+                                <td>Valor Crédito: </td>
+                                <td><input style="width:120px" id="credito" name="credito" type="text" max="'.$order->total.' "></td>
+                            </tr>
+                        </table>
                     @endif
                 </div>
                 <div id="valorDesconto" style="display: none;">
@@ -63,16 +75,7 @@
     </div>
 </div>
 <script>
-    $('#num2').keyup(function(){
-        var v = $(this).val();
-        v=v.replace(/\D/g,'');
-        v=v.replace(/(\d{1,2})$/, ',$1');
-        v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-        v = v != ''?'R$ '+v:'';
-        v=v.replace(/^0+/, '');
-        $(this).val(v);
-    });
-    $('#num3').keyup(function(){
+    $('#num2, #num3, #debito, #credito, #dinheiro').keyup(function(){
         var v = $(this).val();
         v=v.replace(/\D/g,'');
         v=v.replace(/(\d{1,2})$/, ',$1');

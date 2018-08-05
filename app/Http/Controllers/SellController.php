@@ -257,8 +257,15 @@ class SellController extends Controller
     }
 
     public function concluirVenda(Request $request){
+        $dinheiro = Sell::converteMoedaParaDecimal($request->toArray()['dinheiro']);
+        $debito = Sell::converteMoedaParaDecimal($request->toArray()['debito']);
+        $credito = Sell::converteMoedaParaDecimal($request->toArray()['credito']);
         $order = Order::find($request->toArray()['order_id']);
         $order->pay_method = $request->toArray()['formaPagamento'];
+        $order->total = $debito + $credito + $dinheiro;
+        $order->debit = $debito;
+        $order->credit = $credito;
+        $order->money = $dinheiro;
 
         if($request->get('user_id') != null)
         	$order->user_id = $request->get('user_id');
@@ -271,23 +278,25 @@ class SellController extends Controller
         $cashMoves->user_id = Auth::id();
         switch ($order->pay_method){
             case 1:
-                $cashMoves->money += $order->total;
-                $cashMoves->total += $order->total;
+                $cashMoves->money = $order->total;
+                $cashMoves->total = $order->total;
+                $order->money = $order->total;
                 break;
             case 2:
-                $cashMoves->debit += $order->total;
-                $cashMoves->total += $order->total;
+                $cashMoves->debit = $order->total;
+                $cashMoves->total = $order->total;
+                $order->debit = $order->total;
                 break;
             case 3:
-                $cashMoves->credit += $order->total;
-                $cashMoves->total += $order->total;
+                $cashMoves->credit = $order->total;
+                $cashMoves->total = $order->total;
+                $order->credit = $order->total;
                 break;
             case 4:
-                $cashMoves->money += $order->money;
-                $cashMoves->debit += $order->debit;
-                $cashMoves->credit += $order->credit;
-                $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
-                $cashMoves->save();
+                $cashMoves->money = $order->money;
+                $cashMoves->debit = $order->debit;
+                $cashMoves->credit = $order->credit;
+                $cashMoves->total = $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
                 break;
             default:
                 break;
@@ -410,9 +419,9 @@ class SellController extends Controller
 	public function vendaParcial(Request $request){
 		//verificar se o item só contem um produto, se for unico troca o order_id do item,
 		//     senão cria um novo item para essa order e subtrai a quantidade de produtos do item da ordem antiga
-        $dinheiro = $request->get('dinheiro');
-        $debito = $request->get('debito');
-        $credito = $request->get('credito');
+        $dinheiro = Sell::converteMoedaParaDecimal($request->toArray()['dinheiro']);
+        $debito = Sell::converteMoedaParaDecimal($request->toArray()['debito']);
+        $credito = Sell::converteMoedaParaDecimal($request->toArray()['credito']);
         $orderOriginal = Order::find($request->get('order_id'));
 		$parcial = new Order();
 		//setar forma de pagamento, e valor total da ordem derivada,
