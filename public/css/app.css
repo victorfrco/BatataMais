@@ -178,6 +178,30 @@ select {
   text-transform: none;
 }
 
+
+input {
+  line-height: normal;
+  border-radius:5px;
+  background-color: white;
+}
+
+select {
+  border-radius: 5px;
+  border-color: rgb(131, 131, 131);
+  -webkit-appearance: menulist;
+  box-sizing: border-box;
+  align-items: center;
+  height: 30px;
+  white-space: pre;
+  -webkit-rtl-ordering: logical;
+  color: rgb(255, 255, 255);
+  background-color: white;
+  cursor: default;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+}
+
 button,
 html input[type="button"],
 input[type="reset"],
@@ -1448,7 +1472,7 @@ textarea {
 a {
   color: #edb820;
   text-decoration: none;
-  text-shadow: 0.5px 0.5px 0.5px #811014;
+  text-shadow: 0.5px 0.5px 0.5px #0f0f0f;
 }
 
 a:hover,

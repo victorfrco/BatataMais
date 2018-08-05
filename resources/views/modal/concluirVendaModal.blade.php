@@ -14,34 +14,39 @@
                         <option value="{{$user->id}}">{{$user->name}}</option>
                     @endforeach
                 </select>--}}
-                <br><p style="display:inline; vertical-align: middle;font-weight: bold">Selecione a forma de pagamento: </p>
-                <select class="" id="formaPagamentoTotal" required name="formaPagamento" style="width: 212px;" onclick='troco();total();'>
-                    <option value="">Selecione...</option>
-                    <option value="1">Dinheiro</option>
-                    <option value="2">Cartão de Débito</option>
-                    <option value="3">Cartão de Crédito</option>
-                    <option value="4">Múltiplo</option>
-                </select>
+                <br>
+                <table class="table ">
+                    <tr>
+                        <td width="250px"><p style="display:inline; vertical-align: middle;font-weight: bold">Forma de pagamento: </p></td>
+                        <td td width="250px">
+                            <select class="select" id="formaPagamentoTotal" required name="formaPagamento" style="width: 212px; text-decoration-color: #0f0f0f" onclick='troco();total();'>
+                                <option value="">Selecione...</option>
+                                <option value="1">Dinheiro</option>
+                                <option value="2">Cartão de Débito</option>
+                                <option value="3">Cartão de Crédito</option>
+                                <option value="4">Múltiplo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
                 <div id="troco" style="display: none;">
                     @if(isset($order))
                         <table class="table">
-                            <tr> <td>Valor da venda (R$): </td> <td><input style="margin-left: 5px; width: 90px" type="text" id="num1" value="{{$order->total}}" disabled="true" /></td></tr>
-                    @endif
-                            <tr> <td>Valor entregue: </td> <td><input style="margin-left: 5px; width: 90px" type="text" id="num2" onblur="calcular();" /></td></tr>
+                            <tr> <td width="250px">Valor da venda (R$): </td> <td width="250px"><input style="width: 90px" type="text" id="num1" value="{{$order->total}}" disabled="true" /></td></tr>
                         </table>
+                    @endif
                 </div>
                 <div id="obsTotal" style="display: none; width:500px">
                     @if(isset($order))
                         Valor total pago: <input id="valorPago" name="valorPago" type="number" value="{{$order->total}}" disabled="true" step="0.01">
                         <br>
                     @endif
-                    Informe uma observação:
-                    <textarea name="obs" style="width:500px"></textarea>
                 </div>
                 <div id="valorDesconto" style="display: none;">
-                    Desconto(R$) <input style="width: 90px" id="num3" name="valorDesconto" type="text" step="0.01" onblur="calcular();">
+                    <table class="table">
+                        <tr><td width="250px">Desconto: </td> <td width="250px"><input style="width: 90px" id="num3" name="valorDesconto" type="text" step="0.01"></td></tr>
+                    </table>
                 </div>
-                <span id="resultado" style="font-size: 22px; font-weight: bold"></span>
                 @php
                     if(isset($order)){
                         echo Form::hidden('order_id', $order->id);
