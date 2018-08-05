@@ -5,13 +5,16 @@ namespace App\Models;
 use Bootstrapper\Facades\Button;
 use Bootstrapper\Facades\Icon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Sell extends Model
 {
     public static function atualizaTabelaDeItens($order_id)
     {
         $order = Order::find($order_id);
-        $itens = Item::all()->where('order_id', '=', $order_id);
+//        $itens = Item::all()->where('order_id', '=', $order_id);
+        $itens = DB::table('itens')->select('*')->where('order_id','=',$order_id)->orderByDesc('updated_at')->get();
+//        dd($itens, $itens2);
         $tableHeader = '<table class="table" style="font-size: 13px">
                             <tr>
                                 <th>Descrição</th>
