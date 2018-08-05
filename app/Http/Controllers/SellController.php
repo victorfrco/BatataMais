@@ -218,7 +218,7 @@ class SellController extends Controller
         $divs = [];
         $divHeader = '<table class="table table-bordered" style="font-size: 13px; color:black">
                     <tr>
-                        <th>Nome</th>
+                        <th>Cód - Nome</th>
                         <th style="text-align: center">Estoque</th>
                         <th style="text-align: center">Preço</th>
                         <th style="text-align: center">Associado</th>
@@ -227,8 +227,12 @@ class SellController extends Controller
                     </tr>';
         $divFooter = '<input name="_token" type="hidden" value="'. csrf_token().'"/></table>';
         foreach ($products as $product){
+            if($product->barcode != null && $product->barcode != "")
+                $productWithCode = $product->barcode.' - '.$product->name;
+            else
+                $productWithCode = $product->name;
             $divCont = '<tr>
-                        <td>'.$product->name.'
+                        <td>'.$productWithCode.'
                         </td>
                         <td style="text-align: center">
                         '.$product->qtd.'
