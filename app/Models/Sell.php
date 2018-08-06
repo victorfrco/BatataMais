@@ -13,8 +13,10 @@ class Sell extends Model
     {
         $order = Order::find($order_id);
 //        $itens = Item::all()->where('order_id', '=', $order_id);
-        $itens = DB::table('itens')->select('*')->where('order_id','=',$order_id)->orderByDesc('updated_at')->get();
-//        dd($itens, $itens2);
+//        $itens = Item::all()->where('order_id', '=', $order_id);
+        $itens = DB::table('itens')->select('*')->where('order_id','=',$order_id)->orderByDesc('updated_at')->get()->toArray();
+        $itens = Item::hydrate($itens);
+//        dd($itens, $itens2, $itens3);
         $tableHeader = '<table class="table" style="font-size: 13px">
                             <tr>
                                 <th>Descrição</th>

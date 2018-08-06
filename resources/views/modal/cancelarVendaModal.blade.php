@@ -7,7 +7,7 @@
             </div>
             {!! Form::open(array('action' => 'SellController@cancelarVenda', 'method' => 'post')) !!}
             <div class="modal-body">
-                <br><p style="display:inline; vertical-align: middle;font-weight: bold">  Deseja realmente cancelar a venda? </p>
+                <br><p style="text-align: center; vertical-align: middle;font-weight: bold">  Deseja realmente cancelar a venda? </p>
 
                 @php
                     if(isset($order)){

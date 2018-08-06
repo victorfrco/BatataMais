@@ -154,16 +154,15 @@
         </div>
     </div>
 
-
+    @include('modal/confirmarAssociadoModal')
+    @include('modal/removerAssociadoModal')
+    @include('modal/confirmarCartaoModal')
+    @include('modal/removerCartaoModal')
     @include('modal/productModal')
     @include('modal/novaMesaModal')
     @include('modal/concluirVendaModal')
     @include('modal/cancelarVendaModal')
     @include('modal/vendaParcial')
-    @include('modal/confirmarAssociadoModal')
-    @include('modal/removerAssociadoModal')
-    @include('modal/confirmarCartaoModal')
-    @include('modal/removerCartaoModal')
 
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="{{asset('js/ajax-crud.js')}}"></script>
