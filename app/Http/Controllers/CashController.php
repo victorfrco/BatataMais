@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cash;
 use App\Models\Category;
+use App\Models\Sell;
 use function array_key_exists;
 use DateTime;
 use Illuminate\Http\Request;
@@ -46,9 +47,7 @@ class CashController extends Controller
 
 	    $valor = $request->get('inicial_value');
 
-	    $source = array('.', ',');
-	    $replace = array('', '.');
-	    $valor = str_replace($source, $replace, $valor);
+	    $valor = Sell::converteMoedaParaDecimal($valor);
 	    $cash->inicial_value = $valor;
 	    $cash->status = 1;
 	    $cash->opened_at = new DateTime();
