@@ -30,7 +30,7 @@ class OrderController extends Controller
 
     public function criaListaPedidos($pedidos){
         $lista =[];
-        $categories = Category::all();
+        $categories = Category::all()->where('status','=',1);
         foreach ($pedidos as $order) {
             $div = Button::primary($order->client->nickname)->withAttributes([
                         'id' => $order->id,

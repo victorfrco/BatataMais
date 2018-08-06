@@ -14,7 +14,7 @@
         </div>
     </div>
     <script>
-        $('#pdiscount, #pcard, #pcost, #presale').keyup(function(){
+        $('#price_discount, #price_card, #price_cost, #price_resale').keyup(function(){
             var v = $(this).val();
             v=v.replace(/\D/g,'');
             v=v.replace(/(\d{1,2})$/, ',$1');
