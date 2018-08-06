@@ -52,11 +52,9 @@ class Sell extends Model
     {
         if($valor != "") {
             $teste = trim($valor, 'R\$\ ');
-            $teste = str_replace('.', '', $teste);
             $teste = str_replace(',', '.', $teste);
             if ($valor[0] === '.')
                 $teste = '0' . $teste;
-            dd($valor, $teste);
             return $teste;
         }
     }
