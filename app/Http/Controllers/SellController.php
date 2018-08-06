@@ -52,7 +52,7 @@ class SellController extends Controller
 		}
 
 		$order->update();
-		$categories = Category::all();
+		$categories = Category::all()->where('status','=', 1);
 
 		return view('home', compact('order', 'categories'));
 	}
@@ -69,7 +69,7 @@ class SellController extends Controller
 		}
 
 		$order->update();
-		$categories = Category::all();
+		$categories = Category::all()->where('status','=', 1);
 
 		return view('home', compact('order', 'categories'));
 	}
@@ -78,7 +78,7 @@ class SellController extends Controller
     public function removeItem(Request $request){
 		$item = Item::find($request->toArray()['item']);
 	    $product = Product::find($item->product_id);
-	    $categories = Category::all();
+	    $categories = Category::all()->where('status','=', 1);
 
 	    $product->qtd += $item->qtd;
 	    $product->update();
@@ -153,7 +153,7 @@ class SellController extends Controller
 			    return redirect()->back()->with( 'inexistente', '' );
 		    }
 	    }
-	    $categories = Category::all();
+	    $categories = Category::all()->where('status','=', 1);
 	    return view('home', compact('order', 'categories'));
     }
 
@@ -209,7 +209,7 @@ class SellController extends Controller
             }
         }
 	    $order->update();
-        $categories = Category::all();
+        $categories = Category::all()->where('status','=', 1);
 	    return view('home', compact('order', 'categories'));
     }
 
@@ -476,7 +476,7 @@ class SellController extends Controller
                 $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
                 $cashMoves->save();
                 $order = $orderOriginal;
-                $categories = Category::all();
+                $categories = Category::all()->where('status','=', 1);
                 return view('home', compact('order', 'categories'));
         }
 
@@ -561,7 +561,7 @@ class SellController extends Controller
 		}
 
         $order = $orderOriginal;
-		$categories = Category::all();
+		$categories = Category::all()->where('status','=', 1);
 		return view('home', compact('order', 'categories'));
 	}
 

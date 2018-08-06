@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forms\ProductForm;
 use App\Models\Product;
+use App\Models\Sell;
 use function compact;
 use function dd;
 use Illuminate\Http\Request;
@@ -97,12 +98,18 @@ class ProductController extends Controller
         }
 
         $data = $form->getFieldValues();
-	    $source = array('.', ',');
-	    $replace = array('', '.');
-        $data['price_cost'] = str_replace($source, $replace, $data['price_cost']);
-        $data['price_resale'] = str_replace($source, $replace, $data['price_resale']);
-        $data['price_discount'] = str_replace($source, $replace, $data['price_discount']);
-        $data['price_card'] = str_replace($source, $replace, $data['price_card']);
+
+        $data['price_cost'] = Sell::converteMoedaParaDecimal($data['price_cost']);
+        $data['price_resale'] = Sell::converteMoedaParaDecimal($data['price_resale']);
+        $data['price_discount'] = Sell::converteMoedaParaDecimal($data['price_discount']);
+        $data['price_card'] = Sell::converteMoedaParaDecimal($data['price_card']);
+//	    $source = array('.', ',');
+//	    $replace = array('.', '.');
+//        $data['price_cost'] = str_replace($source, $replace, $data['price_cost']);
+//        $data['price_resale'] = str_replace($source, $replace, $data['price_resale']);
+//        $data['price_discount'] = str_replace($source, $replace, $data['price_discount']);
+//        $data['price_card'] = str_replace($source, $replace, $data['price_card']);
+        $data['status'] = $data['status'] == null ? 0 : 1;
 
         Product::create($data);
 
@@ -160,6 +167,7 @@ class ProductController extends Controller
 
 
         $data = $form->getFieldValues();
+        $data['status'] = $data['status'] == null ? 0 : 1;
         $product->update($data);
 
         session()->flash('message', 'Produto alterado com sucesso!');

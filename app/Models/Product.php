@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements TableInterface
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'price_card', 'barcode', 'qtd', 'brand_id'];
+    protected $fillable = ['name', 'description', 'price_cost', 'price_resale', 'price_discount', 'price_card', 'barcode', 'qtd', 'brand_id','status'];
 
     public function brands(){
         return $this->belongsTo(Brand::class);

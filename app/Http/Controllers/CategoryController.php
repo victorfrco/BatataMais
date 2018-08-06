@@ -58,6 +58,7 @@ class CategoryController extends Controller
         }
 
         $data = $form->getFieldValues();
+        $data['status'] = $data['status'] == null ? 0 : 1;
         Category::create($data);
         $request->session()->flash('message', 'Categoria cadastrada com sucesso!');
         return redirect()->route('admin.categories.index');
@@ -112,6 +113,7 @@ class CategoryController extends Controller
         }
 
         $data = $form->getFieldValues();
+        $data['status'] = $data['status'] == null ? 0 : 1;
         $category->update($data);
 
         session()->flash('message', 'Categoria cadastrada com sucesso!');

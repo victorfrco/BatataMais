@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::all()->where('status','=', 1);
         return view('home', compact('categories'));
     }
 }

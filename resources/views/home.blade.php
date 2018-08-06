@@ -73,7 +73,7 @@
             <div class="col-xs-7 col-sm-6 col-lg-8" style="background-color:#000000; background-image:url({{asset('storage/images/brands/listaEsquerda.jpg')}}); overflow: auto; margin-left:-61px; border: solid; border-width: 1px; height: 450px;" id="tabsCategorias" data-url="<?= route('admin.categories.create') ?>">
                 @php
                     foreach($categories as $category){
-                        $brands = App\Models\Brand::all()->where('category_id', '=', $category->id);
+                        $brands = App\Models\Brand::all()->where('category_id', '=', $category->id)->where('status','=', 1);
                         $listadivs = [];
                         foreach ($brands as $brand){
                             $exibe = App\Models\Brand::criaLista($brand->id);

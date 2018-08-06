@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price_card', 8,2)->default(0);
             $table->integer('qtd')->nullable();
             $table->string('barcode')->nullable();
+            $table->smallInteger('status')->default(1);
             $table->timestamps();
 
             $table->unsignedInteger('brand_id');

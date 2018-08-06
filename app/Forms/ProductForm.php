@@ -13,10 +13,10 @@ class ProductForm extends Form
         $this
             ->add('name', 'text', ['label' => 'Nome', 'rules' => 'required'])
             ->add('description', 'text', ['label' => 'Descrição'])
-            ->add('price_cost', 'text', ['label' => 'Preço de Compra', 'rules' => 'required'])
-            ->add('price_resale', 'text', ['label' => 'Preço de Venda', 'rules' => 'required'])
-            ->add('price_discount', 'text', ['label' => 'Preço Associado', 'rules' => 'required'])
-            ->add('price_card', 'text', ['label' => 'Preço Cartão', 'rules' => 'required'])
+            ->add('price_cost', 'text', ['label' => 'Preço de Compra', 'rules' => 'required', 'id' => 'pcost'])
+            ->add('price_resale', 'text', ['label' => 'Preço de Venda', 'rules' => 'required', 'id' => 'presale'])
+            ->add('price_discount', 'text', ['label' => 'Preço Associado', 'rules' => 'required', 'id' => 'pdiscount'])
+            ->add('price_card', 'text', ['label' => 'Preço Cartão', 'rules' => 'required', 'id' => 'pcard'])
 	        ->add('barcode','text', ['label' => 'Código de Barras'])
             ->add('brand_id','entity', [
                 'label' => 'Marca',
@@ -27,6 +27,7 @@ class ProductForm extends Form
                     // If query builder option is not provided, all data is fetched
                     return $brand;
                 }
-            ]);
+            ])
+            ->add('status','checkbox',['label' => 'Ativo']);
     }
 }

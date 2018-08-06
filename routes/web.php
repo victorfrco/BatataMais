@@ -41,7 +41,7 @@ Route::get('/home/{id}', function($id){
 Route::post('/concluirVenda', 'SellController@concluirVenda');
 
 Route::get('/modal/{product_id?}',function($product_id){
-    $products = App\Models\Product::all()->where('brand_id', '=', $product_id);
+    $products = App\Models\Product::all()->where('brand_id', '=', $product_id)->where('status','=', 1);
     $brand = App\Models\Brand::find($product_id);
     $sellController = new \App\Http\Controllers\SellController();
     $tableHTML = $sellController->listaProdutosPorMarca($products);

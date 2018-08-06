@@ -11,8 +11,9 @@ class CategoryForm extends Form
         $this
             ->add('name', 'text', [
                 'label' => 'Nome',
-                'rules' => 'required|max:255|unique:categories'
+                'rules' => 'required|max:255'
             ])
-            ->add('description', 'text', ['label' => 'Descrição']);
+            ->add('description', 'text', ['label' => 'Descrição'])
+            ->add('status','checkbox',['label' => 'Ativo']);
     }
 }
