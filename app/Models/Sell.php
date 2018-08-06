@@ -56,7 +56,7 @@ class Sell extends Model
             $teste = str_replace(',', '.', $teste);
             if ($valor[0] === '.')
                 $teste = '0' . $teste;
-
+            dd($valor, $teste);
             return $teste;
         }
     }

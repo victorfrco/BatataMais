@@ -120,4 +120,32 @@ class CashController extends Controller
 	public static function buscaCaixaPorUsuario( $user_id ) {
 		return Cash::all()->where('user_id', '=', $user_id)->where('status', '=', 1)->first();
 	}
+
+    public function novaEntrada(Request $request){
+        dd($request);
+    }
+
+    public function novaSaida(Request $request){
+        dd($request);
+    }
+
+    public function buscaEntradas($id){
+        dd($id);
+    }
+
+    public function buscaSaidas($id){
+        dd($id);
+    }
+
+    public function buscaEntradasDebito($id){
+        dd($id);
+    }
+
+    public function buscaEntradasCredito($id){
+        dd($id);
+    }
+
+    public function buscaEntradasDinheito($id){
+        dd($id);
+    }
 }

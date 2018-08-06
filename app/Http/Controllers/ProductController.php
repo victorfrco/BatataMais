@@ -165,7 +165,6 @@ class ProductController extends Controller
                 ->withInput();
         }
 
-
         $data = $form->getFieldValues();
         $data['price_cost'] = Sell::converteMoedaParaDecimal($data['price_cost']);
         $data['price_resale'] = Sell::converteMoedaParaDecimal($data['price_resale']);

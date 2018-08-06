@@ -238,7 +238,7 @@
             }
         }
 
-        $('#inicial_value, #novaEntradaValor').keyup(function(){
+        $('#inicial_value, #novaEntradaValor, #novaSaidaValor').keyup(function(){
             var v = $(this).val();
             v=v.replace(/\D/g,'');
             v=v.replace(/(\d{1,2})$/, ',$1');
