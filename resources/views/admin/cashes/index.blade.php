@@ -13,16 +13,13 @@
                 }else{
                     echo \Bootstrapper\Facades\Button::success('Nova Entrada')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaEntradaModal']).' ';
                     echo \Bootstrapper\Facades\Button::danger('Nova Saída')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#novaSaidaModal']).'<br><br>';
-                    echo \Bootstrapper\Facades\Button::normal('<img src="https://png.icons8.com/metro/50/000000/cash-register.png">   Valor de Abertura: '.$caixa->getValorAberturaFormatado())->large()->withAttributes(['disabled' => 'true']).'<br><br>';
-                    echo \Bootstrapper\Facades\Button::INFO(\Bootstrapper\Facades\Icon::create('credit-card')->withAttributes(['style' => 'color:black']).'  Débito: '.$caixa->getValorAberturaFormatado())->withAttributes(['data-toggle' => 'modal', 'data-target' => '#caixaDebito']).' ';
-                    echo \Bootstrapper\Facades\Button::INFO(\Bootstrapper\Facades\Icon::create('credit-card')->withAttributes(['style' => 'color:black']).'  Crédito: '.$caixa->getValorAberturaFormatado())->withAttributes(['data-toggle' => 'modal', 'data-target' => '#caixaCredito']).' ';
-                    echo \Bootstrapper\Facades\Button::INFO('<img src="https://png.icons8.com/metro/50/000000/money.png">  Dinheiro: '.$caixa->getValorAberturaFormatado())->withAttributes(['data-toggle' => 'modal', 'data-target' => '#caixaDinheiro']).'<br><br>';
-                    echo \Bootstrapper\Facades\Button::success('Entradas: '.$caixa->getValorAberturaFormatado())->large()->withAttributes(['style' => 'background-color: #99ffd6; color:black'])->withAttributes(['data-toggle' => 'modal', 'data-target' => '#entradas']);
-                    echo \Bootstrapper\Facades\Button::danger('Saídas: '.$caixa->getValorAberturaFormatado())->large()->withAttributes(['style' => 'background-color: #ff8080; color:black'])->withAttributes(['data-toggle' => 'modal', 'data-target' => '#saidas']).'<BR><BR>VALOR TOTAL: R$10,00<br>';
-                    //echo 'Hora de abertura do caixa: '.$caixa->getDataAberturaFormatada().'<br>';
-                    //echo 'Valor de abertura: '.$caixa->getValorAberturaFormatado().'<br>';
-                    //echo 'Valor de vendas *: '.$caixa->getValorAtualFormatado().'<br>';
-                    //echo 'Valor atual (caixa + troco): '.$caixa->getValorTotalFormatado().'<br><br>';
+                    echo \Bootstrapper\Facades\Button::normal('<img src="https://png.icons8.com/metro/50/000000/cash-register.png">   Valor de Abertura: '.$caixa->getValorAberturaFormatado())->large()->withAttributes(['disabled' => 'true', 'style'=>'width: 700px;']).'<br><br>';
+                    echo \Bootstrapper\Facades\Button::INFO(\Bootstrapper\Facades\Icon::create('credit-card')->withAttributes(['style' => 'color:black; font-size:45px; vertical-align:middle']).'  Débito: '.\App\Http\Controllers\CashMovesController::buscaValoresDebito($caixa->id))->withAttributes(['data-toggle' => 'modal', 'data-target' => '#caixaDebito','style'=>'width: 230px; height:70px']).' ';
+                    echo \Bootstrapper\Facades\Button::INFO(\Bootstrapper\Facades\Icon::create('credit-card')->withAttributes(['style' => 'color:black; font-size:45px; vertical-align:middle']).'  Crédito: '.\App\Http\Controllers\CashMovesController::buscaValoresCredito($caixa->id))->withAttributes(['data-toggle' => 'modal', 'data-target' => '#caixaCredito', 'style'=>'width: 230px; height:70px']).' ';
+                    echo \Bootstrapper\Facades\Button::INFO('<img src="https://png.icons8.com/metro/50/000000/money.png">  Dinheiro: '.\App\Http\Controllers\CashMovesController::buscaValoresDinheiro($caixa->id))->withAttributes(['data-toggle' => 'modal', 'data-target' => '#caixaDinheiro', 'style'=>'width: 230px; height:70px']).'<br><br>';
+                    echo \Bootstrapper\Facades\Button::success('Entradas: '.\App\Http\Controllers\CashMovesController::buscaValoresEntradas($caixa->id))->large()->withAttributes(['style' => 'background-color: #99ffd6; color:black; width: 350px; height:70px'])->withAttributes(['data-toggle' => 'modal', 'data-target' => '#entradas']);
+                    echo \Bootstrapper\Facades\Button::danger('Saídas: '.\App\Http\Controllers\CashMovesController::buscaValoresSaidas($caixa->id))->large()->withAttributes(['style' => 'background-color: #ff8080; color:black; width: 350px; height:70px'])->withAttributes(['data-toggle' => 'modal', 'data-target' => '#saidas']).'<BR><BR>';
+                    echo \Bootstrapper\Facades\Button::normal('Total: '.\App\Http\Controllers\CashMovesController::buscaValorTotal($caixa->id))->withAttributes(['style'=>'width: 700px; height:70px; color: black; font-size:40px; vertical-align:middle']).'<br><br>';
                     echo \Bootstrapper\Facades\Button::danger('Fechar Caixa')->withAttributes(['data-toggle' => 'modal', 'data-target' => '#fecharCaixaModal']);
                 }
             @endphp
@@ -63,6 +60,7 @@
                     <label>
                         Informe o valor da nova entrada: R$
                         <input style="width: 90px" name="novaEntradaValor" id="novaEntradaValor">
+                        <input type="hidden" name="cash_id" id="cash_id" value="{{$caixa->id}}">
                     </label>
                     <br>Informe uma observação:
                     <textarea id="novaEntradaObservacao" name="novaEntradaObs" style="width:500px"></textarea>
@@ -88,6 +86,7 @@
                     <label>
                         Informe o valor da sangria: R$
                         <input style="width: 90px" name="novaSaidaValor" id="novaSaidaValor">
+                        <input type="hidden" name="cash_id" id="cash_id" value="{{$caixa->id}}">
                     </label>
                     <br>Informe uma observação:
                     <textarea id="novaSaidaObservacao" name="novaSaidaObs" style="width:500px"></textarea>
@@ -102,14 +101,18 @@
     </div>
 
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="caixaDebito" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 750px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo">Entradas de cartão de débito</h4>
                 </div>
                 <div class="modal-body">
-
+                        @php
+                            if($caixa != null){
+                                echo \App\Http\Controllers\CashController::buscaEntradasDebito($caixa->id);
+                        }
+                        @endphp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -119,14 +122,18 @@
     </div>
 
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="caixaCredito" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 750px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo">Entradas de cartão de crédito</h4>
                 </div>
                 <div class="modal-body">
-
+                    @php
+                        if($caixa != null){
+                            echo \App\Http\Controllers\CashController::buscaEntradasCredito($caixa->id);
+                    }
+                    @endphp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -136,14 +143,18 @@
     </div>
 
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="caixaDinheiro" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 750px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo">Entradas no dinheiro</h4>
                 </div>
                 <div class="modal-body">
-
+                    @php
+                        if($caixa != null){
+                            echo \App\Http\Controllers\CashController::buscaEntradasDinheiro($caixa->id);
+                    }
+                    @endphp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -153,14 +164,18 @@
     </div>
 
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="entradas" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 1000px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo">Entradas do Caixa</h4>
                 </div>
                 <div class="modal-body">
-
+                    @php
+                        if($caixa != null){
+                            echo \App\Http\Controllers\CashController::buscaEntradas($caixa->id);
+                    }
+                    @endphp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -170,14 +185,18 @@
     </div>
 
     <div data-keyboard="false" data-backdrop="static" class="modal fade" id="saidas" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 1000px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title titulo">Saídas do Caixa</h4>
                 </div>
                 <div class="modal-body">
-
+                    @php
+                        if($caixa != null){
+                            echo \App\Http\Controllers\CashController::buscaSaidas($caixa->id);
+                    }
+                    @endphp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

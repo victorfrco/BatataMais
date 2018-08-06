@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\CashMoves;
 use App\Models\Cash;
 use App\Models\Category;
+use App\Models\Client;
+use App\Models\Order;
 use App\Models\Sell;
+use App\User;
 use function array_key_exists;
 use DateTime;
 use Illuminate\Http\Request;
@@ -122,30 +126,145 @@ class CashController extends Controller
 	}
 
     public function novaEntrada(Request $request){
-        dd($request);
+//        dd($request->toArray());
+        $valor = Sell::converteMoedaParaDecimal($request->get('novaEntradaValor'));
+        $movimentacao = new CashMoves();
+        $movimentacao->total = $valor;
+        $movimentacao->type = CashMoves::getTIPOENTRADA();
+        $movimentacao->obs = $request->get('novaEntradaObs');
+        $movimentacao->user_id = Auth::id();
+        $movimentacao->cash_id = $request->get('cash_id');
+        $movimentacao->save();
+
+        $request->session()->flash('message', 'Entrada registrada com sucesso!');
+        return redirect()->route('admin.cashes.index');
     }
 
     public function novaSaida(Request $request){
-        dd($request);
+        $valor = Sell::converteMoedaParaDecimal($request->get('novaSaidaValor'));
+        $movimentacao = new CashMoves();
+        $movimentacao->total = $valor;
+        $movimentacao->type = CashMoves::getTIPOSAIDA();
+        $movimentacao->obs = $request->get('novaSaidaObs');
+        $movimentacao->user_id = Auth::id();
+        $movimentacao->cash_id = $request->get('cash_id');
+        $movimentacao->save();
+
+        $request->session()->flash('message', 'Saída registrada com sucesso!');
+        return redirect()->route('admin.cashes.index');
     }
 
-    public function buscaEntradas($id){
-        dd($id);
+    public static function buscaEntradas($id){
+        $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOENTRADA());
+        $itens = array();
+        foreach ($entradas as $entrada){
+            $item['usuario'] =  User::find($entrada->user_id)->email;
+            $item['valor'] = $entrada->total;
+            $dataFormatada = new \DateTime($entrada->created_at);
+            $item['datahora'] = $dataFormatada->format('d/m/Y H:i');
+            $item['obs'] = $entrada->obs;
+            array_push($itens, $item);
+        }
+        return CashController::montaTabelaEntradaSaida($itens);
     }
 
-    public function buscaSaidas($id){
-        dd($id);
+    public static function buscaSaidas($id){
+        $saidas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOSAIDA());
+        $itens = array();
+        foreach ($saidas as $saida){
+            $item['usuario'] =  User::find($saida->user_id)->email;
+            $item['valor'] = $saida->total;
+            $dataFormatada = new \DateTime($saida->created_at);
+            $item['datahora'] = $dataFormatada->format('d/m/Y H:i');
+            $item['obs'] = $saida->obs;
+            array_push($itens, $item);
+        }
+        return CashController::montaTabelaEntradaSaida($itens);
     }
 
-    public function buscaEntradasDebito($id){
-        dd($id);
+    public static function buscaEntradasDebito($id){
+//        CashMoves::getTIPOVENDA();
+        $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOVENDA())->where('debit','<>', null);
+        $itens = array();
+        foreach ($entradas as $entrada){
+            $item['cliente'] =  Client::find(Order::find($entrada->order_id)->client_id)->name;
+            $item['valor'] = $entrada->debit;
+            $dataFormatada = new \DateTime($entrada->created_at);
+            $item['datahora'] = $dataFormatada->format('d/m/Y H:i');
+            array_push($itens, $item);
+        }
+        return CashController::montaTabelaPagamentos($itens);
     }
 
-    public function buscaEntradasCredito($id){
-        dd($id);
+    public static function buscaEntradasCredito($id){
+        $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOVENDA())->where('credit','<>', null);
+        $itens = array();
+        foreach ($entradas as $entrada){
+            $item['cliente'] =  Client::find(Order::find($entrada->order_id)->client_id)->name;
+            $item['valor'] = $entrada->credit;
+            $dataFormatada = new \DateTime($entrada->created_at);
+            $item['datahora'] = $dataFormatada->format('d/m/Y H:i');
+            array_push($itens, $item);
+        }
+        return CashController::montaTabelaPagamentos($itens);
     }
 
-    public function buscaEntradasDinheito($id){
-        dd($id);
+    public static function buscaEntradasDinheiro($id){
+        $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOVENDA())->where('money','<>', null);
+        $itens = array();
+        foreach ($entradas as $entrada){
+            $item['cliente'] =  Client::find(Order::find($entrada->order_id)->client_id)->name;
+            $item['valor'] = $entrada->money;
+            $dataFormatada = new \DateTime($entrada->created_at);
+            $item['datahora'] = $dataFormatada->format('d/m/Y H:i');
+            array_push($itens, $item);
+        }
+        return CashController::montaTabelaPagamentos($itens);
+    }
+
+    private static function montaTabelaPagamentos($itens){
+        $linhas = [];
+        $header = '<table class="table table-condensed">
+                                        <tr>
+                                            <th style="text-align:center" width="50%">Cliente</th>
+                                            <th style="text-align:center" width="25%">Data</th>
+                                            <th style="text-align:center" width="25%">Valor</th>
+                                        </tr>';
+        foreach ($itens as $item){
+            $linha = '<tr>
+                                                <td style="text-align:left">'.$item['cliente'].'</td>
+                                                <td style="text-align:center">'.$item['datahora'].'</td>
+                                                <td style="text-align:center">'.$item['valor'].'</td>
+                                          </tr>';
+            array_push($linhas, $linha);
+        }
+        $footer = '</table>';
+        $linhas = implode($linhas);
+
+        return $header.$linhas.$footer;
+    }
+
+    private static function montaTabelaEntradaSaida($itens){
+        $linhas = [];
+        $header = '<table class="table table-condensed">
+                                        <tr>
+                                            <th style="text-align:center" width="20%">Usuário</th>
+                                            <th style="text-align:center" width="20%">Data</th>
+                                            <th style="text-align:center" width="20%">Valor</th>
+                                            <th style="text-align:center" width="40%">Observação</th>
+                                        </tr>';
+        foreach ($itens as $item){
+            $linha = '<tr>
+                                                <td style="text-align:center">'.$item['usuario'].'</td>
+                                                <td style="text-align:center">'.$item['datahora'].'</td>
+                                                <td style="text-align:center">'.$item['valor'].'</td>
+                                                <td style="text-align:center">'.$item['obs'].'</td>
+                                          </tr>';
+            array_push($linhas, $linha);
+        }
+        $footer = '</table>';
+        $linhas = implode($linhas);
+
+        return $header.$linhas.$footer;
     }
 }

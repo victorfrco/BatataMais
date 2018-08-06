@@ -11,6 +11,11 @@ class CashMoves extends Model
     private static $TIPO_SAIDA = 2;
     private static $TIPO_VENDA = 3;
     private static $TIPO_DESCONTO = 4;
+    private static $TIPO_BONIFICACAO = 5;
+
+
+    protected $table = 'cash_moves';
+    protected $fillable = ['total', 'debit', 'credit', 'money', 'obs', 'type', 'cash_id', 'order_id', 'user_id'];
 
     /**
      * @return int
@@ -18,6 +23,14 @@ class CashMoves extends Model
     public static function getTIPODESCONTO()
     {
         return self::$TIPO_DESCONTO;
+    }
+
+    /**
+     * @return int
+     */
+    public static function getTIPOBONIFICACAO()
+    {
+        return self::$TIPO_BONIFICACAO;
     }
 
     /**

@@ -3,83 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\CashMoves;
+use App\Models\Cash;
 use Illuminate\Http\Request;
 
 class CashMovesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public static function buscaValoresDebito($id){
+        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('debit');
+        return 'R$ '.number_format($cashMoves, 2,',', '.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public static function buscaValoresCredito($id){
+        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('credit');
+        return 'R$ '.number_format($cashMoves, 2,',', '.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public static function buscaValoresDinheiro($id){
+        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('money');
+        return 'R$ '.number_format($cashMoves, 2,',', '.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CashMoves  $cashMoves
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CashMoves $cashMoves)
-    {
-        //
+    public static function buscaValoresEntradas($id){
+        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOENTRADA())->sum('total');
+        return 'R$ '.number_format($cashMoves, 2,',', '.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CashMoves  $cashMoves
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CashMoves $cashMoves)
-    {
-        //
+    public static function buscaValoresSaidas($id){
+        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOSAIDA())->sum('total');
+        return 'R$ '.number_format($cashMoves, 2,',', '.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CashMoves  $cashMoves
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CashMoves $cashMoves)
-    {
-        //
+    public static function buscaValorTotal($id){
+        $debito = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('debit');
+        $credito = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('credit');
+        $dinheiro = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('money');
+        $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOENTRADA())->sum('total');
+        $saidas = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOSAIDA())->sum('total');
+
+        $total = $debito + $credito + $dinheiro + $entradas - $saidas;
+
+        return 'R$ '.number_format($total, 2,',', '.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CashMoves  $cashMoves
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CashMoves $cashMoves)
-    {
-        //
-    }
 }
+

@@ -261,12 +261,13 @@ class SellController extends Controller
     }
 
     public function concluirVenda(Request $request){
+//        dd($request->toArray());
         $dinheiro = Sell::converteMoedaParaDecimal($request->toArray()['dinheiro']);
         $debito = Sell::converteMoedaParaDecimal($request->toArray()['debito']);
         $credito = Sell::converteMoedaParaDecimal($request->toArray()['credito']);
         $order = Order::find($request->toArray()['order_id']);
         $order->pay_method = $request->toArray()['formaPagamento'];
-        $order->total = $debito + $credito + $dinheiro;
+//        $order->total = $debito + $credito + $dinheiro;
         $order->debit = $debito;
         $order->credit = $credito;
         $order->money = $dinheiro;
@@ -430,7 +431,7 @@ class SellController extends Controller
 		$parcial = new Order();
 		//setar forma de pagamento, e valor total da ordem derivada,
 		$parcial->pay_method = $request->get('formaPagamento');
-		$parcial->total = $debito + $credito + $dinheiro;
+//		$parcial->total = $debito + $credito + $dinheiro;
         $parcial->debit = $debito;
         $parcial->credit = $credito;
         $parcial->money = $dinheiro;
@@ -538,19 +539,23 @@ class SellController extends Controller
         switch ($parcial->pay_method){
             case 1:
                 $cashMoves->money += $parcial->total;
+                $parcial->money += $parcial->total;
                 $cashMoves->total += $parcial->total;
                 break;
             case 2:
                 $cashMoves->debit += $parcial->total;
+                $parcial->debit += $parcial->total;
                 $cashMoves->total += $parcial->total;
                 break;
             case 3:
                 $cashMoves->credit += $parcial->total;
+                $parcial->credit += $parcial->total;
                 $cashMoves->total += $parcial->total;
                 break;
             default:
                 break;
         }
+        $parcial->update();
         $cashMoves->save();
 
 		//verificar se a ordem de origem ainda possui itens, senão deve-se colocá-la como paga
