@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->boolean('associated');
             $table->smallInteger('pay_method')->nullable();
             $table->string('obs')->nullable();
+            $table->unsignedTinyInteger('type')->nullable()->default(1);
             $table->timestamps();
 
             $table->unsignedInteger('client_id');
