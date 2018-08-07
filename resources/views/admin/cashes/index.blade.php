@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <div class="container">
         <div class="row">
             <h2>Caixa Atual</h2>
         </div>
         <div class="row">
+            @include('flash::message')
             @php
                 if($caixa == null){
                     echo 'Não existe caixa em aberto. Por favor realize a abertura de caixa!<br><br>';
@@ -38,6 +40,9 @@
                     <label>
                         Informe o valor atual do caixa (troco): R$
                         <input style="width: 90px" name="inicial_value" id="inicial_value">
+
+                        <br><br>Informe a quantidade de mesas que deseja abrir:
+                        <input style="width: 90px" name="desks" id="desks">
                     </label>
                 </div>
                 <div class="modal-footer">
@@ -60,7 +65,9 @@
                     <label>
                         Informe o valor da nova entrada: R$
                         <input style="width: 90px" name="novaEntradaValor" id="novaEntradaValor">
-                        <input type="hidden" name="cash_id" id="cash_id" value="{{$caixa->id}}">
+                        @php if($caixa != null)
+                            echo '<input type="hidden" name="cash_id" id="cash_id" value="'.$caixa->id.'">';
+                        @endphp
                     </label>
                     <br>Informe uma observação:
                     <textarea id="novaEntradaObservacao" name="novaEntradaObs" style="width:500px"></textarea>
@@ -86,7 +93,9 @@
                     <label>
                         Informe o valor da sangria: R$
                         <input style="width: 90px" name="novaSaidaValor" id="novaSaidaValor">
-                        <input type="hidden" name="cash_id" id="cash_id" value="{{$caixa->id}}">
+                        @php if($caixa != null)
+                            echo '<input type="hidden" name="cash_id" id="cash_id" value="'.$caixa->id.'">';
+                        @endphp
                     </label>
                     <br>Informe uma observação:
                     <textarea id="novaSaidaObservacao" name="novaSaidaObs" style="width:500px"></textarea>
@@ -266,5 +275,11 @@
             v=v.replace(/^0+/, '');
             $(this).val(v);
         });
+    </script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script>
+        $('#flash-overlay-modal').modal();
     </script>
 @endsection

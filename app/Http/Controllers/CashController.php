@@ -13,6 +13,7 @@ use function array_key_exists;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Redirect;
 
 class CashController extends Controller
@@ -50,12 +51,19 @@ class CashController extends Controller
 	    $cash->user_id = Auth::id();
 
 	    $valor = $request->get('inicial_value');
+	    $mesas = $request->get('desks');
 
 	    $valor = Sell::converteMoedaParaDecimal($valor);
 	    $cash->inicial_value = $valor;
 	    $cash->status = 1;
 	    $cash->opened_at = new DateTime();
 	    $cash->save();
+
+	    $deskController = new DeskController();
+	    if($mesas != null && $mesas > 0){
+	        for ($i = 0; $i < $mesas; $i++)
+                $deskController->create();
+        }
 
 	    $caixa = Cash::find($cash->id);
 	    return view('admin.cashes.index', compact('caixa'));
@@ -98,7 +106,18 @@ class CashController extends Controller
     public function fecharCaixa(Request $request){
 	    $cash = Cash::find($request->get('cash_id'));
 
-	    $cash->closed_at = new DateTime();
+        //validar se não existe venda em aberto
+        // limpar todas as mesas - STATUS 2
+        $pedidos = Order::all()->whereIn('status', [2,4,5]);
+        if($pedidos != null){
+            $request->session()->flash('message', 'Não foi possível fechar o caixa. Existem vendas em aberto!');
+//            $request->session()->flash('alert-class', 'alert-danger');
+            flash('Message')->error();
+            return redirect()->route('admin.cashes.index');
+        }
+
+
+        $cash->closed_at = new DateTime();
 	    $cash->status = 2;
 	    $cash->final_value = $cash->inicial_value + $cash->atual_value;
 

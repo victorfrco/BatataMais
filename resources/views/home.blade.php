@@ -110,7 +110,7 @@
 
             </div>
         </div>
-        <div style="margin-left:-75px">Mesas:</div>
+        <div style="margin-left:-75px">Vendas:</div>
         <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-90px; overflow-x: auto;white-space: nowrap;">
             @php
                 if(App\Http\Controllers\CashController::buscaCaixaPorUsuario(\Illuminate\Support\Facades\Auth::id()) != null){
@@ -151,6 +151,49 @@
                     ])->withAttributes(['style' => 'margin-right: -20px; margin-left:25px']);
                 }
             @endphp
+        </div>
+        <div style="margin-left:-75px">Mesas:</div>
+        <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-90px;overflow-x: auto;white-space: nowrap;">
+            @php
+                if(App\Http\Controllers\CashController::buscaCaixaPorUsuario(\Illuminate\Support\Facades\Auth::id()) != null){
+                    $deskController = new App\Http\Controllers\DeskController();
+                    echo $deskController->carregaMesas();
+                }
+            @endphp
+        </div>
+    </div>
+
+    {{--vincularVendaMesa--}}
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="vincularVendaMesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="color: #2F3133">Nova Mesa</h4>
+                </div>
+                {!! Form::open(array('action' => 'DeskController@vincularMesa', 'method' => 'post')) !!}
+                <div class="modal-body">
+                    {!! Form::Label('venda', 'Selecione uma Venda:') !!}
+                    <select style="max-height: 50px; overflow: auto" class="selectpicker" data-live-search="true" name="order_id">
+                        {!! $vendas = App\Models\Order::all()->whereIn('status', [4,5]) !!}
+                        @foreach($vendas as $venda)
+                            <option value="{{$venda->id}}">{{$venda->client->nickname}}</option>
+                        @endforeach
+                    </select>
+                    <input type="hidden" name="desk_id" />
+                    {!! Form::token() !!}
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Vincular!', array('class' => 'btn btn-success')) !!}
+                    {!! Form::close() !!}
+                    {!! Form::open(array('action' => 'DeskController@criarMesaVenda', 'method' => 'post')) !!}
+                        <input type="hidden" name="desk_id" />
+                        {!! Form::token() !!}
+                    {!! Form::submit('Nova Venda!', array('class' => 'btn btn-primary','style' => 'align:left')) !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -229,6 +272,15 @@
 
         $(document).ready(function(){
             $("[rel=tooltip]").tooltip({ placement: 'bottom'});
+        });
+
+        $(document).ready(function() {
+            $('button.darken-2').click(function(event) {
+                var sDeskId = $(this).attr('data_desk_id');
+                var oModalEdit = $('#vincularVendaMesa');
+                oModalEdit.find('input[name="desk_id"]').val(sDeskId);
+            });
+
         });
 
     </script>

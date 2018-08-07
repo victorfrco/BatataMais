@@ -94,7 +94,7 @@ class SellController extends Controller
         $order->total = 0;
         $order->absolut_total = 0;
         $order->discount = 0;
-        $order->status = $this->STATUS_MESA;
+        $order->status = $this->STATUS_EM_ABERTO;
         $order->associated = $request->toArray()['associated'];
         $order->user_id = Auth::user()->id;
         $order->save();
@@ -596,4 +596,14 @@ class SellController extends Controller
 		$order->associated = 0;
 		return $order;
 	}
+
+    /**
+     * @return int
+     */
+    public function getSTATUSMESA()
+    {
+        return $this->STATUS_MESA;
+    }
+
+
 }

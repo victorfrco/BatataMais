@@ -178,19 +178,12 @@ class DatabaseSeeder extends Seeder
 			'adr_compl' => 'Quadra 4 Lote 3'
 		]);
 
-		DB::table('clients')->insert([
-			'name' =>'Robert Willian',
-			'nickname' => 'Robert',
-			'phone1' => '067999999999',
-			'email' => 'robertwds.88@gmail.com',
-			'cpf' => '12345678910',
-			'obs' => 'Cliente VIP',
-			'adr_street' => 'Rua Joaima',
-			'adr_number' => '547',
-			'adr_neighborhood' => 'Anhandui',
-			'adr_cep' => '79025000',
-			'adr_compl' => ''
-		]);
+        DB::table('clients')->insert([
+            'name' =>'Mesa',
+            'nickname' => 'Mesa',
+            'phone1' => '067999999999',
+            'email' => '',
+        ]);
 
 		// $this->call(UsersTableSeeder::class);
 	}

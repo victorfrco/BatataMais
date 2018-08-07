@@ -23,7 +23,7 @@ use function implode;
 class OrderController extends Controller
 {
     public function carregaPedidosAbertos(){
-        $pedidos = Order::all()->whereIn('status', [2,5]);
+        $pedidos = Order::all()->whereIn('status', [4,5])->where('type', '=', 1);
         $listaDeDivs = $this->criaListaPedidos($pedidos);
         return implode($listaDeDivs);
     }
@@ -33,9 +33,9 @@ class OrderController extends Controller
         $categories = Category::all()->where('status','=',1);
         foreach ($pedidos as $order) {
             $div = Button::primary($order->client->nickname)->withAttributes([
-                        'id' => $order->id,
-                        'style' =>
-                                   'min-width: 100px;
+                'id' => $order->id,
+                'style' =>
+                    'min-width: 100px;
                                    height: 40px;
                                    font-size: 12px;
                                    font-weight:bold;

@@ -85,3 +85,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/cashes', 'CashController@fecharCaixa')->name('fecharCaixa');
 Route::post('/novaEntrada', 'CashController@novaEntrada')->name('novaEntrada');
 Route::post('/novaSaida', 'CashController@novaSaida')->name('novaSaida');
+Route::post('/vincularMesa', 'DeskController@vincularMesa')->name('vincularMesa');
+Route::post('/criarMesaVenda', 'DeskController@criarMesaVenda')->name('criarMesaVenda');
