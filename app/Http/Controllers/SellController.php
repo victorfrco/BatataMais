@@ -104,30 +104,33 @@ class SellController extends Controller
     }
 
     public function codBarra(Request $request){
+//        dd($request->toArray());
     	$product = $request->get('product_barcode');
+    	$qtd = $request->get('qtd');
     	$product = Product::where('barcode', '=', $product)->whereNotNull('barcode')->first();
 	    $order = Order::find( $request->toArray()['order_id']);
-	    if($product != null){
-	    	$product->qtd--;
+	    if($product != null && $qtd != null){
+	    	$product->qtd -= $qtd;
 	    	$product->update();
 
 			//verifica se ja existe um item com esse produto nesse pedido;
 		    $item = Item::where('order_id', '=', $order->id)->where('product_id','=', $product->id)->first();
 		    if($product->qtd <= 0)
-			    return redirect()->back()->with('semEstoque', $order)->with(compact('order'));
+//		        PARAMETROS GERAIS todo
+//			    return redirect()->back()->with('semEstoque', $order)->with(compact('order'));
 		    if($item != null) {
 				//adiciona mais 1 quantidade do produto ao item;
 
-				$item->qtd ++;
+				$item->qtd += $qtd;
 				if($order->associated) {
-					$item->total += $product->price_discount;
-					$order->total += $product->price_discount;
-					$order->absolut_total += $product->price_discount;
+					$item->total += $product->price_discount * $qtd;
+					$order->total += $product->price_discount * $qtd;
+					$order->absolut_total += $product->price_discount * $qtd;
 				}
 				else {
-					$item->total += $product->price_resale;
-					$order->total += $product->price_resale;
-					$order->absolut_total += $product->price_resale;
+					$item->total += $product->price_resale * $qtd;
+					$order->total += $product->price_resale * $qtd;
+					$order->absolut_total += $product->price_resale * $qtd;
 				}
 				$item->update();
 				$order->update();
@@ -136,10 +139,10 @@ class SellController extends Controller
 				$item = new Item();
 				$item->product_id = $product->id;
 				if($order->associated == 0)
-					$item->total = $product->price_resale;
+					$item->total = $product->price_resale * $qtd;
 				else
-					$item->total = $product->price_discount;
-				$item->qtd = 1;
+					$item->total = $product->price_discount * $qtd;
+				$item->qtd = $qtd;
 				$item->order_id = $order->id;
 				$item->save();
 				$order->total += $item->total;

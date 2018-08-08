@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Order;
 use Bootstrapper\Facades\Button;
 use Bootstrapper\Facades\ButtonGroup;
+use Bootstrapper\Facades\Icon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,7 +77,7 @@ class DeskController extends Controller
                         'data-target' => '#vincularVendaMesa',
                         'data_desk_id' => $desk->id
                     ]),
-                    Button::danger('X')->withAttributes([
+                    Button::danger(Icon::create('close'))->withAttributes([
                         'id' => $desk->id,
                         'class' => 'darken-2',
                         'style' =>
