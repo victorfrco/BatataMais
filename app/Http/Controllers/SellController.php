@@ -112,13 +112,14 @@ class SellController extends Controller
 	    $order = Order::find( $request->toArray()['order_id']);
 	    if($product != null && $qtd != null){
 	    	$product->qtd -= $qtd;
-	    	$product->update();
 
 			//verifica se ja existe um item com esse produto nesse pedido;
 		    $item = Item::where('order_id', '=', $order->id)->where('product_id','=', $product->id)->first();
 		    if($product->qtd <= 0)
 //		        PARAMETROS GERAIS todo
 			    return redirect()->back()->with('semEstoque', $order)->with(compact('order'));
+
+            $product->update();
 		    if($item != null) {
 				//adiciona mais 1 quantidade do produto ao item;
 
