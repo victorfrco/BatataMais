@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    @include('flash::message')
     <div class="container">
         <div class="row">
             <h2>Caixa Atual</h2>
         </div>
         <div class="row">
-            @include('flash::message')
             @php
                 if($caixa == null){
                     echo 'Não existe caixa em aberto. Por favor realize a abertura de caixa!<br><br>';
@@ -281,5 +280,6 @@
 
     <script>
         $('#flash-overlay-modal').modal();
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
 @endsection

@@ -110,9 +110,8 @@ class CashController extends Controller
         // limpar todas as mesas - STATUS 2
         $pedidos = Order::all()->whereIn('status', [2,4,5]);
         if($pedidos != null){
-            $request->session()->flash('message', 'Não foi possível fechar o caixa. Existem vendas em aberto!');
 //            $request->session()->flash('alert-class', 'alert-danger');
-            flash('Message')->error();
+            flash()->overlay('Não foi possível fechar o caixa. Existem vendas em aberto!','Erro!');
             return redirect()->route('admin.cashes.index');
         }
 
@@ -125,8 +124,6 @@ class CashController extends Controller
 	    	$cash->obs = $request->get('obs');
 
 	    $cash->update();
-
-	    return Redirect::home();
     }
 
     /**

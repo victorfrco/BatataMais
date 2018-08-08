@@ -167,6 +167,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'Laracasts\Flash\FlashServiceProvider',
+
 
         /*
          * Package Service Providers...
@@ -200,6 +202,7 @@ return [
 
     'aliases' => [
 
+        'Flash'     => 'Laracasts\Flash\Flash',
 	    'PDF' => 'Barryvdh\DomPDF\Facade',
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'App' => Illuminate\Support\Facades\App::class,
