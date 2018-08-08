@@ -189,9 +189,31 @@
                     {!! Form::submit('Vincular!', array('class' => 'btn btn-success')) !!}
                     {!! Form::close() !!}
                     {!! Form::open(array('action' => 'DeskController@criarMesaVenda', 'method' => 'post')) !!}
-                        <input type="hidden" name="desk_id" />
-                        {!! Form::token() !!}
+                    <input type="hidden" name="desk_id" />
+                    {!! Form::token() !!}
                     {!! Form::submit('Nova Venda!', array('class' => 'btn btn-primary','style' => 'align:left')) !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-keyboard="false" data-backdrop="static" class="modal fade" id="excluirMesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="color: #2F3133">Excluir Mesa</h4>
+                </div>
+                {!! Form::open(array('action' => 'DeskController@excluirMesa', 'method' => 'post')) !!}
+                <div class="modal-body">
+                    <p style="text-align: center; font-weight: bold">Deseja realmente excluir essa venda?</p>
+                    <input type="hidden" name="desk_id" />
+                    {!! Form::token() !!}
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Excluir!', array('class' => 'btn btn-danger')) !!}
                     {!! Form::close() !!}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
@@ -280,6 +302,15 @@
             $('button.darken-2').click(function(event) {
                 var sDeskId = $(this).attr('data_desk_id');
                 var oModalEdit = $('#vincularVendaMesa');
+                oModalEdit.find('input[name="desk_id"]').val(sDeskId);
+            });
+
+        });
+
+        $(document).ready(function() {
+            $('button.darken-2').click(function(event) {
+                var sDeskId = $(this).attr('data_desk_id');
+                var oModalEdit = $('#excluirMesa');
                 oModalEdit.find('input[name="desk_id"]').val(sDeskId);
             });
 

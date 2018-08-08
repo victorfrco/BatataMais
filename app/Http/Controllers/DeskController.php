@@ -6,6 +6,7 @@ use App\Desk;
 use App\Models\Category;
 use App\Models\Order;
 use Bootstrapper\Facades\Button;
+use Bootstrapper\Facades\ButtonGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,33 +34,65 @@ class DeskController extends Controller
         $categories = Category::all()->where('status','=',1);
         foreach ($pedidos as $desk) {
             if ($desk->order_id != null) {
-                $order = $desk->order_id;
-                $div = Button::primary($desk->name)->withAttributes([
-                    'id' => $desk->id,
-                    'style' =>
-                        'min-width: 100px;
+                $order = Order::find($desk->order_id);
+                if($order->absolut_total > 250){
+                    $div = Button::danger($desk->name)->withAttributes([
+                        'id' => $desk->id,
+                        'style' =>
+                            'min-width: 100px;
                                        height: 40px;
                                        font-size: 12px;
                                        font-weight:bold;
                                        text-align: center;
                                        line-height: 28px;
                                        margin-right: 10px'
-                ])->asLinkTo('/home/' . $desk->order_id, compact('order'));
-            }else{
-                $div = Button::success($desk->name)->withAttributes([
-                    'id' => $desk->id,
-                    'class' => 'darken-2',
-                    'style' =>
-                        'min-width: 100px;
+                    ])->asLinkTo('/home/' . $desk->order_id, compact('order'));
+                }else {
+                    $div = Button::primary($desk->name)->withAttributes([
+                        'id' => $desk->id,
+                        'style' =>
+                            'min-width: 100px;
                                        height: 40px;
                                        font-size: 12px;
                                        font-weight:bold;
                                        text-align: center;
                                        line-height: 28px;
+                                       margin-right: 10px'
+                    ])->asLinkTo('/home/' . $desk->order_id, compact('order'));
+                }
+            }else{
+                $div = ButtonGroup::withContents([
+                    Button::success($desk->name)->withAttributes([
+                        'id' => $desk->id,
+                        'class' => 'darken-2',
+                        'style' =>
+                            'min-width: 80px;
+                                       height: 40px;
+                                       font-size: 12px;
+                                       font-weight:bold;
+                                       text-align: center;
+                                       line-height: 28px;',
+                        'data-toggle' => 'modal',
+                        'data-target' => '#vincularVendaMesa',
+                        'data_desk_id' => $desk->id
+                    ]),
+                    Button::danger('X')->withAttributes([
+                        'id' => $desk->id,
+                        'class' => 'darken-2',
+                        'style' =>
+                            'width: px;
+                                       height: 40px;
+                                       background-color:black;
+                                       color:red;
+                                       font-size: 12px;
+                                       font-weight:bold;
+                                       text-align: left;
+                                       line-height: 28px;
                                        margin-right: 10px',
-                    'data-toggle' => 'modal',
-                    'data-target' => '#vincularVendaMesa',
-                    'data_desk_id' => $desk->id
+                        'data-toggle' => 'modal',
+                        'data-target' => '#excluirMesa',
+                        'data_desk_id' => $desk->id
+                    ]),
                 ]);
             }
             array_push($lista, $div);
@@ -76,7 +109,7 @@ class DeskController extends Controller
         $desk->status = 1;
         $desk->save();
 
-        $order->status = 1; // STATUS_MESA
+        $order->status = 2; // STATUS_MESA
         $order->update();
 
 
@@ -109,7 +142,7 @@ class DeskController extends Controller
         $desk->update();
 
         $categories = Category::all()->where('status','=',1);
-        return redirect('home')->with(compact('order', 'categories'));
+        return redirect('home')->with(compact('categories'));
     }
 
     public function create(){
@@ -125,5 +158,16 @@ class DeskController extends Controller
         $desk->name = 'Mesa '.$desk->cont;
         $desk->save();
         //registrar historico todo
+    }
+
+    public function excluirMesa(Request $request){
+        $desk = Desk::find($request->get('desk_id'));
+        $desk->status = 2;
+        $desk->update();
+
+        //registrar no historico todo
+
+        $categories = Category::all()->where('status','=',1);
+        return redirect('home')->with(compact('order', 'categories'));
     }
 }

@@ -87,3 +87,4 @@ Route::post('/novaEntrada', 'CashController@novaEntrada')->name('novaEntrada');
 Route::post('/novaSaida', 'CashController@novaSaida')->name('novaSaida');
 Route::post('/vincularMesa', 'DeskController@vincularMesa')->name('vincularMesa');
 Route::post('/criarMesaVenda', 'DeskController@criarMesaVenda')->name('criarMesaVenda');
+Route::post('/excluirMesa', 'DeskController@excluirMesa')->name('excluirMesa');
