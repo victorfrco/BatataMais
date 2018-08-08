@@ -77,7 +77,7 @@ class DeskController extends Controller
                         'data-target' => '#vincularVendaMesa',
                         'data_desk_id' => $desk->id
                     ]),
-                    Button::danger(Icon::create('close'))->withAttributes([
+                    Button::danger('X')->withAttributes([
                         'id' => $desk->id,
                         'class' => 'darken-2',
                         'style' =>
