@@ -13,6 +13,17 @@ class DeskController extends Controller
 {
     public function carregaMesas(){
         $pedidos = Desk::all()->where('status', '=', 1);
+        foreach ($pedidos as $pedido){
+            $pedido = Desk::find($pedido->id);
+            if($pedido->order_id != null){
+                $order = Order::find($pedido->order_id);
+                if($order->status == 1 || $order->status == 3 || $order->status == 5) {
+                    $pedido->order_id = null;
+                    $pedido->update();
+                }
+            }
+        }
+        //limpa as mesas de vendas concluidas e canceladas
         $listaDeDivs = $this->criaListaMesas($pedidos);
         return implode($listaDeDivs);
     }
@@ -62,7 +73,7 @@ class DeskController extends Controller
         $order = Order::find($order_id);
         $desk = Desk::find($desk_id);
         $desk->order_id = $order_id;
-        $desk->status = 2;
+        $desk->status = 1;
         $desk->save();
 
         $order->status = 1; // STATUS_MESA

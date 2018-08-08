@@ -110,7 +110,7 @@
 
             </div>
         </div>
-        <div style="margin-left:-75px">Vendas:</div>
+            <div style="margin-left:-75px">Vendas:</div>
         <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-90px; overflow-x: auto;white-space: nowrap;">
             @php
                 if(App\Http\Controllers\CashController::buscaCaixaPorUsuario(\Illuminate\Support\Facades\Auth::id()) != null){
@@ -152,8 +152,10 @@
                 }
             @endphp
         </div>
-        <div style="margin-left:-75px">Mesas:</div>
-        <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:770px; margin-left:-90px;overflow-x: auto;white-space: nowrap;">
+        @if(\App\Desk::all()->where('status', '=', 1)->isNotEmpty())
+            <div style="margin-left:-75px">Mesas:</div>
+        @endif
+        <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:1280px; margin-left:-90px;overflow-x: auto;white-space: nowrap;">
             @php
                 if(App\Http\Controllers\CashController::buscaCaixaPorUsuario(\Illuminate\Support\Facades\Auth::id()) != null){
                     $deskController = new App\Http\Controllers\DeskController();

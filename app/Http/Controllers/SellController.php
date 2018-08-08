@@ -334,7 +334,7 @@ class SellController extends Controller
     public function cancelarVenda(Request $request){
         $order = Order::find($request->toArray()['order_id']);
         $order->status = $this->STATUS_CANCELADA;
-        $order->save();
+        $order->update();
         $this->devolveProdutoEstoque($order->id);
         return Redirect::to('/home');
     }
