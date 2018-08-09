@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56f1d85f-0a0c-401a-b2cb-a6f09b367dbc" name="Default" comment="- Mesas com exclusão e vínculo ok&#10;- Falta criar botão para criar mesa;">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+    <list default="true" id="56f1d85f-0a0c-401a-b2cb-a6f09b367dbc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -94,11 +91,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseSeeder.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DatabaseSeeder.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="164" column="11" lean-forward="true" selection-start-line="164" selection-start-column="11" selection-end-line="164" selection-end-column="11" />
+            <state relative-caret-position="317">
+              <caret line="169" column="39" lean-forward="true" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="6420" column="20" lean-forward="true" selection-start-line="6420" selection-start-column="20" selection-end-line="6420" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -197,47 +204,6 @@
                 <marker date="1519885556208" expanded="true" signature="772:781" ph="..." />
                 <marker date="1519885556208" expanded="true" signature="802:822" ph="..." />
                 <marker date="1519885556208" expanded="true" signature="851:860" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sells.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/reports/sells.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="6" />
-              <folding>
-                <marker date="1519885556205" expanded="true" signature="30:50" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="185:206" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="264:283" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="366:385" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="463:510" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="589:636" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="946:975" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1000:1057" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1126:1155" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1180:1237" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1305:1332" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1357:1412" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1766:1793" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1818:1873" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1938:1963" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="1988:2041" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2107:2133" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2158:2212" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2279:2306" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2331:2386" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2469:2496" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2521:2576" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="2997:3023" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3038:3083" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3131:3141" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3167:3195" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3221:3250" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3279:3328" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3354:3380" ph="..." />
-                <marker date="1519885556205" expanded="true" signature="3406:3492" ph="..." />
               </folding>
             </state>
           </provider>
@@ -775,14 +741,7 @@
       <workItem from="1533339220490" duration="14278000" />
       <workItem from="1533508333668" duration="5666000" />
       <workItem from="1533563569421" duration="19432000" />
-      <workItem from="1533646703453" duration="58178000" />
-    </task>
-    <task id="LOCAL-00022" summary="Inserção de ícones Glyphicon (Bootstrapper)">
-      <created>1508848880903</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1508848880904</updated>
+      <workItem from="1533646703453" duration="58869000" />
     </task>
     <task id="LOCAL-00023" summary="Ajuste app.layout">
       <created>1508964737611</created>
@@ -1120,11 +1079,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533845281068</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="- Companies entidades">
+      <created>1533845542447</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1533845542447</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303675000" />
+    <option name="totallyTimeSpent" value="304366000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1190,7 +1156,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adicionado código (de barras) à lista de produtos ao clicar na marca." />
     <MESSAGE value="modal funcionando" />
     <MESSAGE value="alinhado grid de itens de venda" />
     <MESSAGE value="- alteração para ativos/inativos (produtos, marcas e categorias)&#10;- Inserção de digitação de valor com mascara no Form de produtos (---TESTAR---)&#10;- Remoção de validação de nome único ao editar Categoria&#10;- Alteração das migrations para inserção do campo status no banco (executar migrate --seed após limpar o banco)" />
@@ -1215,7 +1180,8 @@
     <MESSAGE value="alteração do nome do site para &quot;Minha Loja&quot;" />
     <MESSAGE value="Cupom não-fiscal&#10;- Ajuste na tela de bonificações&#10;- Inserido o ID da venda após o nome (home)&#10;- Cupom trazendo valor em aberto, valor já pago, restante e bonificações." />
     <MESSAGE value="- Migration para cadastrar Company" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Migration para cadastrar Company" />
+    <MESSAGE value="- Companies entidades" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Companies entidades" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1305,14 +1271,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="6426" column="41" lean-forward="false" selection-start-line="6426" selection-start-column="41" selection-end-line="6426" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -2143,8 +2101,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="164" column="11" lean-forward="true" selection-start-line="164" selection-start-column="11" selection-end-line="164" selection-end-column="11" />
+        <state relative-caret-position="317">
+          <caret line="169" column="39" lean-forward="true" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="6420" column="20" lean-forward="true" selection-start-line="6420" selection-start-column="20" selection-end-line="6420" selection-end-column="20" />
           <folding />
         </state>
       </provider>
