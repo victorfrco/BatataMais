@@ -181,6 +181,13 @@ class DeskController extends Controller
         //registrar historico todo
     }
 
+    public function createDesk(){
+        $this->create();
+
+        $categories = Category::all()->where('status','=',1);
+        return redirect('home')->with(compact('categories'));
+    }
+
     public function excluirMesa(Request $request){
         $desk = Desk::find($request->get('desk_id'));
         $desk->status = 2;
