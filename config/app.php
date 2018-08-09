@@ -14,7 +14,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Federal Hookah Pub'),
+    'name' => env('APP_NAME', 'Minha Loja'),
 
     /*
     |--------------------------------------------------------------------------
