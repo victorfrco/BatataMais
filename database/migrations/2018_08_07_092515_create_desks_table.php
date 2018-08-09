@@ -21,6 +21,7 @@ class CreateDesksTable extends Migration
             $table->integer('cont');
 
             $table->unsignedInteger('order_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

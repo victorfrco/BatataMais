@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CashMoves;
+use App\Desk;
 use App\Models\Cash;
 use App\Models\Category;
 use App\Models\Client;
@@ -108,14 +109,17 @@ class CashController extends Controller
 
         //validar se não existe venda em aberto
         // limpar todas as mesas - STATUS 2
-        $pedidos = Order::all()->whereIn('status', [2,4,5]);
+        $pedidos = Order::all()->whereIn('status', [2,4,5])->where('user_id','=', Auth::id());
         if($pedidos != null && $pedidos->isNotEmpty()){
-//            $request->session()->flash('alert-class', 'alert-danger');
             flash()->overlay('Não foi possível fechar o caixa. Existem vendas em aberto!','Erro!');
             return redirect()->route('admin.cashes.index');
         }
 
-
+        $mesas = Desk::all()->where('status',  '=', 1)->where('user_id','=', Auth::id());
+        foreach ($mesas as $mesa){
+            $mesa->status = 2;
+            $mesa->update();
+        }
         $cash->closed_at = new DateTime();
 	    $cash->status = 2;
 	    $cash->final_value = $cash->inicial_value + $cash->atual_value;
@@ -231,6 +235,7 @@ class CashController extends Controller
         $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOVENDA())->where('money','<>', null);
         $itens = array();
         foreach ($entradas as $entrada){
+            //exibe cliente ou exibe o número da mesa
             $item['cliente'] =  Client::find(Order::find($entrada->order_id)->client_id)->name;
             $item['valor'] = $entrada->money;
             $dataFormatada = new \DateTime($entrada->created_at);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Desk;
+use App\DeskHistory;
 use App\Models\Category;
 use App\Models\Order;
 use Bootstrapper\Facades\Button;
@@ -19,12 +20,13 @@ class DeskController extends Controller
             $pedido = Desk::find($pedido->id);
             if($pedido->order_id != null){
                 $order = Order::find($pedido->order_id);
-                if($order->status == 1 || $order->status == 3 || $order->status == 5) {
+                if($order->status == 1 || $order->status == 3) {
                     $pedido->order_id = null;
                     $pedido->update();
                 }
             }
         }
+        $pedidos = Desk::all()->where('status', '=', 1);
         //limpa as mesas de vendas concluidas e canceladas
         $listaDeDivs = $this->criaListaMesas($pedidos);
         return implode($listaDeDivs);
@@ -102,6 +104,7 @@ class DeskController extends Controller
     }
 
     public function vincularMesa(Request $request){
+        $sellcontroller = new SellController();
         $desk_id = $request->get('desk_id');
         $order_id = $request->get('order_id');
         $order = Order::find($order_id);
@@ -110,9 +113,18 @@ class DeskController extends Controller
         $desk->status = 1;
         $desk->save();
 
-        $order->status = 2; // STATUS_MESA
+        $order->status = $sellcontroller->getSTATUSMESA(); // STATUS_MESA
+        $order->type = 2;
         $order->update();
 
+        $deskcontroller = new DeskHistoryController();
+        $history = new DeskHistory();
+        $history->desk_id = $desk->id;
+        $history->user_id = Auth::id();
+        $history->order_id = $order->id;
+        $history->status = $deskcontroller->getSTATUSVINCULANDO();
+
+        $history->save();
 
         $categories = Category::all()->where('status','=',1);
         return redirect('home')->with(compact('order', 'categories'));
@@ -142,6 +154,14 @@ class DeskController extends Controller
         $desk->order_id = $order->id;
         $desk->update();
 
+        $history = new DeskHistory();
+        $history->desk_id = $desk->id;
+        $history->user_id = Auth::id();
+        $history->order_id = $order->id;
+        $deskcontroller = new DeskHistoryController();
+        $history->status = $deskcontroller->getSTATUSVINCULANDO();
+        $history->save();
+
         $categories = Category::all()->where('status','=',1);
         return redirect('home')->with(compact('categories'));
     }
@@ -149,7 +169,7 @@ class DeskController extends Controller
     public function create(){
         $desk = new Desk();
         $desk->status = 1;
-
+        $desk->user_id = Auth::id();
         $cont = Desk::all()->where('status', '=',1)->max('cont');
         if($cont != null)
             $desk->cont = $cont+1;

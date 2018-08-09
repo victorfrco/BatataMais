@@ -7,6 +7,34 @@ use Illuminate\Http\Request;
 
 class DeskHistoryController extends Controller
 {
+    private $STATUS_VINCULANDO = 1;
+    private $STATUS_DESVINCULANDO = 3;
+    private $STATUS_PAGAMENTO = 2;
+
+    /**
+     * @return mixed
+     */
+    public function getSTATUSVINCULANDO()
+    {
+        return $this->STATUS_VINCULANDO;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSTATUSDESVINCULANDO()
+    {
+        return $this->STATUS_DESVINCULANDO;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSTATUSPAGAMENTO()
+    {
+        return $this->STATUS_PAGAMENTO;
+    }
+
     /**
      * Display a listing of the resource.
      *

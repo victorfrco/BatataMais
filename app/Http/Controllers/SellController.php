@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CashMoves;
+use App\Desk;
+use App\DeskHistory;
 use App\Models\Cash;
 use App\Models\Client;
 use App\Models\Item;
@@ -115,9 +117,9 @@ class SellController extends Controller
 
 			//verifica se ja existe um item com esse produto nesse pedido;
 		    $item = Item::where('order_id', '=', $order->id)->where('product_id','=', $product->id)->first();
-		    if($product->qtd <= 0)
-//		        PARAMETROS GERAIS todo
-			    return redirect()->back()->with('semEstoque', $order)->with(compact('order'));
+//		    if($product->qtd <= 0)
+////		        PARAMETROS GERAIS todo
+//			    return redirect()->back()->with('semEstoque', $order)->with(compact('order'));
 
             $product->update();
 		    if($item != null) {
@@ -250,10 +252,10 @@ class SellController extends Controller
                         </td>
                         <td style="text-align: center" form="form-add-order">'.
                 \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::plus())->withAttributes(
-                    ['class' => 'btn btn-xs', 'onclick' => "incrementaProduto($product->id)"]).
-                       '&nbsp;&nbsp;<input id="'.$product->id.'"  min="0" style="width:60px" class="form" name="'.$product->id.'" type="number" value="0">&nbsp;&nbsp;'.
+                    ['class' => 'btn btn-xs', 'onclick' => 'incrementaProduto("produto'.$product->id.'")']).
+                       '&nbsp;&nbsp;<input id="produto'.$product->id.'"  min="0" style="width:60px" class="form" name="'.$product->id.'" type="number" value="0">&nbsp;&nbsp;'.
                \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::minus())->withAttributes(
-                    ['class' => 'btn btn-xs', 'onclick' => "decrementaProduto($product->id)"]).'
+                    ['class' => 'btn btn-xs', 'onclick' => 'decrementaProduto("produto'.$product->id.'")']).'
                                 
                         </td>
                         </tr>';
@@ -324,12 +326,32 @@ class SellController extends Controller
                 $cashMovesDiscount->order_id = $order->id;
                 $cashMovesDiscount->user_id = Auth::id();
                 $cashMovesDiscount->total = $discount;
+                $cashMovesDiscount->obs = 'Desconto aplicado na venda '.$order->id;
                 $cashMovesDiscount->save();
             }
 	    }
 
         $order->status = $this->STATUS_PAGA;
         $order->update();
+
+        if($order->type == 2){
+            $desk = Desk::all()->where('order_id','=',$order->id)->where('status','=',1)->first();
+            $history = new DeskHistory();
+            $history->desk_id = $desk->id;
+            $history->user_id = Auth::id();
+            $history->order_id = $order->id;
+            $deskcontroller = new DeskHistoryController();
+            $history->status = $deskcontroller->getSTATUSPAGAMENTO();
+            $history->save();
+
+            $history = new DeskHistory();
+            $history->desk_id = $desk->id;
+            $history->user_id = Auth::id();
+            $history->order_id = $order->id;
+            $deskcontroller = new DeskHistoryController();
+            $history->status = $deskcontroller->getSTATUSDESVINCULANDO();
+            $history->save();
+        }
 
         $moveController = new MoveController();
 	    $moveController->registraBaixaTotal($order, 2);
@@ -341,7 +363,20 @@ class SellController extends Controller
         $order->status = $this->STATUS_CANCELADA;
         $order->update();
         $this->devolveProdutoEstoque($order->id);
-        return Redirect::to('/home');
+
+        if($order->type == 2){
+            $desk = Desk::all()->where('order_id','=',$order->id)->where('status','=',1)->first();
+            $history = new DeskHistory();
+            $history->desk_id = $desk->id;
+            $history->user_id = Auth::id();
+            $history->order_id = $order->id;
+            $deskcontroller = new DeskHistoryController();
+            $history->status = $deskcontroller->getSTATUSDESVINCULANDO();
+            $history->save();
+        }
+
+        $categories = Category::all()->where('status','=', 1);
+        return redirect()->to('/home')->with(compact('categories'));
     }
 
     private function devolveProdutoEstoque($id)
@@ -411,10 +446,10 @@ class SellController extends Controller
                         </td>
                         <td style="text-align: center; min-width: 170px" form="form-add-order">'.
 			           \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::plus())->withAttributes(
-				           ['class' => 'btn btn-xs', 'onclick' => "incrementaProduto($product->id)"]).
-			           '&nbsp;<input id="'.$product->id.'"  min="0" max="'.$item->qtd.'" style="width:60px" class="form" name="'.$item->id.'" type="number" value="0">&nbsp;'.
+				           ['class' => 'btn btn-xs', 'onclick' => 'incrementavenda("venda'.$product->id.'")']).
+			           '&nbsp;<input id="venda'.$product->id.'"  min="0" max="'.$item->qtd.'" style="width:60px" class="form" name="'.$item->id.'" type="number" value="0">&nbsp;'.
 			           \Bootstrapper\Facades\Button::appendIcon(\Bootstrapper\Facades\Icon::minus())->withAttributes(
-				           ['class' => 'btn btn-xs', 'onclick' => "decrementaProduto($product->id)"]).'
+				           ['class' => 'btn btn-xs', 'onclick' => 'decrementavenda("venda'.$product->id.'")']).'
                                 
                         </td>
                         </tr>';
@@ -464,6 +499,25 @@ class SellController extends Controller
                 $cashMoves->credit += $parcial->credit;
                 $cashMoves->total += $cashMoves->money + $cashMoves->credit + $cashMoves->debit;
                 $cashMoves->save();
+
+                if($orderOriginal->type == 2){
+                    $desk = Desk::all()->where('order_id','=',$orderOriginal->id)->where('status','=',1)->first();
+                    $history = new DeskHistory();
+                    $history->desk_id = $desk->id;
+                    $history->user_id = Auth::id();
+                    $history->order_id = $orderOriginal->id;
+                    $deskcontroller = new DeskHistoryController();
+                    $history->status = $deskcontroller->getSTATUSPAGAMENTO();
+                    $history->save();
+
+                    $history = new DeskHistory();
+                    $history->desk_id = $desk->id;
+                    $history->user_id = Auth::id();
+                    $history->order_id = $orderOriginal->id;
+                    $deskcontroller = new DeskHistoryController();
+                    $history->status = $deskcontroller->getSTATUSDESVINCULANDO();
+                    $history->save();
+                }
                 return Redirect::to('/home')->with('vendaRealizada', 'Venda realizada com sucesso!');
             }else
                 $orderOriginal->status = $this->STATUS_PAGA_PARCIALMENTE;
@@ -483,6 +537,17 @@ class SellController extends Controller
                 $cashMoves->save();
                 $order = $orderOriginal;
                 $categories = Category::all()->where('status','=', 1);
+
+                if($orderOriginal->type == 2){
+                    $desk = Desk::all()->where('order_id','=',$orderOriginal->id)->where('status','=',1)->first();
+                    $history = new DeskHistory();
+                    $history->desk_id = $desk->id;
+                    $history->user_id = Auth::id();
+                    $history->order_id = $orderOriginal->id;
+                    $deskcontroller = new DeskHistoryController();
+                    $history->status = $deskcontroller->getSTATUSPAGAMENTO();
+                    $history->save();
+                }
                 return view('home', compact('order', 'categories'));
         }
 
@@ -563,10 +628,34 @@ class SellController extends Controller
         $parcial->update();
         $cashMoves->save();
 
+        if($orderOriginal->type == 2){
+            $desk = Desk::all()->where('order_id','=',$orderOriginal->id)->where('status','=',1)->first();
+            $history = new DeskHistory();
+//            dd($desk);
+            $history->desk_id = $desk->id;
+            $history->user_id = Auth::id();
+            $history->order_id = $orderOriginal->id;
+            $deskcontroller = new DeskHistoryController();
+            $history->status = $deskcontroller->getSTATUSPAGAMENTO();
+            $history->save();
+        }
+
 		//verificar se a ordem de origem ainda possui itens, senão deve-se colocá-la como paga
 		if(Item::all()->where('order_id', '=', $orderOriginal->id)->isEmpty()){
 			$orderOriginal->status = $this->STATUS_PAGA;
 			$orderOriginal->update();
+
+            if($orderOriginal->type == 2){
+                $desk = Desk::all()->where('order_id','=',$orderOriginal->id)->where('status','=',1)->first();
+                $history = new DeskHistory();
+                $history->desk_id = $desk->id;
+                $history->user_id = Auth::id();
+                $history->order_id = $orderOriginal->id;
+                $deskcontroller = new DeskHistoryController();
+                $history->status = $deskcontroller->getSTATUSDESVINCULANDO();
+                $history->save();
+            }
+
 			return Redirect::to('/home')->with('vendaRealizada', 'Venda realizada com sucesso!');
 		}
 

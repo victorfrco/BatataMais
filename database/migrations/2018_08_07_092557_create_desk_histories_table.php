@@ -18,6 +18,7 @@ class CreateDeskHistoriesTable extends Migration
             $table->unsignedInteger('desk_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('status');
+            $table->unsignedInteger('order_id');
 
             $table->timestamps();
         });

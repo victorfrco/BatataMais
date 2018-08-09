@@ -98,12 +98,19 @@
                 @if(isset($order))
                     {!! Tabbable::withContents($names) !!}
                 @else
-                    <h4>Para iniciar uma venda clique em "Nova Mesa"!</h4>
+                    <h4 style="text-align: center; margin-top: 25%">Para iniciar clique em "Nova Venda" ou selecione uma mesa disponível!</h4>
                 @endif
             </div>
             <div class="col-xs-5 col-sm-6 col-lg-5" style="background-color:#000000; background-image:url({{asset('storage/images/brands/listaEsquerda.jpg')}}); margin-right:-40px; border: solid; border-width: 1px; height: 450px; overflow: auto">
                 @if(isset($order))
-                        <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de {{$order->client->name}}</div>
+                        <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de
+                            @php
+                            if($order->type == 2)
+                                echo \App\Desk::all()->where('order_id','=', $order->id)->where('status','=',1)->first()->name;
+                            else
+                                echo $order->client->name;
+                            @endphp
+                        </div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
                 @else
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Lista de Produtos </div>
@@ -153,7 +160,7 @@
                 }
             @endphp
         </div>
-        @if(\App\Desk::all()->where('status', '=', 1)->isNotEmpty())
+        @if(\App\Desk::all()->where('status', '=', 1)->where('user_id','=',Auth::id())->isNotEmpty())
             <div style="margin-left:-75px">Mesas:</div>
         @endif
         <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:1280px; margin-left:-90px;overflow-x: auto;white-space: nowrap;">
@@ -178,7 +185,7 @@
                 <div class="modal-body">
                     {!! Form::Label('venda', 'Selecione uma Venda:') !!}
                     <select style="max-height: 50px; overflow: auto" class="selectpicker" data-live-search="true" name="order_id">
-                        {!! $vendas = App\Models\Order::all()->whereIn('status', [4,5]) !!}
+                        {!! $vendas = App\Models\Order::all()->whereIn('status', [4,5])->where('type', '=', 1) !!}
                         @foreach($vendas as $venda)
                             <option value="{{$venda->id}}">{{$venda->client->nickname}}</option>
                         @endforeach
@@ -189,12 +196,13 @@
                 <div class="modal-footer">
                     {!! Form::submit('Vincular!', array('class' => 'btn btn-success')) !!}
                     {!! Form::close() !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
                     {!! Form::open(array('action' => 'DeskController@criarMesaVenda', 'method' => 'post')) !!}
                     <input type="hidden" name="desk_id" />
                     {!! Form::token() !!}
-                    {!! Form::submit('Nova Venda!', array('class' => 'btn btn-primary','style' => 'align:left')) !!}
+                    {!! Form::submit('Nova Venda!', array('class' => 'btn btn-primary mr-auto','style' => 'float: left;margin-top:-35px')) !!}
                     {!! Form::close() !!}
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -209,7 +217,7 @@
                 </div>
                 {!! Form::open(array('action' => 'DeskController@excluirMesa', 'method' => 'post')) !!}
                 <div class="modal-body">
-                    <p style="text-align: center; font-weight: bold">Deseja realmente excluir essa venda?</p>
+                    <p style="text-align: center; font-weight: bold">Deseja realmente excluir essa mesa?</p>
                     <input type="hidden" name="desk_id" />
                     {!! Form::token() !!}
                 </div>
@@ -240,12 +248,23 @@
         setTimeout(function() {
             document.getElementById( "codBarQtd" ).focus();
         }, 0 );
+
         function incrementaProduto($id) {
             document.getElementById($id).stepUp(1);
         }
+
         function decrementaProduto($id) {
             document.getElementById($id).stepDown(1);
         }
+
+        function incrementavenda($id) {
+            document.getElementById($id).stepUp(1);
+        }
+
+        function decrementavenda($id) {
+            document.getElementById($id).stepDown(1);
+        }
+
         $('#tabsCategorias > ul> li:last').click(function (e) {
             e.preventDefault();
             window.location = $('#tabsCategorias').attr('data-url');
