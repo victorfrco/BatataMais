@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CashMoves;
+use App\Company;
 use App\Desk;
 use App\DeskHistory;
 use App\Models\Cash;
@@ -16,10 +17,14 @@ use App\Models\PartialOrder;
 use function array_key_exists;
 use function array_push;
 use Auth;
+use Barryvdh\DomPDF\Facade as PDF;
+use Bootstrapper\Facades\Button;
+use Bootstrapper\Facades\Icon;
 use Bootstrapper\Facades\Modal;
 use function compact;
 use function dd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use function redirect;
 use function Sodium\compare;
@@ -714,5 +719,117 @@ class SellController extends Controller
         return $this->STATUS_MESA;
     }
 
+    public function imprimirCupom(Request $request)
+    {
+        $order_id = $request->get('order_id');
+        $order = Order::find($order_id);
+        $itens = DB::table('itens')->select('*')->where('order_id','=',$order_id)->orderByDesc('updated_at')->get()->toArray();
+        $itens = Item::hydrate($itens);
+
+        $company = Company::find(1);
+        $cabecalhoLoja = '<p style="font-size: 13px; line-height: 10%;">'.$company->name.'</p>
+                            <p style="font-size: 13px; line-height: 80%;width: 250px;">'.$company->address.'</p>
+                            <p style="font-size: 13px;line-height: 10%;">'.$company->phone.'</p>';
+
+
+        $tableHeader = '<table class="table table-condensed" style="width: 250px;font-size: 13px">
+                            <tr>
+                                <th>Cod.</th>
+                                <th>Prod.</th>
+                                <th style="text-align: center;">Qtd.</th>
+                                <th style="text-align: center;">Vlr Unid.</th>
+                                <th style="text-align: center;">Vlr Total</th>
+                            </tr>';
+        $tableCont = [];
+        $total = 0;
+        foreach ($itens as $item){
+
+            $product = Product::find($item->product_id);
+            if($order->associated == 1)
+                $price = $product->price_discount;
+            else if($order->pay_method == 3)
+                $price = $product->price_card;
+            else
+                $price = $product->price_resale;
+
+
+            $tupla = '      <tr>
+                                <td style="vertical-align: middle" align="left">'.$product->barcode.'</td>
+                                <td style="vertical-align: middle" align="left">'.$product->name.'</td>
+                                <td align="center" style="vertical-align: middle">'.$item->qtd.'</td>
+                                <td align="center" style="vertical-align: middle;  color: #000000;">'.number_format($price, 2, ',', '.').'</td>
+                                <td align="center" style="vertical-align: middle;  color: #000000;">'.number_format($item->total, 2, ',', '.').'</td>
+                            </tr>';
+            array_push($tableCont, $tupla);
+            $total += $item->total;
+        }
+        $tableFooter = '</table>';
+        $tableCont = implode($tableCont);
+
+        $valorPago = 0;
+            if(\App\Http\Controllers\OrderController::possuiPagamento($order))
+                $valorPago = \App\Http\Controllers\OrderController::valorPago($order);
+
+            if($valorPago > 0){
+                $valorTotal = '<TABLE CLASS="table table-condensed" style="width: 250px;font-size: 13px">
+                                   <TR>
+                                       <TH  style="text-align: left;">VALOR TOTAL:</TH>
+                                       <TH style="text-align: right;">R$'.number_format($total, 2, ',', '.').'</TH>
+                                   </TR>
+                                   <TR>
+                                       <TH  style="text-align: left;">VALOR PAGO:</TH>
+                                       <TH style="text-align: right;">R$'.number_format($valorPago, 2, ',', '.').'</TH>
+                                   </TR>
+                                   <TR>
+                                       <TH  style="text-align: left;">VALOR RESTANTE:</TH>
+                                       <TH style="text-align: right;">R$'.number_format($total - $valorPago, 2, ',', '.').'</TH>
+                                   </TR>
+                               </TABLE>';
+            }else{
+                $valorTotal = '<TABLE CLASS="table table-condensed" style="width: 250px;font-size: 13px"><TR><TH  style="text-align: left;">VALOR TOTAL:</TH><TH style="text-align: right;">R$'.number_format($total, 2, ',', '.').'</TH></TR></TABLE>';
+            }
+
+        $msgAmistosa = '<p style="font-size: 13px">'.$company->msg.'</p>';
+
+        $bonificacoesTable = '';
+        if(OrderController::possuiBonificacao($order)) {
+            $bonificacoes = OrderController::bonificacoes($order);
+            $bonificaDescricao = '<BR><p style="font-size: 13px; line-height: 10%;">BONIFICAÇÕES</p>';
+            $bonificaTableHead = '<table class="table table-condensed" style="width: 250px;font-size: 13px">
+                            <tr>
+                                <th>Cod.</th>
+                                <th>Prod.</th>
+                                <th style="text-align: center;">Qtd.</th>
+                                <th style="text-align: center;">Vlr Unid.</th>
+                                <th style="text-align: center;">Vlr Total</th>
+                            </tr>';
+            $bonificaTableCont = [];
+            foreach ($bonificacoes as $bon){
+                $item = Item::find($bon->item_id);
+                $product = Product::find($item->product_id);
+                $tupla = '      <tr>
+                                <td style="vertical-align: middle" align="left">'.$product->barcode.'</td>
+                                <td style="vertical-align: middle" align="left">'.$product->name.'</td>
+                                <td align="center" style="vertical-align: middle">'.$item->qtd.'</td>
+                                <td align="center" style="vertical-align: middle;  color: #000000;">'.number_format(0.00, 2, ',', '.').'</td>
+                                <td align="center" style="vertical-align: middle;  color: #000000;">'.number_format(0.00, 2, ',', '.').'</td>
+                            </tr>';
+                array_push($bonificaTableCont, $tupla);
+                $total += $item->total;
+            }
+            $bonificaTableFooter = '</table>';
+            $bonificaTableCont = implode($bonificaTableCont);
+            $bonificacoesTable = $bonificaDescricao.$bonificaTableHead.$bonificaTableCont.$bonificaTableFooter;
+        }
+
+
+        $string = $cabecalhoLoja.$tableHeader.$tableCont.$tableFooter.$valorTotal. $bonificacoesTable.$msgAmistosa;
+
+
+//        return view('admin.sells.cupom', compact('string'));
+//
+        $pdf = PDF::loadView( 'admin.sells.cupom', compact( 'string' ) );
+        return $pdf->download( 'Cupom_Venda_'.$order->id.'.pdf' );
+    }
 
 }

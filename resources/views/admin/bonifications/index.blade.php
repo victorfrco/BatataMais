@@ -39,7 +39,7 @@
                     <select style="overflow: auto" class="selectpicker" data-live-search="true" name="product_id">
                         {!! $products = App\Models\Product::all() !!}
                         @foreach($products as $product)
-                            <option value="{{$product->id}}">{{$product->name}}&ensp;&ensp;|&ensp;&ensp;{{$product->qtd}}</option>
+                            <option value="{{$product->id}}">{{$product->barcode}}-{{$product->name}}&ensp;&ensp;|&ensp;&ensp;{{$product->qtd}}</option>
                         @endforeach
                     </select>
                     <br><br>

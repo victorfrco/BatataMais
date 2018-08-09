@@ -41,7 +41,7 @@
         <div class="row" style="text-align: right">
             {!! Form::open(array('action' => 'SellController@codBarra', 'method' => 'post', 'style' => 'display:inline')) !!}
             {{Form::text('qtd',null,['placeholder' => 'Qtd', 'class' => 'btn', 'style' => 'text-align:left; width:50px; color: #ffffff; background-color:#000000; border-color:#ffcc00', 'id' => 'codBarQtd'])}}
-            {!! Form::search('product_barcode',null,['placeholder' => 'Código do produto...', 'class' => 'btn', 'style' => 'text-align:left; width:250px; color: #ffffff; background-color:#000000; border-color:#ffcc00', 'id' => 'codBar']) !!}
+            {!! Form::search('product_barcode',null,['placeholder' => 'Código do produto...', 'class' => 'btn', 'style' => 'text-align:left; width:200px; color: #ffffff; background-color:#000000; border-color:#ffcc00', 'id' => 'codBar']) !!}
             @if(isset($order))
                 {!! Form::button(Icon::barcode(), ['type'=>'submit', 'class' => 'btn btn-primary']) !!}
             @else
@@ -65,9 +65,14 @@
                     {!! Button::danger(Icon::create('link'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'data-toggle' => 'modal', 'data-target' => '#removerAssociadoModal'])  !!}
                     {!! Button::primary(Icon::create('credit-card'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'disabled' => 'true'])  !!}
                 @endif
+                    {!! Form::open(array('action' => 'SellController@imprimirCupom', 'method' => 'post', 'style' => 'display:inline')) !!}
+                    {!! Form::hidden('order_id',$order->id) !!}
+                    {!! Form::button(Icon::create('list-alt'), ['type' => 'submit', 'class' => 'btn btn-primary btn-sm', 'style' => 'width:40px;display: inline;margin-left:30px; margin-right:-35px; height:40px;'] )  !!}
+                    {!! Form::close() !!}
             @else
                 {!! Button::primary(Icon::create('link'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'disabled' => 'true'])  !!}
                 {!! Button::primary(Icon::create('credit-card'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'disabled' => 'true'])  !!}
+                {!! Button::primary(Icon::create('list-alt'))->addAttributes(['style' => 'display: inline;margin-left:30px; margin-right:-35px; height:40px;', 'disabled' => 'true'])  !!}
             @endif
         </div>
         <div class="row">
@@ -106,9 +111,9 @@
                         <div align="center" style="border-bottom: solid; border-width: 1px; border-color: #2F3133"> Produtos de
                             @php
                             if($order->type == 2)
-                                echo \App\Desk::all()->where('order_id','=', $order->id)->where('status','=',1)->first()->name;
+                                echo \App\Desk::all()->where('order_id','=', $order->id)->where('status','=',1)->first()->name.' ('.$order->id.')';
                             else
-                                echo $order->client->name;
+                                echo $order->client->name.'('.$order->id.')';
                             @endphp
                         </div>
                         {!! $tabela = App\Models\Sell::atualizaTabelaDeItens($order->id)!!}
