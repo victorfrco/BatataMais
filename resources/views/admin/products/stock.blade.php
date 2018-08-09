@@ -21,7 +21,7 @@
                     {!! $products = App\Models\Product::all() !!}
                     @foreach($products as $product)
                         <option value="{{$product->id}}">
-                            {{$product->name}}&ensp;&ensp;|&ensp;&ensp;{{$product->qtd}}</option>
+                            {{$product->barcode}} - {{$product->name}}&ensp;&ensp;|&ensp;&ensp;{{$product->qtd}}</option>
                     @endforeach
                 </select>
 
@@ -43,7 +43,7 @@
                     {!! $products = App\Models\Product::all() !!}
                     @foreach($products as $product)
                         <option value="{{$product->id}}">
-                            {{$product->name}}&ensp;&ensp;|&ensp;&ensp;{{$product->qtd}}</option>
+                            {{$product->barcode}} - {{$product->name}}&ensp;&ensp;|&ensp;&ensp;{{$product->qtd}}</option>
                     @endforeach
                 </select>
 

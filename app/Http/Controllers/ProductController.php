@@ -193,7 +193,7 @@ class ProductController extends Controller
     public function search(){
 	    $q = Input::get ( 'q' );
 	    if($q != ""){
-		    $products = Product::where ( 'name', 'LIKE', $q . '%' )->paginate (6)->setPath ( '' );
+		    $products = Product::where ( 'name', 'LIKE', '%'. $q . '%' )->orWhere('barcode', 'LIKE', '%'. $q . '%' )->paginate (6)->setPath ( '' );
 		    $pagination = $products->appends ( array (
 			    'q' => Input::get ( 'q' )
 		    ) );
