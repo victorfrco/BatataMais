@@ -185,6 +185,13 @@ class DatabaseSeeder extends Seeder
             'email' => '',
         ]);
 
+        DB::table('companies')->insert([
+            'name' =>'Goyanu\'s Spetus',
+            'phone' => '(67) 3305-4893',
+            'address' => 'Rua José Gomes Domingues, 1337 - Bairro Santa Fé - Campo Grande/MS',
+            'msg' => 'Agradecemos a preferência! Volte Sempre!',
+        ]);
+
 		// $this->call(UsersTableSeeder::class);
 	}
 }
