@@ -29,7 +29,7 @@ class CashMovesController extends Controller
     }
 
     public static function buscaValoresSaidas($id){
-        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOSAIDA())->sum('total');
+        $cashMoves = CashMoves::all()->where('cash_id','=', $id)->whereIn('type',[CashMoves::getTIPOSAIDA(),CashMoves::getTIPODESCONTO()])->sum('total');
         return 'R$ '.number_format($cashMoves, 2,',', '.');
     }
 
@@ -38,7 +38,7 @@ class CashMovesController extends Controller
         $credito = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('credit');
         $dinheiro = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOVENDA())->sum('money');
         $entradas = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOENTRADA())->sum('total');
-        $saidas = CashMoves::all()->where('cash_id','=', $id)->where('type','=',CashMoves::getTIPOSAIDA())->sum('total');
+        $saidas = CashMoves::all()->where('cash_id','=', $id)->whereIn('type',[CashMoves::getTIPOSAIDA(),CashMoves::getTIPODESCONTO()])->sum('total');
 
         $total = $debito + $credito + $dinheiro + $entradas - $saidas;
 

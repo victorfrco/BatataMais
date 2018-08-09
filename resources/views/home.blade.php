@@ -128,7 +128,16 @@
             @endphp
         </div>
         <div class="col-xs-5 col-sm-6 col-lg-5" style="margin-top:-20px; margin-right: -60px; text-align:left;  display: inline;">
-            <p style="margin-left: 27px; margin-top: -5px">Valor total da compra: <span style="font-size: 22px; text-shadow: 1px 1px #ffcc00; color: #ffffff; display: inline;">R$@if(isset($order)){{number_format($order->total, 2, ',', '.')}} @else 0,00 @endif </span>
+                {{--@php--}}
+                    {{--if(isset($order))--}}
+                        {{--if(\App\Http\Controllers\OrderController::possuiPagamento($order))--}}
+                            {{--echo '<p style="margin-left: 27px; margin-top: -5px">Valor a pagar: <span style="font-size: 22px; text-shadow: 1px 1px #ffcc00; color: #ffffff; display: inline;">R$'.number_format($order->total, 2, ',', '.').' (valor pago R$'.(\App\Http\Controllers\OrderController::valorPago($order)).')</span>';--}}
+                        {{--else--}}
+                            {{--echo '<p style="margin-left: 27px; margin-top: -5px">Valor a pagar: <span style="font-size: 22px; text-shadow: 1px 1px #ffcc00; color: #ffffff; display: inline;">R$'.number_format($order->total, 2, ',', '.').'</span>';--}}
+                    {{--else--}}
+                        {{--echo '<p style="margin-left: 27px; margin-top: -5px">Valor a pagar: <span style="font-size: 22px; text-shadow: 1px 1px #ffcc00; color: #ffffff; display: inline;">R$0,00</span>';--}}
+                    {{--@endphp--}}
+            <p style="margin-left: 27px; margin-top: -5px">Valor a pagar: <span style="font-size: 22px; text-shadow: 1px 1px #ffcc00; color: #ffffff; display: inline;">R$@if(isset($order)){{number_format($order->total, 2, ',', '.')}} @else 0,00 @endif </span>
                 @php
                     if(isset($order))
                         if(\App\Http\Controllers\OrderController::possuiPagamento($order))

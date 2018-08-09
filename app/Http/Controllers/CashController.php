@@ -191,7 +191,7 @@ class CashController extends Controller
     }
 
     public static function buscaSaidas($id){
-        $saidas = CashMoves::all()->where('cash_id','=', $id)->where('type','=', CashMoves::getTIPOSAIDA());
+        $saidas = CashMoves::all()->where('cash_id','=', $id)->whereIn('type',[CashMoves::getTIPOSAIDA(),CashMoves::getTIPODESCONTO()]);
         $itens = array();
         foreach ($saidas as $saida){
             $item['usuario'] =  User::find($saida->user_id)->email;

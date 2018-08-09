@@ -22,12 +22,20 @@
                     </select>
                     <div id="obsParcial" style="display: block; width:500px">';
                         if(isset($order))
-                            echo 'Valor Dinheiro: <input id="dinheiro" name="dinheiro" type="number" max="'.$order->total.'" step="0.01">
-                            <br>
-                            Valor Débito: <input id="debito" name="debito" type="number" max="'.$order->total.'" step="0.01">
-                            <br>
-                            Valor Crédito: <input id="credito" name="credito" type="number" max="'.$order->total.'" step="0.01">
-                            <br>
+                            echo '<table class="table">
+                            <tr>
+                                <td>Valor Dinheiro: </td>
+                                <td><input style="width:120px" id="dinheiro" name="dinheiro" type="text" max="'.$order->total.'"  ></td>
+                            </tr>
+                            <tr>
+                                <td>Valor Débito: </td>
+                                <td><input style="width:120px" id="debito" name="debito" type="text" max="'.$order->total.'"  ></td>
+                            </tr>
+                            <tr>
+                                <td>Valor Crédito: </td>
+                                <td><input style="width:120px" id="credito" name="credito" type="text" max="'.$order->total.'"  ></td>
+                            </tr>
+                            </table>
 
                     <div id="produtosParciais">';
                     if(isset($order)){

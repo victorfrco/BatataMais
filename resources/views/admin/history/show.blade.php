@@ -15,8 +15,11 @@
                     echo '<li><u> Forma de Pagamento:</u> '.$dados['formaDePagamento'].'</li>';
                     echo '</ul>';
 
-                    if($order->pay_method == 4)
-                         echo '<p><u> Observação:</u> '.$order->obs.'</p>';
+                    if($order->pay_method == 4){
+                         echo '<p><u> Dinheiro:</u> R$'.number_format($order->money, 2, ',', '.').'</p>';
+                         echo '<p><u> Débito:</u> R$'.number_format($order->debit, 2, ',', '.').'</p>';
+                         echo '<p><u> Crédito:</u> R$'.number_format($order->credit, 2, ',', '.').'</p>';
+                         }
 
                     if($order->total > 0){
                         $contentOriginal = '<ul><li><u> Data :</u> '.$order->getUltimaAtualizacao().'</li>
@@ -45,9 +48,12 @@
 
                     foreach ($dados['subOrders'] as $subOrder){
                         $content = '<ul><li><u> Data :</u> '.$subOrder->getUltimaAtualizacao().'</li>
-                    <li><u> Venda Realizada por:</u> '.$subOrder->getNomeUsuario().'</li>
-                    <li><u> Valor Pago:</u> R$'.number_format($subOrder->total, 2, ',', '.').'</li>
-                    <li><u> Forma de Pagamento:</u> '.$subOrder->getFormaDePagamento().'</li>
+                    <li><u> Venda Realizada por:</u> '.$subOrder->getNomeUsuario().'</li>';
+                    if($subOrder->pay_method == 4)
+                        $content = $content.'<li><u> Valor Pago:</u> R$'.number_format($subOrder->money+$subOrder->debit+$subOrder->credit, 2, ',', '.').'</li>';
+                    else
+                        $content = $content.'<li><u> Valor Pago:</u> R$'.number_format($subOrder->total, 2, ',', '.').'</li>';
+                    $content = $content.'<li><u> Forma de Pagamento:</u> '.$subOrder->getFormaDePagamento().'</li>
                     </ul>';
 
                     if($subOrder->pay_method == 4){
@@ -66,7 +72,8 @@
                         ['title' => 'Itens Pagos', 'contents' => implode('', $contents)],
                     ]);
 
-                    $content = $content.$tabelaItens;
+                    if($subOrder->pay_method != 4)
+                        $content = $content.$tabelaItens;
                        $names[] = [
                                 'title' => 'Pagamento '. $cont,
                                 'contents' => $content

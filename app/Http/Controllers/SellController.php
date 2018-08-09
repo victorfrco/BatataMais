@@ -497,7 +497,7 @@ class SellController extends Controller
 		$parcial->original_order = $orderOriginal->id;
 
         if($parcial->pay_method == 4) {
-            $orderOriginal->total -= $parcial->total;
+            $orderOriginal->total -= $debito + $credito + $dinheiro;
 
             if($orderOriginal->total < 0.01){
                 $orderOriginal->status = $this->STATUS_PAGA;

@@ -80,7 +80,7 @@ class OrderController extends Controller
 		if($subOrders != null && $subOrders->count() > 0){
 			foreach ($subOrders as $subOrder){
 				if($subOrder->pay_method == 4)
-					$total += $subOrder->total;
+					$total += $subOrder->debit + $subOrder->credit + $subOrder->money;
 			}
 		}
 		return $total;
