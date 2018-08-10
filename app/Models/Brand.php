@@ -22,7 +22,7 @@ class Brand extends Model implements TableInterface
                                     ->responsive()
                                     ->withAttributes(['style' => 'background-color: #ffffff;height:110px;']);
       else
-        $divCont = $brand->name.Image::circle(asset('storage/images/brands/nobrand.gif'), 'rounded')
+        $divCont = substr($brand->name,0, 15).Image::circle(asset('storage/images/brands/nobrand.gif'), 'rounded')
                        ->responsive()
                        ->withAttributes(['style' => 'height:110px']);
 
