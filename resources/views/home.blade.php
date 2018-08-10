@@ -180,7 +180,7 @@
         <div class="col-xs-7 col-sm-6 col-lg-7" style="max-height: 70px; min-width:1280px; margin-left:-90px;overflow-x: auto;white-space: nowrap;">
             @php
                 if(App\Http\Controllers\CashController::buscaCaixaPorUsuario(\Illuminate\Support\Facades\Auth::id()) != null){
-                    echo '<a href="'.action("DeskController@createDesk").'">'.\Bootstrapper\Facades\Button::success('+')->addAttributes(['style' => 'height:39px ;width:50px;margin-right:9px']).'</a>';
+                    echo '<a href="'.action("ReportController@produtosComCodigos").'">'.\Bootstrapper\Facades\Button::success('+')->addAttributes(['style' => 'height:39px ;width:50px;margin-right:9px']).'</a>';
                     $deskController = new App\Http\Controllers\DeskController();
                     echo $deskController->carregaMesas();
                 }

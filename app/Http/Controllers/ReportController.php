@@ -216,4 +216,10 @@ class ReportController extends Controller
 //		return dd($dados);
 		return $dados;
 	}
+
+    public function produtosComCodigos(){
+            $pdf = PDF::loadView( 'admin.reports.productsCod');
+            return Redirect::to(view( 'admin.reports.productsCod' ));
+//            return $pdf->download( 'produtos_codigos.pdf' );
+    }
 }

@@ -23,6 +23,13 @@
              'contents' => 'Em desenvolvimento'
          ],
          [
+             'title' => 'Relatório de Produtos',
+             'contents' => '<h4>Produtos com código agrupados por família</h4>
+                              <a href="'.action("DeskController@createDesk").'">'.\Bootstrapper\Facades\Button::primary('Gerar').'</a>',
+
+            'style'=>''
+         ],
+         [
              'title' => 'Relatório Analítico',
              'contents' => '<h4>Entradas e Saídas</h4>
                         Informe a data desejada:
