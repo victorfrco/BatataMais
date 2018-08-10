@@ -14,7 +14,7 @@ foreach ($categories as $category){
         echo '<h4>'.$brand->name.'</h4>';
         $products = \App\Models\Product::all()->where('brand_id','=',$brand->id);
         echo '<ul>';
-        foreach ($producrs as $product){
+        foreach ($products as $product){
             echo '<li>'.$product->barcode.' - '.$product->name.' ('.$product->description.')</li>';
         }
         echo '</ul>';

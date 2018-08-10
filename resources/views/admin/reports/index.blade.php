@@ -25,7 +25,7 @@
          [
              'title' => 'Relatório de Produtos',
              'contents' => '<h4>Produtos com código agrupados por família</h4>
-                              <a href="'.action("DeskController@createDesk").'">'.\Bootstrapper\Facades\Button::primary('Gerar').'</a>',
+                              <a href="'.action("ReportController@produtosComCodigos").'">'.\Bootstrapper\Facades\Button::primary('Gerar').'</a>',
 
             'style'=>''
          ],

@@ -83,6 +83,7 @@ Route::get('/upload', 'BrandController@upload');
 Route::post('/move', 'BrandController@move')->name('move');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/createDesk', 'DeskController@createDesk')->name('createDesk');
+Route::get('/produtosComCodigos', 'ReportController@produtosComCodigos')->name('produtosComCodigos');
 Route::post('/cashes', 'CashController@fecharCaixa')->name('fecharCaixa');
 Route::post('/novaEntrada', 'CashController@novaEntrada')->name('novaEntrada');
 Route::post('/novaSaida', 'CashController@novaSaida')->name('novaSaida');
